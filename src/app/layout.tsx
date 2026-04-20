@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "NyXia IA — Automatisation",
   description: "NyXia IA - Système d'automatisation intelligent. Marketing & Conversion.",
   icons: {
-    icon: "/favicon.ico",
+    icon: "/images/NyXia-FavIcon.png",
   },
 };
 

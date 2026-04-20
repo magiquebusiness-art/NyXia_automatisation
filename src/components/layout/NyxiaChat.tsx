@@ -131,7 +131,7 @@ export default function NyxiaChat() {
         >
           <div className="relative w-9 h-9 rounded-full overflow-hidden ring-2 ring-[rgba(123,92,255,0.4)]">
             <Image
-              src="/images/nyxia/NyXia-40.png"
+              src="/images/Logo.png"
               alt="NyXia IA"
               fill
               className="object-cover"
@@ -308,7 +308,7 @@ export default function NyxiaChat() {
         ) : (
           <div className="relative w-9 h-9 rounded-full overflow-hidden">
             <Image
-              src="/images/nyxia/NyXia-40.png"
+              src="/images/Logo.png"
               alt="NyXia"
               fill
               className="object-cover"

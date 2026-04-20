@@ -1149,45 +1149,68 @@
   outline-offset: 2px;
 }
 
-/* ── nx-img-glow ───────────────────────────────────────────── */
+/* ── nx-img-glow — Drop-shadow follows image shape ────────── */
 
 .nx-img-glow {
   position: relative;
-  border-radius: var(--nx-r-lg);
-  overflow: visible;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.nx-img-glow::after {
-  content: '';
+.nx-img-glow img {
+  filter: drop-shadow(0 20px 40px rgba(123,92,255,0.3)) drop-shadow(0 8px 16px rgba(0,0,0,0.4));
+  transition: filter 0.4s ease, transform 0.4s ease;
+  max-width: 100%;
+  height: auto;
+}
+
+.nx-img-glow:hover img {
+  filter: drop-shadow(0 30px 60px rgba(123,92,255,0.45)) drop-shadow(0 12px 24px rgba(0,0,0,0.5));
+  transform: translateY(-6px);
+}
+
+/* ── nx-glow-blob — Breathing radial glow behind image ────── */
+
+.nx-glow-blob {
   position: absolute;
-  inset: -4px;
-  border-radius: inherit;
-  background: linear-gradient(135deg, var(--nx-p), var(--nx-p3));
-  opacity: 0.3;
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(123,92,255,0.2) 0%, rgba(79,163,255,0.08) 40%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
   z-index: -1;
-  filter: blur(16px);
-  transition: opacity 0.3s;
+  animation: nx-glow-breathe 4s ease-in-out infinite;
 }
 
-.nx-img-glow:hover::after {
-  opacity: 0.55;
+@keyframes nx-glow-breathe {
+  0%, 100% { opacity: 0.7; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.12); }
+}
+
+/* ── nx-img-float — Floating animation for images ──────────── */
+
+.nx-img-float {
+  animation: nx-float-gentle 5s ease-in-out infinite;
+}
+
+@keyframes nx-float-gentle {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
 }
 
 /* ── nx-img-hero ───────────────────────────────────────────── */
 
 .nx-img-hero {
   border-radius: var(--nx-r-xl);
-  box-shadow:
-    0 20px 60px rgba(0,0,0,0.4),
-    0 0 60px rgba(123,92,255,0.08);
-  transition: transform 0.4s, box-shadow 0.4s;
+  transition: transform 0.4s ease;
 }
 
 .nx-img-hero:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow:
-    0 30px 80px rgba(0,0,0,0.5),
-    0 0 80px rgba(123,92,255,0.15);
+  transform: translateY(-4px);
 }
 
 /* ── nx-star (Rating) ──────────────────────────────────────── */

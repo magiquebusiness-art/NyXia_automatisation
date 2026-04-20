@@ -44,7 +44,7 @@ export default function Navbar() {
           <Link href="/" className="flex items-center gap-3 group shrink-0">
             <div className="relative w-9 h-9 md:w-10 md:h-10 rounded-full overflow-hidden ring-2 ring-[rgba(123,92,255,0.3)] group-hover:ring-[rgba(123,92,255,0.6)] transition-all duration-300">
               <Image
-                src="/images/nyxia/NyXia-40.png"
+                src="/images/Logo.png"
                 alt="NyXia IA"
                 fill
                 className="object-cover"

@@ -1,17 +1,20 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ChevronDown, Check, X, Star } from 'lucide-react';
+import { ChevronDown, Star } from 'lucide-react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import NyxiaChat from '@/components/layout/NyxiaChat';
 import StarryBackground from '@/components/StarryBackground';
 
 /* ═══════════════════════════════════════════════════════════════
-   NyXia Automatisation — Landing Page
-   Complete landing page with 10 sections + footer + chat widget
+   NyXia Automation — Landing Page
+   Texte du document "Base Agent Automatisation NyXia"
+   Images : Automation1, Logo, TravailDureNyxia, automate2, NyXia-26
+   Effet glow : filter: drop-shadow() — suit le contour du personnage
+   Prix unique : 47$/mois
    ═══════════════════════════════════════════════════════════════ */
 
 /* ── IntersectionObserver for Scroll Reveal ──────────────────── */
@@ -80,169 +83,115 @@ function StarRating({ count }: { count: number }) {
 
 /* ── Data ────────────────────────────────────────────────────── */
 
-const LEXIQUE_PILLS = [
-  { label: 'Curiosity Gap', color: 'purple' },
-  { label: 'Open Loop', color: 'blue' },
-  { label: 'Pattern Interrupt', color: 'green' },
-  { label: 'Future Pacing', color: 'gold' },
-  { label: 'Story-Selling', color: 'purple' },
-  { label: 'FOMO', color: 'red' },
-  { label: 'Anchrage', color: 'blue' },
-  { label: 'Preuves Sociales', color: 'green' },
-  { label: 'Scarcité', color: 'gold' },
-  { label: 'Réciprocité', color: 'purple' },
+const TESTIMONIALS = [
+  {
+    initial: 'M',
+    name: 'Marie L.',
+    role: 'Entrepreneuse',
+    text: "Depuis que j'utilise NyXia, j'ai repris 15h par semaine. Mes publications sont plus engageantes que jamais. C'est comme avoir une attach\u00e9e de presse permanente.",
+    stars: 5,
+  },
+  {
+    initial: 'D',
+    name: 'David R.',
+    role: 'Coach en ligne',
+    text: "Je d\u00e9testais les r\u00e9seaux sociaux. Maintenant, NyXia publie pour moi et mes clients arrivent tout seuls. Mon business a doubl\u00e9 en 3 mois.",
+    stars: 5,
+  },
+  {
+    initial: 'S',
+    name: 'Sophie M.',
+    role: 'Esth\u00e9ticienne',
+    text: "Je ne savais m\u00eame pas comment r\u00e9diger un post. NyXia a tout compris d\u00e8s le premier jour. Mes clientes me disent que mes posts sont incroyables !",
+    stars: 5,
+  },
 ] as const;
 
-const AUDIENCE_CARDS = [
-  { emoji: '📚', title: 'Auteurs', desc: 'Publiez vos livres et construisez votre audience en automatisant votre marketing.', stat: '+340% engagement', color: 'purple' },
-  { emoji: '🎯', title: 'Coachs', desc: 'Attirez vos clients idéaux avec du contenu psychologique optimisé.', stat: '+280% leads', color: 'blue' },
-  { emoji: '🧠', title: 'Thérapeutes', desc: 'Créez une présence en ligne authentique sans passer des heures sur les réseaux.', stat: '+5h/sem gagnées', color: 'green' },
-  { emoji: '✨', title: 'Entrepreneurs Spirituels', desc: 'Partagez votre message avec une âme, propulsé par l\'intelligence artificielle.', stat: '+420% visibilité', color: 'purple' },
-  { emoji: '🎓', title: 'Créateurs de Formations', desc: 'Remplissez vos cohortes automatiquement avec un contenu qui convertit.', stat: '+350% inscriptions', color: 'blue' },
-  { emoji: '🎬', title: 'Créateurs de Contenu', desc: 'Multipliez votre production sans sacrifier la qualité ni votre temps.', stat: '+600% contenu', color: 'green' },
-  { emoji: '🚀', title: 'Entrepreneurs', desc: 'Automatisez votre marketing et concentrez-vous sur ce qui compte.', stat: '+450% ROI', color: 'purple' },
-  { emoji: '💡', title: 'Startups', desc: 'Scalez votre présence sociale sans agrandir votre équipe marketing.', stat: '-70% coûts', color: 'blue' },
-] as const;
-
-const FEATURE_CARDS = [
-  { emoji: '🖼️', title: 'Générateur de contenu IA', desc: 'Créez des posts, articles et captions optimisés en quelques secondes grâce à l\'IA avancée de NyXia.', color: 'purple' },
-  { emoji: '✍️', title: 'Copywriter IA Premium', desc: 'Du copywriting qui convertit, propulsé par La Psychologie du Clic. Chaque mot est stratégique.', color: 'blue' },
-  { emoji: '📱', title: 'Publication multi-plateforme', desc: 'Publiez automatiquement sur Instagram, Facebook, LinkedIn, TikTok et plus — en un clic.', color: 'green' },
-  { emoji: '🔍', title: 'Calendrier intelligent SEO', desc: 'Planifiez vos publications au moment optimal pour maximiser la portée et l\'engagement.', color: 'gold' },
-  { emoji: '📸', title: 'Optimisation visuelle automatique', desc: 'Générez et optimisez visuels, thumbnails et stories pour chaque plateforme.', color: 'purple' },
-  { emoji: '💬', title: 'Engagement automatique', desc: 'Répondez aux commentaires et DM automatiquement avec un ton humain et empathique.', color: 'blue' },
+const FEATURES = [
+  {
+    emoji: '\u270f\ufe0f',
+    title: 'Titres qui stoppent le scroll',
+    desc: 'NyXia cr\u00e9e des titres qui captent l\u2019attention en moins d\u2019une seconde. Fini les publications ignor\u00e9es.',
+  },
+  {
+    emoji: '\ud83d\udcac',
+    title: 'Textes qui engagent et convertissent',
+    desc: 'Des textes persuasifs, authentiques et parfaitement adapt\u00e9s \u00e0 ton audience. Ton style, ta voix.',
+  },
+  {
+    emoji: '\ud83d\udcf1',
+    title: 'Publication multi-plateforme',
+    desc: 'Facebook, Instagram, TikTok, YouTube \u2014 NyXia publie partout en m\u00eame temps. Un seul point de contr\u00f4le.',
+  },
+  {
+    emoji: '\ud83d\udcc5',
+    title: 'Calendrier intelligent',
+    desc: 'NyXia sait quand publier pour maximiser la port\u00e9e. Plus besoin de chercher le bon cr\u00e9neau horaire.',
+  },
+  {
+    emoji: '\ud83c\udfa8',
+    title: 'Ton style, ta voix',
+    desc: "NyXia apprend ton ton, ton vocabulaire, ta personnalit\u00e9. Tes publications te ressemblent. Vraiment.",
+  },
+  {
+    emoji: '\ud83e\udd16',
+    title: 'Automatisation 24/7',
+    desc: 'Repurposing automatique, d\u00e9tection de tendances, A/B testing des titres, analyse de l\u2019engagement et ajustement auto.',
+  },
 ] as const;
 
 const STEPS = [
   {
     num: '01',
-    title: 'Tu dis à NyXia ce que tu veux',
-    desc: 'Décris ton objectif, ta niche, ton style — NyXia comprend et s\'adapte instantanément à ton univers.',
-    image: '/images/nyxia/NyXia-23.png',
-    info: 'Interface conversationnelle naturelle',
+    title: 'Tu dis \u00e0 NyXia ce que tu veux',
+    desc: 'Tu lui parles, tu lui envoies une voix, un simple mot \u2014 NyXia comprend. C\u2019est aussi simple que de parler \u00e0 un coll\u00e8gue de confiance.',
+    hint: 'Pas besoin d\u2019\u00e9crire quoi que ce soit. Pas besoin de pr\u00e9parer des images. NyXia fait tout \u00e0 ta place.',
+    image: '/images/TravailDureNyxia.png',
   },
   {
     num: '02',
     title: 'NyXia fait TOUT le travail',
-    desc: 'Création de contenu, copywriting, visuels, planification — NyXia génère tout automatiquement.',
-    image: '/images/nyxia/NyXia-24.png',
-    info: 'Automatisation complète 24/7',
+    desc: 'Elle cr\u00e9e le contenu, trouve les titres accrocheurs, r\u00e9dige les textes, choisit les meilleurs moments et publie automatiquement.',
+    hint: "Tu n\u2019as pas besoin d\u2019\u00eatre l\u00e0. Tu n\u2019as pas besoin de valider quoi que ce soit. NyXia g\u00e8re tout de A \u00e0 Z.",
+    image: '/images/automate2.png',
   },
   {
     num: '03',
-    title: 'Tu récoltes les résultats',
-    desc: 'Plus de visibilité, plus de leads, plus de ventes — pendant que tu dors, NyXia travaille.',
+    title: 'Tu r\u00e9coltes les r\u00e9sultats',
+    desc: 'Tes publications sont en ligne, ton audience s\u2019engage, les prospects arrivent. Tu regardes les notifications qui d\u00e9filent \u2014 c\u2019est tout.',
+    hint: "Ta seule job : regarder les notifications qui d\u00e9filent. Les clients, les likes, les messages \u2014 tout vient \u00e0 toi.",
     image: '/images/nyxia/NyXia-25.png',
-    info: 'Résultats mesurables en temps réel',
-  },
-] as const;
-
-const TESTIMONIALS = [
-  {
-    name: 'Marie-Claire D.',
-    role: 'Auteure & Coach',
-    text: 'NyXia a transformé ma présence en ligne. En 2 semaines, j\'ai doublé mon engagement sur Instagram sans passer plus de 10 minutes par jour.',
-    stars: 5,
-  },
-  {
-    name: 'Thomas R.',
-    role: 'Entrepreneur Spirituel',
-    text: 'Le copywriting IA est incroyable. Mes posts n\'ont jamais eu autant d\'impact. On dirait que NyXia lit dans l\'esprit de mon audience.',
-    stars: 5,
-  },
-  {
-    name: 'Sophie L.',
-    role: 'Thérapeute & Formatrice',
-    text: 'Je recommande NyXia à tous les thérapeutes. Je publie du contenu authentique sans y passer des heures. Ma visibilité a explosé.',
-    stars: 5,
-  },
-] as const;
-
-const PRICING_TIERS = [
-  {
-    tier: 'Starter',
-    price: '0',
-    currency: '',
-    period: '/mois',
-    desc: 'Parfait pour découvrir NyXia et commencer à automatiser.',
-    featured: false,
-    features: [
-      { text: '3 publications / semaine', included: true },
-      { text: '1 réseau social', included: true },
-      { text: 'Générateur de contenu basique', included: true },
-      { text: 'Copywriter IA (5 requêtes/jour)', included: true },
-      { text: 'Calendrier manuel', included: true },
-      { text: 'Engagement automatique', included: false },
-      { text: 'Analytics avancés', included: false },
-      { text: 'Support prioritaire', included: false },
-    ],
-  },
-  {
-    tier: 'Pro',
-    price: '47',
-    currency: '$',
-    period: '/mois',
-    desc: 'L\'automatisation complète pour les entrepreneurs sérieux.',
-    featured: true,
-    features: [
-      { text: 'Publications illimitées', included: true },
-      { text: '4+ réseaux sociaux', included: true },
-      { text: 'Générateur de contenu IA avancé', included: true },
-      { text: 'Copywriter IA Premium (illimité)', included: true },
-      { text: 'Calendrier intelligent SEO', included: true },
-      { text: 'Engagement automatique', included: true },
-      { text: 'Analytics avancés', included: true },
-      { text: 'Support prioritaire', included: true },
-    ],
-  },
-  {
-    tier: 'Business',
-    price: '97',
-    currency: '$',
-    period: '/mois',
-    desc: 'Pour les équipes et les businesses qui veulent dominer.',
-    featured: false,
-    features: [
-      { text: 'Tout du plan Pro', included: true },
-      { text: 'Multi-comptes (5 profils)', included: true },
-      { text: 'Optimisation visuelle automatique', included: true },
-      { text: 'API & intégrations custom', included: true },
-      { text: 'White-label', included: true },
-      { text: 'Account manager dédié', included: true },
-      { text: 'Formation personnalisée', included: true },
-      { text: 'SLA 99.9% uptime', included: true },
-    ],
   },
 ] as const;
 
 const FAQ_ITEMS = [
   {
-    question: 'Qu\'est-ce que NyXia Automatisation exactement ?',
-    answer: 'NyXia est une plateforme d\'automatisation IA qui gère entièrement votre présence sur les réseaux sociaux. Elle crée du contenu, le publie, engage votre audience et optimise votre stratégie — tout automatiquement, propulsé par La Psychologie du Clic.',
+    question: "Je n'y connais rien en technologie, c'est pour moi ?",
+    answer: "Oui, c'est fait exactement pour toi. NyXia a \u00e9t\u00e9 con\u00e7ue pour les entrepreneurs qui ne veulent pas se prendre la t\u00eate avec la technologie. Si tu sais parler, tu sais utiliser NyXia. Point final.",
   },
   {
-    question: 'Ai-je besoin de compétences techniques ?',
-    answer: 'Absolument pas. NyXia est conçue pour être utilisée par des entrepreneurs, auteurs, coachs et créateurs — pas des développeurs. L\'interface est intuitive et conversationnelle. Vous dites ce que vous voulez, NyXia fait le reste.',
+    question: 'Est-ce que je dois \u00e9crire le contenu moi-m\u00eame ?',
+    answer: "Non. Tu dis simplement \u00e0 NyXia ce que tu veux communiquer \u2014 un mot, une phrase, une id\u00e9e \u2014 et elle s'occupe de tout. Elle r\u00e9dige, elle optimise, elle publie. Tu n'as rien \u00e0 \u00e9crire.",
   },
   {
-    question: 'Comment La Psychologie du Clic améliore-t-elle mon contenu ?',
-    answer: 'La méthodologie de Diane Boyer intègre des principes de neurosciences et de psychologie comportementale directement dans l\'IA de NyXia. Chaque post, chaque caption, chaque séquence est optimisée pour capter l\'attention, créer de l\'engagement et convertir — de façon éthique et authentique.',
+    question: 'Combien de publications est-ce que j\u2019ai par mois ?',
+    answer: "Si tu publies en moyenne 2 \u00e0 8 fois par jour, NyXia le fera facilement pour toi ! Il n\u2019y a pas de limite fixe \u2014 NyXia publie aussi souvent que ton entreprise en a besoin. C\u2019est illimit\u00e9.",
   },
   {
-    question: 'Quels réseaux sociaux sont supportés ?',
-    answer: 'NyXia supporte Instagram, Facebook, LinkedIn, TikTok, X (Twitter) et Pinterest. De nouvelles plateformes sont ajoutées régulièrement. Le plan Pro inclut 4+ réseaux, et le plan Business permet de gérer jusqu\'à 5 profils différents.',
+    question: 'Quelles plateformes sont incluses ?',
+    answer: "Facebook (profil, pages, groupes), Instagram, TikTok et YouTube. NyXia publie sur toutes ces plateformes simultan\u00e9ment. Tu n\u2019as pas besoin de te connecter sur chacune.",
   },
   {
-    question: 'Puis-je essayer NyXia gratuitement ?',
-    answer: 'Oui ! Le plan Starter est entièrement gratuit et vous permet de découvrir les fonctionnalités de base de NyXia. Vous pouvez upgrader vers Pro ou Business à tout moment pour débloquer l\'automatisation complète.',
+    question: 'Est-ce que je peux annuler \u00e0 tout moment ?',
+    answer: "Oui, aucun engagement. Tu peux annuler ton abonnement quand tu veux, en un clic. Pas de frais cach\u00e9s, pas de p\u00e9riode minimum. C\u2019est toi qui d\u00e9cides.",
   },
   {
-    question: 'Mes données sont-elles sécurisées ?',
-    answer: 'Absolument. Nous utilisons un chiffrement de niveau bancaire (AES-256), des serveurs sécurisés au Canada, et nous ne partageons jamais vos données avec des tiers. Votre contenu et vos stratégies restent 100% privés.',
+    question: 'Est-ce que c\u2019est en fran\u00e7ais ?',
+    answer: "Bien s\u00fbr ! NyXia parle fran\u00e7ais et anglais. Elle cr\u00e9e du contenu dans la langue de ton choix et s\u2019adapte au ton de ta marque. Que tu sois au Qu\u00e9bec, en France ou en Belgique, elle te comprend.",
   },
   {
-    question: 'Combien de temps faut-il pour voir des résultats ?',
-    answer: 'La plupart de nos utilisateurs voient une augmentation significative de leur engagement dès la première semaine. En moyenne, nos clients constatent +280% de leads et +340% d\'engagement dans les 30 premiers jours.',
+    question: 'Combien de temps \u00e7a prend pour que NyXia commence \u00e0 publier ?',
+    answer: "D\u00e8s que tu lui donnes ta premi\u00e8re id\u00e9e, c\u2019est parti ! En quelques minutes, NyXia cr\u00e9e ta premi\u00e8re publication et la met en ligne. Pas de temps d\u2019attente, pas de configuration complexe.",
   },
 ] as const;
 
@@ -271,7 +220,7 @@ export default function Home() {
         >
           <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* ── Left: Text Content ─────────────────────── */}
-            <div className="flex flex-col gap-6 lg:gap-8">
+            <div className="flex flex-col gap-5 lg:gap-6">
               {/* Badge */}
               <div
                 className="nx-fade-up inline-flex items-center gap-2.5 px-4 py-2 rounded-full w-fit"
@@ -295,7 +244,7 @@ export default function Home() {
                     fontFamily: "'Outfit', sans-serif",
                   }}
                 >
-                  Automatisation IA — Disponible maintenant
+                  Automatisation IA \u2014 Disponible maintenant
                 </span>
               </div>
 
@@ -304,12 +253,12 @@ export default function Home() {
                 className="nx-fade-up nx-fade-up-delay-1 leading-tight"
                 style={{
                   fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: 'clamp(2.4rem, 5.5vw, 4.2rem)',
+                  fontSize: 'clamp(2.2rem, 5vw, 3.8rem)',
                   fontWeight: 600,
                   color: '#FFFFFF',
                 }}
               >
-                Ton automatisation{' '}
+                Tu as une entreprise \u00e0 faire grandir, pas le temps de publier partout.{' '}
                 <em
                   style={{
                     background:
@@ -319,22 +268,12 @@ export default function Home() {
                     fontStyle: 'italic',
                   }}
                 >
-                  IA
-                </em>{' '}
-                par{' '}
-                <span
-                  style={{
-                    background:
-                      'linear-gradient(135deg, #F4C842, #FFE082, #F4C842)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                  }}
-                >
                   NyXia
-                </span>
+                </em>{' '}
+                s&apos;en occupe.
               </h1>
 
-              {/* Subtitle */}
+              {/* Subtitle from doc */}
               <p
                 className="nx-fade-up nx-fade-up-delay-2 text-lg lg:text-xl leading-relaxed max-w-xl"
                 style={{
@@ -342,92 +281,51 @@ export default function Home() {
                   color: '#8891B8',
                 }}
               >
-                NyXia automatise tes réseaux sociaux avec une IA propulsée par
-                La Psychologie du Clic. Plus de contenu, plus d&apos;engagement,
-                zéro effort.
+                NyXia n&apos;est pas un outil \u2014 c&apos;est ta collaboratrice IA. Elle comprend ton audience,
+                cr\u00e9e du contenu engageant et publie pour toi sur tous tes r\u00e9seaux sociaux.
+                Automatiquement. Intelligemment. Sans que tu aies \u00e0 lever le doigt.
               </p>
 
-              {/* Sub-line */}
+              {/* Slogan */}
               <p
-                className="nx-fade-up nx-fade-up-delay-2 text-sm font-medium tracking-wider uppercase"
+                className="nx-fade-up nx-fade-up-delay-2 text-base font-semibold tracking-wide"
                 style={{
                   fontFamily: "'Outfit', sans-serif",
-                  color: '#4a5278',
-                  letterSpacing: '0.12em',
+                  background: 'linear-gradient(135deg, #F4C842, #FFE082)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
                 }}
               >
-                Publication Web™ — Visionnaire depuis 1997
+                NyXia en automatique travail pour toi !
               </p>
 
               {/* CTA Buttons */}
               <div className="nx-fade-up nx-fade-up-delay-3 flex flex-wrap gap-4 mt-2">
                 <Link href="/login" className="nx-btn-primary text-base">
-                  ✦ Commencer l&apos;automatisation
+                  \u2726 Engager NyXia aujourd&apos;hui
                 </Link>
                 <a
                   href="#comment-ca-marche"
                   className="nx-btn-secondary text-base"
                 >
-                  Voir comment ça marche →
+                  Comment \u00e7a marche \u2192
                 </a>
-              </div>
-
-              {/* Stats Row */}
-              <div className="nx-fade-up nx-fade-up-delay-4 flex flex-wrap gap-6 mt-4">
-                {[
-                  { value: '24/7', label: 'Auto-publication' },
-                  { value: '4+', label: 'Réseaux sociaux' },
-                  { value: 'IA', label: 'Psychologie du Clic' },
-                ].map((stat) => (
-                  <div key={stat.value} className="flex items-center gap-3">
-                    <span
-                      className="text-2xl lg:text-3xl font-bold"
-                      style={{
-                        fontFamily: "'Orbitron', sans-serif",
-                        background:
-                          'linear-gradient(135deg, #7B5CFF, #4FA3FF)',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                      }}
-                    >
-                      {stat.value}
-                    </span>
-                    <span
-                      className="text-sm"
-                      style={{
-                        fontFamily: "'Outfit', sans-serif",
-                        color: '#8891B8',
-                      }}
-                    >
-                      {stat.label}
-                    </span>
-                  </div>
-                ))}
               </div>
             </div>
 
-            {/* ── Right: Image + Floating Cards ──────────── */}
+            {/* ── Right: Image with proper glow ──────────── */}
             <div className="relative flex items-center justify-center lg:justify-end">
-              {/* Glow behind image */}
-              <div
-                className="absolute w-[80%] h-[80%] rounded-full"
-                style={{
-                  background:
-                    'radial-gradient(circle, rgba(123,92,255,0.2) 0%, rgba(79,163,255,0.08) 40%, transparent 70%)',
-                  filter: 'blur(40px)',
-                  top: '10%',
-                  left: '10%',
-                }}
-              />
+              {/* Breathing glow blob behind image */}
+              <div className="nx-glow-blob" />
 
-              {/* Main Image */}
-              <div className="relative nx-img-glow">
+              {/* Main Image with drop-shadow that follows character shape */}
+              <div className="nx-img-glow nx-img-float">
                 <Image
-                  src="/images/nyxia/NyXia.png"
+                  src="/images/Automation1.png"
                   alt="NyXia IA - Automatisation Intelligence Artificielle"
-                  width={520}
-                  height={520}
-                  className="nx-img-hero rounded-3xl object-cover"
+                  width={480}
+                  height={720}
+                  className="nx-img-hero object-cover"
                   priority
                 />
               </div>
@@ -435,6 +333,31 @@ export default function Home() {
               {/* Floating Card 1 */}
               <div className="nx-hero-card nx-hero-card-1">
                 <div className="nx-hero-card-icon purple">🚀</div>
+                <div>
+                  <div
+                    className="font-bold text-sm"
+                    style={{
+                      fontFamily: "'Outfit', sans-serif",
+                      color: '#FFFFFF',
+                    }}
+                  >
+                    24/7
+                  </div>
+                  <div
+                    className="text-xs"
+                    style={{
+                      fontFamily: "'Outfit', sans-serif",
+                      color: '#8891B8',
+                    }}
+                  >
+                    Auto-publi\u00e9
+                  </div>
+                </div>
+              </div>
+
+              {/* Floating Card 2 */}
+              <div className="nx-hero-card nx-hero-card-2">
+                <div className="nx-hero-card-icon green">✓</div>
                 <div>
                   <div
                     className="font-bold text-sm"
@@ -456,37 +379,12 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-
-              {/* Floating Card 2 */}
-              <div className="nx-hero-card nx-hero-card-2">
-                <div className="nx-hero-card-icon green">✓</div>
-                <div>
-                  <div
-                    className="font-bold text-sm"
-                    style={{
-                      fontFamily: "'Outfit', sans-serif",
-                      color: '#FFFFFF',
-                    }}
-                  >
-                    24/7
-                  </div>
-                  <div
-                    className="text-xs"
-                    style={{
-                      fontFamily: "'Outfit', sans-serif",
-                      color: '#8891B8',
-                    }}
-                  >
-                    Auto-publié
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </section>
 
         {/* ═══════════════════════════════════════════════════════
-            2. PSYCHO DU CLIC SECTION
+            2. DOULEUR SECTION
             ═══════════════════════════════════════════════════════ */}
         <section
           className="nx-section-lg"
@@ -495,27 +393,82 @@ export default function Home() {
               'linear-gradient(180deg, rgba(123,92,255,0.03) 0%, rgba(79,163,255,0.06) 50%, rgba(123,92,255,0.03) 100%)',
           }}
         >
-          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            {/* Left: Image + Quote Card */}
-            <div className="relative nx-fade-up flex items-center justify-center">
-              {/* Glow */}
-              <div
-                className="absolute w-[70%] h-[70%] rounded-full"
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="nx-eyebrow nx-fade-up mx-auto mb-6">
+              <span className="nx-eyebrow-dot" />
+              Tu connais cette fatigue ?
+            </div>
+            <h2
+              className="nx-fade-up nx-fade-up-delay-1 mb-8"
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                fontSize: 'clamp(1.8rem, 4vw, 3rem)',
+                fontWeight: 600,
+                color: '#FFFFFF',
+                lineHeight: 1.2,
+              }}
+            >
+              Tu te l\u00e8ves le matin avec une seule id\u00e9e en t\u00eate :{' '}
+              <em
                 style={{
-                  background:
-                    'radial-gradient(circle, rgba(123,92,255,0.15) 0%, transparent 60%)',
-                  filter: 'blur(30px)',
-                  top: '15%',
-                  left: '15%',
+                  background: 'linear-gradient(135deg, #7B5CFF, #4FA3FF)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  fontStyle: 'italic',
                 }}
-              />
-              <div className="relative nx-img-glow">
+              >
+                il faut publier.
+              </em>{' '}
+              Encore. Toujours.
+            </h2>
+            <div
+              className="nx-fade-up nx-fade-up-delay-2 space-y-4 text-lg leading-relaxed"
+              style={{ color: '#8891B8', fontFamily: "'Outfit', sans-serif" }}
+            >
+              <p>
+                Sur Facebook, Instagram, TikTok, YouTube\u2026 Tu passes 3 \u00e0 4 heures par jour \u00e0
+                essayer de cr\u00e9er du contenu, \u00e0 trouver des id\u00e9es, \u00e0 r\u00e9diger des textes qui ne font
+                m\u00eame pas 10 likes.
+              </p>
+              <p>
+                Tu ne sais plus quoi \u00e9crire. L&apos;inspiration est partie en vacances \u2014 et elle ne revient
+                pas. Ton t\u00e9l\u00e9phone te stresse. Tes r\u00e9seaux sociaux te donnent l&apos;impression de
+                courir apr\u00e8s ton propre succ\u00e8s.
+              </p>
+              <p style={{ color: '#D6D9F0', fontWeight: 600 }}>
+                Pendant ce temps, tes concurrents publient tous les jours. Ils grandissent. Et toi, tu es \u00e9puis\u00e9(e).
+              </p>
+              <p
+                className="text-2xl font-bold mt-8"
+                style={{
+                  background: 'linear-gradient(135deg, #F4C842, #FFE082)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: 'clamp(1.4rem, 3vw, 2rem)',
+                }}
+              >
+                Et si tout \u00e7a\u2026 quelqu&apos;un d&apos;autre le faisait pour toi ?
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════
+            3. NYXIA COLLABORATRICE (avec image Psychologie du Clic)
+            ═══════════════════════════════════════════════════════ */}
+        <section className="nx-section-lg">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            {/* Left: Image with proper glow */}
+            <div className="relative nx-fade-up flex items-center justify-center">
+              <div className="nx-glow-blob" />
+              <div className="nx-img-glow nx-img-float">
                 <Image
                   src="/images/nyxia/NyXia-27gauche.png"
                   alt="NyXia - La Psychologie du Clic"
-                  width={480}
+                  width={440}
                   height={540}
-                  className="nx-img-hero rounded-3xl object-cover"
+                  className="nx-img-hero object-cover"
                 />
               </div>
 
@@ -536,27 +489,25 @@ export default function Home() {
                       color: '#D6D9F0',
                     }}
                   >
-                    &ldquo;Chaque clic est une décision psychologique.&rdquo;
+                    &ldquo;Chaque clic est une d\u00e9cision psychologique.&rdquo;
                   </div>
                   <div
                     className="text-[10px] mt-1 font-semibold"
                     style={{ color: '#F4C842' }}
                   >
-                    — Diane Boyer
+                    \u2014 Diane Boyer
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Right: Text Content */}
-            <div className="flex flex-col gap-6">
-              {/* Eyebrow */}
+            <div className="flex flex-col gap-5">
               <div className="nx-eyebrow nx-fade-up">
                 <span className="nx-eyebrow-dot" />
-                Le cerveau de NyXia
+                Ta collaboratrice IA
               </div>
 
-              {/* Heading */}
               <h2
                 className="nx-fade-up nx-fade-up-delay-1"
                 style={{
@@ -567,21 +518,18 @@ export default function Home() {
                   lineHeight: 1.15,
                 }}
               >
-                Propulsée par{' '}
-                <em
+                NyXia, ta collaboratrice IA \u2014{' '}
+                <span
                   style={{
-                    background:
-                      'linear-gradient(135deg, #7B5CFF 0%, #4FA3FF 100%)',
+                    background: 'linear-gradient(135deg, #F4C842, #FFE082)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
-                    fontStyle: 'italic',
                   }}
                 >
-                  La Psychologie du Clic
-                </em>
+                  La seule qui ne te laisse jamais tomber
+                </span>
               </h2>
 
-              {/* Description */}
               <p
                 className="nx-fade-up nx-fade-up-delay-2 leading-relaxed"
                 style={{
@@ -590,89 +538,37 @@ export default function Home() {
                   fontSize: '1.05rem',
                 }}
               >
-                NyXia n&apos;est pas qu&apos;un outil d&apos;automatisation. C&apos;est une
-                IA formée sur la méthodologie de{' '}
-                <span style={{ color: '#F4C842', fontWeight: 600 }}>
-                  Diane Boyer
-                </span>
-                , fondatrice de La Psychologie du Clic. Chaque contenu généré
-                utilise des principes de neuroscience comportementale pour capter
-                l&apos;attention, créer l&apos;engagement et convertir — de façon
-                éthique et authentique.
+                Pas de pauses, pas de journ\u00e9es off, pas de cr\u00e9ativit\u00e9 \u00e0 plat.
+                NyXia travaille pour toi 24h/24, 7j/7.
               </p>
 
-              {/* Lexique Pills */}
-              <div className="nx-fade-up nx-fade-up-delay-3 flex flex-wrap gap-2.5 mt-2">
-                {LEXIQUE_PILLS.map((pill, i) => (
-                  <span
-                    key={pill.label}
-                    className={`nx-lexique-pill ${pill.color}`}
-                    style={{ animationDelay: `${i * 0.08}s` }}
-                  >
-                    {pill.label}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ═══════════════════════════════════════════════════════
-            3. AUDIENCE SECTION ("Pour qui")
-            ═══════════════════════════════════════════════════════ */}
-        <section className="nx-section-lg" id="pour-qui">
-          <div className="max-w-7xl mx-auto">
-            {/* Center Heading */}
-            <div className="text-center mb-12 lg:mb-16">
-              <div className="nx-eyebrow nx-fade-up mx-auto mb-6">
-                <span className="nx-eyebrow-dot" />
-                Pour qui
-              </div>
-              <h2
-                className="nx-fade-up nx-fade-up-delay-1"
-                style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: 'clamp(1.8rem, 4vw, 3rem)',
-                  fontWeight: 600,
-                  color: '#FFFFFF',
-                  lineHeight: 1.15,
-                }}
-              >
-                Conçu pour les{' '}
-                <em
-                  style={{
-                    background:
-                      'linear-gradient(135deg, #7B5CFF 0%, #4FA3FF 100%)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    fontStyle: 'italic',
-                  }}
-                >
-                  entrepreneurs
-                </em>{' '}
-                qui ont une mission
-              </h2>
-            </div>
-
-            {/* Cards Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-              {AUDIENCE_CARDS.map((card, i) => (
-                <div
-                  key={card.title}
-                  className={`nx-audience-card nx-fade-up nx-fade-up-delay-${Math.min(i % 4 + 1, 5)}`}
-                >
-                  <div className={`nx-audience-card-icon ${card.color}`}>
-                    {card.emoji}
-                  </div>
-                  <h3 className="nx-audience-card-title">{card.title}</h3>
-                  <p className="nx-audience-card-desc">{card.desc}</p>
-                  <div className="nx-audience-card-stat">
-                    <span className="nx-audience-card-stat-value">
-                      {card.stat}
+              <ul className="nx-fade-up nx-fade-up-delay-3 space-y-3">
+                {[
+                  'Comprend ton audience et parle sa langue',
+                  'Cr\u00e9e des publications engageantes et professionnelles',
+                  'Publie au bon moment, sur les bonnes plateformes',
+                  'Te lib\u00e8re pour te concentrer sur ce que tu aimes faire',
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <span
+                      className="mt-1 text-sm"
+                      style={{ color: '#7B5CFF' }}
+                    >
+                      \u2726
                     </span>
-                  </div>
-                </div>
-              ))}
+                    <span
+                      className="leading-relaxed"
+                      style={{
+                        fontFamily: "'Outfit', sans-serif",
+                        color: '#D6D9F0',
+                        fontSize: '1rem',
+                      }}
+                    >
+                      {item}
+                    </span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </section>
@@ -689,62 +585,10 @@ export default function Home() {
           }}
         >
           <div className="max-w-7xl mx-auto">
-            {/* Center Heading */}
-            <div className="text-center mb-12 lg:mb-16">
-              <h2
-                className="nx-fade-up"
-                style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: 'clamp(1.8rem, 4vw, 3rem)',
-                  fontWeight: 600,
-                  color: '#FFFFFF',
-                  lineHeight: 1.15,
-                }}
-              >
-                Une{' '}
-                <em
-                  style={{
-                    background:
-                      'linear-gradient(135deg, #7B5CFF 0%, #4FA3FF 100%)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    fontStyle: 'italic',
-                  }}
-                >
-                  Automatisation IA
-                </em>{' '}
-                complète
-              </h2>
-            </div>
-
-            {/* Feature Cards Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {FEATURE_CARDS.map((card, i) => (
-                <div
-                  key={card.title}
-                  className={`nx-feature-card nx-fade-up nx-fade-up-delay-${Math.min(i % 3 + 1, 5)}`}
-                >
-                  <div className={`nx-feature-card-icon ${card.color}`}>
-                    {card.emoji}
-                  </div>
-                  <h3 className="nx-feature-card-title">{card.title}</h3>
-                  <p className="nx-feature-card-desc">{card.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ═══════════════════════════════════════════════════════
-            5. COMMENT CA MARCHE (3 Steps)
-            ═══════════════════════════════════════════════════════ */}
-        <section className="nx-section-lg" id="comment-ca-marche">
-          <div className="max-w-7xl mx-auto">
-            {/* Center Heading */}
             <div className="text-center mb-12 lg:mb-16">
               <div className="nx-eyebrow nx-fade-up mx-auto mb-6">
                 <span className="nx-eyebrow-dot" />
-                Comment ça marche
+                Ce que NyXia fait concr\u00e8tement
               </div>
               <h2
                 className="nx-fade-up nx-fade-up-delay-1"
@@ -756,7 +600,73 @@ export default function Home() {
                   lineHeight: 1.15,
                 }}
               >
-                3 étapes.{' '}
+                Du titre accrocheur au texte convertissant,{' '}
+                <em
+                  style={{
+                    background:
+                      'linear-gradient(135deg, #7B5CFF 0%, #4FA3FF 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    fontStyle: 'italic',
+                  }}
+                >
+                  NyXia g\u00e8re tout
+                </em>
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {FEATURES.map((card, i) => (
+                <div
+                  key={card.title}
+                  className={`nx-glass nx-fade-up nx-fade-up-delay-${Math.min(i % 3 + 1, 5)} rounded-2xl p-6 flex flex-col gap-3`}
+                >
+                  <span className="text-2xl">{card.emoji}</span>
+                  <h3
+                    className="font-semibold text-lg"
+                    style={{
+                      fontFamily: "'Cormorant Garamond', serif",
+                      color: '#FFFFFF',
+                    }}
+                  >
+                    {card.title}
+                  </h3>
+                  <p
+                    className="leading-relaxed text-sm"
+                    style={{
+                      fontFamily: "'Outfit', sans-serif",
+                      color: '#8891B8',
+                    }}
+                  >
+                    {card.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════
+            5. COMMENT CA MARCHE (3 Steps)
+            ═══════════════════════════════════════════════════════ */}
+        <section className="nx-section-lg" id="comment-ca-marche">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-12 lg:mb-16">
+              <div className="nx-eyebrow nx-fade-up mx-auto mb-6">
+                <span className="nx-eyebrow-dot" />
+                Comment \u00e7a marche
+              </div>
+              <h2
+                className="nx-fade-up nx-fade-up-delay-1"
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: 'clamp(1.8rem, 4vw, 3rem)',
+                  fontWeight: 600,
+                  color: '#FFFFFF',
+                  lineHeight: 1.15,
+                }}
+              >
+                3 \u00e9tapes.{' '}
                 <span
                   style={{
                     background:
@@ -766,11 +676,11 @@ export default function Home() {
                   }}
                 >
                   0 effort.
-                </span>
+                </span>{' '}
+                Tu ne fais quasiment rien \u2014 NyXia fait tout.
               </h2>
             </div>
 
-            {/* Steps Grid */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {STEPS.map((step, i) => (
                 <div
@@ -792,15 +702,18 @@ export default function Home() {
                     {step.num}
                   </span>
 
-                  {/* Image */}
-                  <div className="relative nx-img-glow">
-                    <Image
-                      src={step.image}
-                      alt={step.title}
-                      width={380}
-                      height={280}
-                      className="nx-img-hero rounded-2xl object-cover w-full"
-                    />
+                  {/* Image with proper glow */}
+                  <div className="relative">
+                    <div className="nx-glow-blob" style={{ width: '70%', height: '70%' }} />
+                    <div className="nx-img-glow">
+                      <Image
+                        src={step.image}
+                        alt={step.title}
+                        width={380}
+                        height={570}
+                        className="nx-img-hero object-cover w-full"
+                      />
+                    </div>
                   </div>
 
                   {/* Title */}
@@ -826,30 +739,23 @@ export default function Home() {
                     {step.desc}
                   </p>
 
-                  {/* Info Box */}
+                  {/* Hint Box */}
                   <div
-                    className="rounded-xl px-4 py-3 flex items-center gap-3"
+                    className="rounded-xl px-4 py-3"
                     style={{
                       background: 'rgba(123,92,255,0.06)',
                       border: '1px solid rgba(123,92,255,0.12)',
                     }}
                   >
-                    <span
-                      className="text-lg"
-                      role="img"
-                      aria-label="info"
-                    >
-                      ℹ️
-                    </span>
-                    <span
-                      className="text-sm font-medium"
+                    <p
+                      className="text-sm leading-relaxed"
                       style={{
                         fontFamily: "'Outfit', sans-serif",
                         color: '#4FA3FF',
                       }}
                     >
-                      {step.info}
-                    </span>
+                      💡 {step.hint}
+                    </p>
                   </div>
                 </div>
               ))}
@@ -868,11 +774,10 @@ export default function Home() {
           }}
         >
           <div className="max-w-7xl mx-auto">
-            {/* Center Heading */}
             <div className="text-center mb-12 lg:mb-16">
               <div className="nx-eyebrow nx-fade-up mx-auto mb-6">
                 <span className="nx-eyebrow-dot" />
-                Témoignages
+                T\u00e9moignages
               </div>
               <h2
                 className="nx-fade-up nx-fade-up-delay-1"
@@ -884,11 +789,10 @@ export default function Home() {
                   lineHeight: 1.15,
                 }}
               >
-                Ils ont automatisé avec{' '}
+                Ce qu&apos;ils disent de{' '}
                 <span
                   style={{
-                    background:
-                      'linear-gradient(135deg, #7B5CFF, #4FA3FF)',
+                    background: 'linear-gradient(135deg, #7B5CFF, #4FA3FF)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                   }}
@@ -896,9 +800,14 @@ export default function Home() {
                   NyXia
                 </span>
               </h2>
+              <p
+                className="nx-fade-up nx-fade-up-delay-2 mt-3"
+                style={{ color: '#8891B8', fontFamily: "'Outfit', sans-serif" }}
+              >
+                Ils ont repris le contr\u00f4le de leur vie gr\u00e2ce \u00e0 NyXia.
+              </p>
             </div>
 
-            {/* Testimonials Grid */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {TESTIMONIALS.map((t, i) => (
                 <div
@@ -917,29 +826,40 @@ export default function Home() {
                     &ldquo;{t.text}&rdquo;
                   </p>
                   <div
-                    className="pt-4"
+                    className="pt-4 flex items-center gap-3"
                     style={{
                       borderTop: '1px solid rgba(123,92,255,0.1)',
                     }}
                   >
                     <div
-                      className="font-semibold"
+                      className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold"
                       style={{
-                        fontFamily: "'Outfit', sans-serif",
+                        background: 'linear-gradient(135deg, #7B5CFF, #5A6CFF)',
                         color: '#FFFFFF',
-                        fontSize: '0.95rem',
                       }}
                     >
-                      {t.name}
+                      {t.initial}
                     </div>
-                    <div
-                      className="text-sm mt-0.5"
-                      style={{
-                        fontFamily: "'Outfit', sans-serif",
-                        color: '#8891B8',
-                      }}
-                    >
-                      {t.role}
+                    <div>
+                      <div
+                        className="font-semibold"
+                        style={{
+                          fontFamily: "'Outfit', sans-serif",
+                          color: '#FFFFFF',
+                          fontSize: '0.95rem',
+                        }}
+                      >
+                        {t.name}
+                      </div>
+                      <div
+                        className="text-sm mt-0.5"
+                        style={{
+                          fontFamily: "'Outfit', sans-serif",
+                          color: '#8891B8',
+                        }}
+                      >
+                        {t.role}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -949,12 +869,72 @@ export default function Home() {
         </section>
 
         {/* ═══════════════════════════════════════════════════════
-            7. PRICING
+            7. NYXIA-26 IMAGE SECTION (avant tarifs)
             ═══════════════════════════════════════════════════════ */}
-        <section className="nx-section-lg" id="tarifs">
-          <div className="max-w-7xl mx-auto">
-            {/* Center Heading */}
-            <div className="text-center mb-12 lg:mb-16">
+        <section className="nx-section-lg">
+          <div className="max-w-5xl mx-auto flex flex-col items-center gap-10">
+            <div className="relative w-full max-w-lg">
+              <div className="nx-glow-blob" />
+              <div className="nx-img-glow nx-img-float">
+                <Image
+                  src="/images/NyXia-26.png"
+                  alt="NyXia Automation - Ta collaboratrice \u00e0 vie"
+                  width={480}
+                  height={720}
+                  className="nx-img-hero object-cover"
+                />
+              </div>
+            </div>
+            <div className="text-center">
+              <h2
+                className="nx-fade-up"
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: 'clamp(1.8rem, 4vw, 3rem)',
+                  fontWeight: 600,
+                  color: '#FFFFFF',
+                  lineHeight: 1.15,
+                }}
+              >
+                Ta collaboratrice{' '}
+                <em
+                  style={{
+                    background: 'linear-gradient(135deg, #F4C842, #FFE082)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    fontStyle: 'italic',
+                  }}
+                >
+                  \u00e0 vie
+                </em>
+              </h2>
+              <p
+                className="nx-fade-up nx-fade-up-delay-1 mt-3"
+                style={{
+                  color: '#8891B8',
+                  fontFamily: "'Outfit', sans-serif",
+                  fontSize: '1.1rem',
+                }}
+              >
+                Pour le prix d&apos;un caf\u00e9 par jour, NyXia travaille pour toi 24h/24.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════
+            8. PRICING — 47$ SEULEMENT
+            ═══════════════════════════════════════════════════════ */}
+        <section
+          className="nx-section-lg"
+          id="tarifs"
+          style={{
+            background:
+              'linear-gradient(180deg, rgba(123,92,255,0.04) 0%, rgba(79,163,255,0.08) 50%, rgba(123,92,255,0.04) 100%)',
+          }}
+        >
+          <div className="max-w-2xl mx-auto">
+            <div className="text-center mb-12">
               <div className="nx-eyebrow nx-fade-up mx-auto mb-6">
                 <span className="nx-eyebrow-dot" />
                 Tarifs
@@ -969,123 +949,123 @@ export default function Home() {
                   lineHeight: 1.15,
                 }}
               >
-                Un plan pour chaque{' '}
-                <em
-                  style={{
-                    background:
-                      'linear-gradient(135deg, #7B5CFF 0%, #4FA3FF 100%)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    fontStyle: 'italic',
-                  }}
-                >
-                  ambition
-                </em>
+                Ta collaboratrice \u00e0 vie
               </h2>
+              <p
+                className="nx-fade-up nx-fade-up-delay-2 mt-3"
+                style={{ color: '#8891B8', fontFamily: "'Outfit', sans-serif" }}
+              >
+                Seulement
+              </p>
             </div>
 
-            {/* Pricing Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-start">
-              {PRICING_TIERS.map((tier, i) => (
-                <div
-                  key={tier.tier}
-                  className={`nx-pricing-card nx-fade-up nx-fade-up-delay-${i + 1} ${
-                    tier.featured ? 'nx-featured' : ''
-                  }`}
+            {/* Single Pricing Card */}
+            <div
+              className="nx-fade-up nx-fade-up-delay-3 nx-pricing-card nx-featured rounded-3xl p-8 md:p-10 flex flex-col items-center text-center gap-6"
+            >
+              {/* Badge */}
+              <div
+                className="px-5 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase"
+                style={{
+                  background: 'linear-gradient(135deg, #7B5CFF, #5A6CFF)',
+                  color: '#FFFFFF',
+                  boxShadow: '0 0 20px rgba(123,92,255,0.4)',
+                }}
+              >
+                Acc\u00e8s complet
+              </div>
+
+              {/* Price */}
+              <div className="flex items-baseline gap-1">
+                <span
+                  className="text-6xl md:text-7xl font-bold"
+                  style={{
+                    fontFamily: "'Cormorant Garamond', serif",
+                    background: 'linear-gradient(135deg, #FFFFFF, #D6D9F0)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    lineHeight: 1,
+                  }}
                 >
-                  {/* Featured Badge */}
-                  {tier.featured && (
+                  47
+                </span>
+                <span
+                  className="text-2xl font-semibold"
+                  style={{ color: '#8891B8' }}
+                >
+                  $/mois
+                </span>
+              </div>
+
+              {/* Divider */}
+              <div
+                className="w-full h-px"
+                style={{ background: 'rgba(123,92,255,0.15)' }}
+              />
+
+              {/* Features */}
+              <ul className="w-full space-y-3 text-left">
+                {[
+                  'Publications automatiques illimit\u00e9es',
+                  'Toutes les plateformes incluses',
+                  'Cr\u00e9ation de contenu par IA',
+                  'Calendrier intelligent',
+                  'Style personnalis\u00e9 \u00e0 ta voix',
+                  'Support prioritaire',
+                  'Sans engagement',
+                ].map((feature) => (
+                  <li key={feature} className="flex items-center gap-3">
                     <span
-                      className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-2"
+                      className="text-sm font-bold"
+                      style={{ color: '#00E676' }}
+                    >
+                      \u2713
+                    </span>
+                    <span
                       style={{
-                        background: 'rgba(123,92,255,0.15)',
-                        border: '1px solid rgba(123,92,255,0.3)',
-                        color: '#7B5CFF',
                         fontFamily: "'Outfit', sans-serif",
+                        color: '#D6D9F0',
+                        fontSize: '0.95rem',
                       }}
                     >
-                      ✦ Le plus populaire
+                      {feature}
                     </span>
-                  )}
+                  </li>
+                ))}
+              </ul>
 
-                  {/* Tier Name */}
-                  <span className="nx-pricing-tier">{tier.tier}</span>
-
-                  {/* Price */}
-                  <div className="nx-pricing-price">
-                    {tier.currency && (
-                      <span className="nx-pricing-currency">
-                        {tier.currency}
-                      </span>
-                    )}
-                    {tier.price}
-                    <span className="nx-pricing-period">{tier.period}</span>
-                  </div>
-
-                  {/* Description */}
-                  <p className="nx-pricing-desc">{tier.desc}</p>
-
-                  {/* Features */}
-                  <ul className="nx-pricing-features">
-                    {tier.features.map((f) => (
-                      <li key={f.text}>
-                        {f.included ? (
-                          <span className="nx-check">
-                            <Check size={16} />
-                          </span>
-                        ) : (
-                          <span className="nx-cross">
-                            <X size={16} />
-                          </span>
-                        )}
-                        <span
-                          style={{
-                            color: f.included ? '#D6D9F0' : '#4a5278',
-                          }}
-                        >
-                          {f.text}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  {/* CTA Button */}
-                  <Link
-                    href="/login"
-                    className={`w-full mt-4 ${
-                      tier.featured ? 'nx-btn-primary' : 'nx-btn-secondary'
-                    }`}
-                    style={{
-                      justifyContent: 'center',
-                      fontSize: '0.95rem',
-                    }}
-                  >
-                    {tier.price === '0'
-                      ? 'Commencer gratuitement'
-                      : `Choisir ${tier.tier}`}
-                  </Link>
-                </div>
-              ))}
+              {/* CTA */}
+              <a
+                href="https://www.publication-web.com/travaildecheztoi/automatisation"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="nx-btn-primary w-full justify-center text-lg py-4 mt-2"
+                style={{
+                  borderRadius: '50px',
+                  boxShadow: '0 0 30px rgba(123,92,255,0.4), 0 0 60px rgba(123,92,255,0.15)',
+                }}
+              >
+                \u2726 Engager NyXia aujourd&apos;hui
+              </a>
+              <p
+                className="text-sm"
+                style={{ color: '#4a5278', fontFamily: "'Outfit', sans-serif" }}
+              >
+                Aucun engagement. Annule quand tu veux.
+              </p>
             </div>
           </div>
         </section>
 
         {/* ═══════════════════════════════════════════════════════
-            8. FAQ
+            9. FAQ
             ═══════════════════════════════════════════════════════ */}
-        <section
-          className="nx-section-lg"
-          style={{
-            background:
-              'linear-gradient(180deg, rgba(123,92,255,0.03) 0%, transparent 100%)',
-          }}
-        >
+        <section className="nx-section-lg">
           <div className="max-w-3xl mx-auto">
-            {/* Center Heading */}
             <div className="text-center mb-12">
               <div className="nx-eyebrow nx-fade-up mx-auto mb-6">
                 <span className="nx-eyebrow-dot" />
-                FAQ
+                Questions fr\u00e9quentes
               </div>
               <h2
                 className="nx-fade-up nx-fade-up-delay-1"
@@ -1097,106 +1077,25 @@ export default function Home() {
                   lineHeight: 1.15,
                 }}
               >
-                Questions{' '}
-                <em
-                  style={{
-                    background:
-                      'linear-gradient(135deg, #7B5CFF 0%, #4FA3FF 100%)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    fontStyle: 'italic',
-                  }}
-                >
-                  fréquentes
-                </em>
+                Tu h\u00e9sites encore ?
               </h2>
             </div>
 
-            {/* FAQ Items */}
-            <div className="flex flex-col gap-3">
+            <div className="space-y-3">
               {FAQ_ITEMS.map((faq, i) => (
-                <div key={i} className="nx-fade-up">
+                <div
+                  key={faq.question}
+                  className={`nx-fade-up nx-fade-up-delay-${Math.min(i % 3 + 1, 5)}`}
+                >
                   <FaqItem question={faq.question} answer={faq.answer} />
                 </div>
               ))}
             </div>
           </div>
         </section>
-
-        {/* ═══════════════════════════════════════════════════════
-            9. CTA FINAL SECTION
-            ═══════════════════════════════════════════════════════ */}
-        <section className="nx-cta-section">
-          {/* Background Glow */}
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background:
-                'radial-gradient(ellipse 70% 60% at 50% 50%, rgba(123,92,255,0.12) 0%, rgba(79,163,255,0.06) 30%, transparent 70%)',
-            }}
-          />
-
-          <div className="relative z-10 max-w-3xl mx-auto text-center">
-            <h2
-              className="nx-fade-up"
-              style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: 'clamp(2rem, 5vw, 3.5rem)',
-                fontWeight: 600,
-                color: '#FFFFFF',
-                lineHeight: 1.15,
-                marginBottom: '20px',
-              }}
-            >
-              Ton automatisation{' '}
-              <em
-                style={{
-                  background:
-                    'linear-gradient(135deg, #7B5CFF 0%, #4FA3FF 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  fontStyle: 'italic',
-                }}
-              >
-                t&apos;attend
-              </em>
-            </h2>
-
-            <p
-              className="nx-fade-up nx-fade-up-delay-1 leading-relaxed mb-8"
-              style={{
-                fontFamily: "'Outfit', sans-serif",
-                color: '#8891B8',
-                fontSize: '1.1rem',
-                maxWidth: '600px',
-                marginLeft: 'auto',
-                marginRight: 'auto',
-              }}
-            >
-              Rejoins les entrepreneurs qui ont déjà automatisé leur marketing
-              avec NyXia. Commence gratuitement, sans carte bancaire.
-            </p>
-
-            <div className="nx-fade-up nx-fade-up-delay-2 nx-cta-buttons">
-              <Link href="/login" className="nx-btn-primary text-base">
-                ✦ Commencer l&apos;automatisation
-              </Link>
-              <a href="#tarifs" className="nx-btn-secondary text-base">
-                Voir les tarifs →
-              </a>
-            </div>
-          </div>
-        </section>
       </main>
 
-      {/* ═══════════════════════════════════════════════════════
-          10. FOOTER
-          ═══════════════════════════════════════════════════════ */}
       <Footer />
-
-      {/* ═══════════════════════════════════════════════════════
-          11. NYXIA CHAT WIDGET
-          ═══════════════════════════════════════════════════════ */}
       <NyxiaChat />
     </>
   );
