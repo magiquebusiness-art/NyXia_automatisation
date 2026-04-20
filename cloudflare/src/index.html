@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NyXia Automatisation — Ta collaboratrice IA qui gère tes réseaux sociaux 24/7. Publications automatiques, contenu engageant, résultats garantis. Seulement 47$/mois.">
+  <meta name="theme-color" content="#06101f">
+  <title>NyXia Automatisation — Ta Collaboratrice IA</title>
+  <link rel="icon" type="image/png" href="images/NyXia-FavIcon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/nyxia.css">
+  <style>
+    /* ── Inline Tailwind-like utilities for grid/flex layout ── */
+    .nx-grid-2 { display: grid; grid-template-columns: 1fr; gap: 3rem; }
+    .nx-grid-3 { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+    .nx-grid-3-steps { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+    @media (min-width: 640px) {
+      .nx-grid-3 { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 768px) {
+      .nx-grid-3-steps { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (min-width: 1024px) {
+      .nx-grid-2 { grid-template-columns: 1fr 1fr; gap: 4rem; }
+      .nx-grid-3 { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    /* ── Navbar ────────────────────────────────────────────── */
+    .nx-navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      transition: all 0.3s;
+    }
+    .nx-navbar.scrolled {
+      background: rgba(10,22,40,0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(123,92,255,0.12);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+    }
+    .nx-navbar-inner {
+      max-width: 1280px; margin: 0 auto;
+      padding: 0 1rem; display: flex;
+      align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    @media (min-width: 768px) { .nx-navbar-inner { height: 80px; padding: 0 1.5rem; } }
+    @media (min-width: 1024px) { .nx-navbar-inner { padding: 0 2rem; } }
+
+    .nx-navbar-logo {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none; flex-shrink: 0;
+    }
+    .nx-navbar-logo-img {
+      width: 36px; height: 36px; border-radius: 50%;
+      overflow: hidden; border: 2px solid rgba(123,92,255,0.3);
+      transition: border-color 0.3s;
+    }
+    @media (min-width: 768px) { .nx-navbar-logo-img { width: 40px; height: 40px; } }
+    .nx-navbar-logo:hover .nx-navbar-logo-img { border-color: rgba(123,92,255,0.6); }
+    .nx-navbar-logo-img img { width: 100%; height: 100%; object-fit: cover; }
+
+    .nx-navbar-links {
+      display: none; align-items: center; gap: 4px;
+    }
+    @media (min-width: 768px) { .nx-navbar-links { display: flex; } }
+    .nx-navbar-links a {
+      padding: 8px 16px; border-radius: 8px;
+      font-family: 'Outfit', sans-serif; font-size: 0.875rem;
+      font-weight: 500; color: #a0a0b0; text-decoration: none;
+      transition: all 0.2s;
+    }
+    .nx-navbar-links a:hover { background: rgba(123,92,255,0.1); color: #FFFFFF; }
+
+    .nx-navbar-cta {
+      display: none; align-items: center; gap: 8px;
+      padding: 10px 20px; border-radius: 12px;
+      font-family: 'Outfit', sans-serif; font-size: 0.875rem;
+      font-weight: 600; color: #FFFFFF; text-decoration: none;
+      background: linear-gradient(135deg, #7B5CFF 0%, #5A6CFF 50%, #4FA3FF 100%);
+      box-shadow: 0 0 20px rgba(123,92,255,0.4), 0 0 40px rgba(123,92,255,0.15);
+      transition: all 0.3s;
+    }
+    @media (min-width: 768px) { .nx-navbar-cta { display: inline-flex; } }
+    .nx-navbar-cta:hover { transform: scale(1.05); }
+
+    .nx-hamburger {
+      display: flex; align-items: center; justify-content: center;
+      width: 40px; height: 40px; border-radius: 8px;
+      background: none; border: none; color: #a0a0b0;
+      cursor: pointer; transition: all 0.2s;
+    }
+    @media (min-width: 768px) { .nx-hamburger { display: none; } }
+    .nx-hamburger:hover { color: #FFFFFF; background: rgba(123,92,255,0.1); }
+
+    .nx-mobile-menu {
+      display: none; overflow: hidden;
+      background: rgba(10,22,40,0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(123,92,255,0.1);
+    }
+    .nx-mobile-menu.nx-mobile-menu-open { display: block; }
+    .nx-mobile-menu a {
+      display: block; padding: 12px 16px; border-radius: 8px;
+      font-family: 'Outfit', sans-serif; font-size: 0.875rem;
+      font-weight: 500; color: #a0a0b0; text-decoration: none;
+      transition: all 0.2s;
+    }
+    .nx-mobile-menu a:hover { background: rgba(123,92,255,0.1); color: #FFFFFF; }
+    .nx-mobile-menu-cta {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      width: 100%; padding: 12px 20px; border-radius: 12px;
+      font-family: 'Outfit', sans-serif; font-size: 0.875rem;
+      font-weight: 600; color: #FFFFFF; text-decoration: none;
+      background: linear-gradient(135deg, #7B5CFF 0%, #5A6CFF 50%, #4FA3FF 100%);
+      box-shadow: 0 0 20px rgba(123,92,255,0.4);
+    }
+
+    /* ── Hero section ──────────────────────────────────────── */
+    .nx-hero {
+      min-height: 100vh; display: flex; align-items: center;
+      padding-top: 80px; padding-bottom: 48px; padding-left: 1rem; padding-right: 1rem;
+      background:
+        radial-gradient(ellipse 80% 60% at 30% 40%, rgba(123,92,255,0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 70% 70%, rgba(79,163,255,0.04) 0%, transparent 50%);
+    }
+    @media (min-width: 640px) { .nx-hero { padding-left: 1.5rem; padding-right: 1.5rem; } }
+    @media (min-width: 1024px) { .nx-hero { padding-left: 2rem; padding-right: 2rem; } }
+    .nx-hero-inner {
+      max-width: 1280px; margin: 0 auto; width: 100%;
+    }
+    .nx-hero-text { display: flex; flex-direction: column; gap: 20px; }
+    @media (min-width: 1024px) { .nx-hero-text { gap: 24px; } }
+    .nx-hero-badge {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 8px 16px; border-radius: 9999px; width: fit-content;
+      background: rgba(0,230,118,0.08);
+      border: 1px solid rgba(0,230,118,0.2);
+    }
+    .nx-hero-badge-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #00E676; box-shadow: 0 0 8px rgba(0,230,118,0.6);
+      animation: nx-pulse-green 2s ease-in-out infinite;
+    }
+    .nx-hero-badge-text {
+      font-size: 0.875rem; font-weight: 600; letter-spacing: 0.025em;
+      color: #00E676; font-family: 'Outfit', sans-serif;
+    }
+    .nx-hero-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 600; color: #FFFFFF; line-height: 1.1;
+    }
+    .nx-hero-heading em {
+      font-style: italic;
+      background: linear-gradient(135deg, #7B5CFF 0%, #4FA3FF 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .nx-hero-subtitle {
+      font-family: 'Outfit', sans-serif; color: #8891B8;
+      font-size: 1.125rem; line-height: 1.625; max-width: 36rem;
+    }
+    @media (min-width: 1024px) { .nx-hero-subtitle { font-size: 1.25rem; } }
+    .nx-hero-slogan {
+      font-family: 'Outfit', sans-serif; font-size: 1rem;
+      font-weight: 600; letter-spacing: 0.025em;
+      background: linear-gradient(135deg, #F4C842, #FFE082);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .nx-hero-ctas {
+      display: flex; flex-wrap: wrap; gap: 16px; margin-top: 8px;
+    }
+    .nx-hero-img-wrap {
+      position: relative; display: flex; align-items: center;
+      justify-content: center;
+    }
+    @media (min-width: 1024px) { .nx-hero-img-wrap { justify-content: flex-end; } }
+
+    /* ── Section shared ────────────────────────────────────── */
+    .nx-section-wrap {
+      max-width: 1280px; margin: 0 auto;
+    }
+    .nx-section-wrap-sm { max-width: 56rem; margin: 0 auto; }
+    .nx-section-wrap-md { max-width: 42rem; margin: 0 auto; }
+    .nx-text-center { text-align: center; }
+    .nx-mb-12 { margin-bottom: 3rem; }
+    @media (min-width: 1024px) { .nx-mb-16-lg { margin-bottom: 4rem; } }
+
+    /* ── Feature card ──────────────────────────────────────── */
+    .nx-feature-card {
+      display: flex; flex-direction: column; gap: 12px; padding: 24px;
+      border-radius: 16px;
+    }
+    .nx-feature-card .nx-feature-emoji { font-size: 1.5rem; }
+    .nx-feature-card h3 {
+      font-family: 'Cormorant Garamond', serif; color: #FFFFFF;
+      font-weight: 600; font-size: 1.125rem;
+    }
+    .nx-feature-card p {
+      font-family: 'Outfit', sans-serif; color: #8891B8;
+      line-height: 1.625; font-size: 0.875rem;
+    }
+
+    /* ── Step card ─────────────────────────────────────────── */
+    .nx-step-num {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3rem; font-weight: 700; opacity: 0.7;
+      background: linear-gradient(135deg, #7B5CFF, #4FA3FF);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .nx-step-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem; font-weight: 600; color: #FFFFFF;
+    }
+    .nx-step-desc {
+      font-family: 'Outfit', sans-serif; color: #8891B8;
+      line-height: 1.625; font-size: 0.95rem;
+    }
+    .nx-step-hint {
+      border-radius: 12px; padding: 12px 16px;
+      background: rgba(123,92,255,0.06);
+      border: 1px solid rgba(123,92,255,0.12);
+    }
+    .nx-step-hint p {
+      font-family: 'Outfit', sans-serif; color: #4FA3FF;
+      font-size: 0.875rem; line-height: 1.625;
+    }
+
+    /* ── Testimonial card ──────────────────────────────────── */
+    .nx-testimonial-card {
+      display: flex; flex-direction: column; gap: 16px;
+      padding: 24px; border-radius: 16px;
+    }
+    .nx-testimonial-text {
+      font-family: 'Outfit', sans-serif; color: #D6D9F0;
+      font-size: 0.95rem; line-height: 1.625; flex: 1;
+    }
+    .nx-testimonial-footer {
+      padding-top: 16px; display: flex; align-items: center; gap: 12px;
+      border-top: 1px solid rgba(123,92,255,0.1);
+    }
+    .nx-testimonial-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.875rem; font-weight: 700;
+      background: linear-gradient(135deg, #7B5CFF, #5A6CFF);
+      color: #FFFFFF;
+    }
+    .nx-testimonial-name {
+      font-family: 'Outfit', sans-serif; color: #FFFFFF;
+      font-weight: 600; font-size: 0.95rem;
+    }
+    .nx-testimonial-role {
+      font-family: 'Outfit', sans-serif; color: #8891B8;
+      font-size: 0.875rem; margin-top: 2px;
+    }
+
+    /* ── Pricing ───────────────────────────────────────────── */
+    .nx-price-big {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 6vw, 4.5rem); font-weight: 700;
+      line-height: 1;
+      background: linear-gradient(135deg, #FFFFFF, #D6D9F0);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .nx-price-period {
+      font-size: 1.5rem; font-weight: 600; color: #8891B8;
+    }
+    .nx-pricing-badge {
+      padding: 6px 20px; border-radius: 9999px;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #7B5CFF, #5A6CFF);
+      color: #FFFFFF; box-shadow: 0 0 20px rgba(123,92,255,0.4);
+    }
+    .nx-pricing-divider {
+      width: 100%; height: 1px;
+      background: rgba(123,92,255,0.15);
+    }
+    .nx-pricing-features-list {
+      list-style: none; padding: 0; margin: 0;
+      width: 100%; display: flex; flex-direction: column; gap: 12px;
+    }
+    .nx-pricing-features-list li {
+      display: flex; align-items: center; gap: 12px;
+      font-family: 'Outfit', sans-serif; color: #D6D9F0;
+      font-size: 0.95rem;
+    }
+    .nx-pricing-features-list li .nx-check {
+      color: #00E676; font-weight: 700; font-size: 0.875rem; flex-shrink: 0;
+    }
+    .nx-pricing-cta {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 100%; padding: 16px 28px; border-radius: 50px;
+      font-family: 'Outfit', sans-serif; font-size: 1.125rem; font-weight: 600;
+      background: linear-gradient(135deg, var(--nx-p), var(--nx-p2));
+      color: #FFFFFF; border: none; cursor: pointer; text-decoration: none;
+      box-shadow: 0 0 30px rgba(123,92,255,0.4), 0 0 60px rgba(123,92,255,0.15);
+      transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+    }
+    .nx-pricing-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 40px rgba(123,92,255,0.5), 0 0 80px rgba(123,92,255,0.2);
+      filter: brightness(1.1);
+    }
+    .nx-pricing-sub {
+      font-family: 'Outfit', sans-serif; color: #4a5278;
+      font-size: 0.875rem;
+    }
+
+    /* ── CTA Final Section ─────────────────────────────────── */
+    .nx-cta-final {
+      text-align: center; display: flex; flex-direction: column;
+      align-items: center; gap: 24px;
+    }
+
+    /* ── Footer ────────────────────────────────────────────── */
+    .nx-footer {
+      width: 100%;
+      background: #06101f;
+      border-top: 1px solid rgba(123,92,255,0.1);
+    }
+    .nx-footer-inner {
+      max-width: 1280px; margin: 0 auto;
+      padding: 40px 1rem;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 32px;
+    }
+    @media (min-width: 768px) {
+      .nx-footer-inner {
+        flex-direction: row; align-items: flex-start;
+        justify-content: space-between; padding: 48px 1.5rem;
+      }
+    }
+    @media (min-width: 1024px) { .nx-footer-inner { padding: 48px 2rem; } }
+    .nx-footer-brand { text-align: center; }
+    @media (min-width: 768px) { .nx-footer-brand { text-align: left; } }
+    .nx-footer-brand-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 600;
+      background: linear-gradient(135deg, #7B5CFF 0%, #4FA3FF 50%, #F4C842 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .nx-footer-brand-tagline {
+      margin-top: 8px; font-size: 0.75rem; letter-spacing: 0.025em;
+      color: #8891B8; font-family: 'Outfit', sans-serif;
+    }
+    .nx-footer-links {
+      display: flex; flex-wrap: wrap; align-items: center;
+      justify-content: center; gap: 16px 24px;
+    }
+    .nx-footer-links a {
+      font-size: 0.875rem; font-weight: 500; color: #a0a0b0;
+      text-decoration: none; font-family: 'Outfit', sans-serif;
+      transition: color 0.2s;
+    }
+    .nx-footer-links a:hover { color: #FFFFFF; }
+    .nx-footer-copy { text-align: center; }
+    @media (min-width: 768px) { .nx-footer-copy { text-align: right; } }
+    .nx-footer-copy p {
+      font-size: 0.75rem; line-height: 1.625; color: #4a5278;
+      font-family: 'Outfit', sans-serif;
+    }
+    .nx-footer-bottom {
+      border-top: 1px solid rgba(123,92,255,0.08);
+      background: rgba(6,16,31,0.6);
+    }
+    .nx-footer-bottom-inner {
+      max-width: 1280px; margin: 0 auto;
+      padding: 16px 1rem; display: flex;
+      align-items: center; justify-content: center;
+    }
+    @media (min-width: 1024px) { .nx-footer-bottom-inner { padding: 16px 2rem; } }
+    .nx-footer-bottom p {
+      font-size: 0.75rem; text-align: center; color: #4a5278;
+      font-family: 'Outfit', sans-serif;
+    }
+    .nx-footer-bottom span {
+      font-weight: 500;
+      background: linear-gradient(135deg, #7B5CFF, #4FA3FF);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── Collab section list ───────────────────────────────── */
+    .nx-collab-list {
+      list-style: none; padding: 0; margin: 0;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .nx-collab-list li {
+      display: flex; align-items: flex-start; gap: 12px;
+    }
+    .nx-collab-list li .nx-bullet {
+      margin-top: 4px; font-size: 0.875rem; color: #7B5CFF; flex-shrink: 0;
+    }
+    .nx-collab-list li span:last-child {
+      font-family: 'Outfit', sans-serif; color: #D6D9F0;
+      font-size: 1rem; line-height: 1.625;
+    }
+
+    /* ── Wrapper for sticky footer ─────────────────────────── */
+    .nx-page-wrapper {
+      display: flex; flex-direction: column; min-height: 100vh;
+    }
+    .nx-page-wrapper main { flex: 1; }
+
+    /* ── Douleur text ──────────────────────────────────────── */
+    .nx-douleur-text p {
+      color: #8891B8; font-family: 'Outfit', sans-serif;
+      font-size: 1.125rem; line-height: 1.625; margin-bottom: 1rem;
+    }
+    .nx-douleur-highlight {
+      color: #D6D9F0 !important; font-weight: 600;
+    }
+    .nx-douleur-gold {
+      font-size: clamp(1.4rem, 3vw, 2rem) !important; font-weight: 700;
+      margin-top: 2rem !important;
+      font-family: 'Cormorant Garamond', serif !important;
+      background: linear-gradient(135deg, #F4C842, #FFE082);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── NyXia-26 section ──────────────────────────────────── */
+    .nx-nyxia26-img-wrap {
+      position: relative; width: 100%; max-width: 32rem; margin: 0 auto;
+    }
+    .nx-nyxia26-text { text-align: center; }
+  </style>
+</head>
+<body class="dark">
+  <!-- ═══════════════════════════════════════════════════════════
+       Cosmic Background
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="nx-cosmic-bg"></div>
+
+  <div class="nx-page-wrapper">
+
+  <!-- ═══════════════════════════════════════════════════════════
+       NAVBAR
+       ═══════════════════════════════════════════════════════════ -->
+  <nav class="nx-navbar" id="nx-navbar">
+    <div class="nx-navbar-inner">
+      <!-- Logo -->
+      <a href="/" class="nx-navbar-logo">
+        <div class="nx-navbar-logo-img">
+          <img src="images/Logo.png" alt="NyXia IA" width="40" height="40">
+        </div>
+        <div style="display:flex;flex-direction:column;line-height:1">
+          <span style="font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:600;background:linear-gradient(135deg,#7B5CFF 0%,#4FA3FF 50%,#F4C842 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">NyXia IA</span>
+          <span style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;margin-top:2px;color:#8891B8;font-family:'Outfit',sans-serif">Automatisation</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <div class="nx-navbar-links">
+        <a href="#fonctionnalites">Fonctionnalités</a>
+        <a href="#comment-ca-marche">Comment ça marche</a>
+        <a href="#tarifs">Tarifs</a>
+      </div>
+
+      <!-- CTA + Hamburger -->
+      <div style="display:flex;align-items:center;gap:12px">
+        <a href="login.html" class="nx-navbar-cta">
+          Commencer <span style="font-size:1rem;line-height:1">→</span>
+        </a>
+        <button class="nx-hamburger" id="nx-mobile-menu-btn" aria-label="Ouvrir le menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="nx-mobile-menu" id="nx-mobile-menu">
+      <div style="padding:16px">
+        <a href="#fonctionnalites">Fonctionnalités</a>
+        <a href="#comment-ca-marche">Comment ça marche</a>
+        <a href="#tarifs">Tarifs</a>
+        <div style="padding-top:8px">
+          <a href="login.html" class="nx-mobile-menu-cta">
+            Commencer <span style="font-size:1rem;line-height:1">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       MAIN CONTENT
+       ═══════════════════════════════════════════════════════════ -->
+  <main class="relative" style="z-index:10">
+
+    <!-- ═══════════════════════════════════════════════════════
+         1. HERO SECTION
+         ═══════════════════════════════════════════════════════ -->
+    <section class="nx-hero">
+      <div class="nx-hero-inner nx-grid-2" style="align-items:center">
+        <!-- Left: Text -->
+        <div class="nx-hero-text">
+          <!-- Badge -->
+          <div class="nx-hero-badge nx-fade-up">
+            <span class="nx-hero-badge-dot"></span>
+            <span class="nx-hero-badge-text">Automatisation IA — Disponible maintenant</span>
+          </div>
+
+          <!-- Heading -->
+          <h1 class="nx-hero-heading nx-fade-up nx-fade-up-delay-1">
+            Tu as une entreprise à faire grandir, pas le temps de publier partout.
+            <em>NyXia</em> s'en occupe.
+          </h1>
+
+          <!-- Subtitle -->
+          <p class="nx-hero-subtitle nx-fade-up nx-fade-up-delay-2">
+            NyXia n'est pas un outil — c'est ta collaboratrice IA. Elle comprend ton audience,
+            crée du contenu engageant et publie pour toi sur tous tes réseaux sociaux.
+            Automatiquement. Intelligemment. Sans que tu aies à lever le doigt.
+          </p>
+
+          <!-- Slogan -->
+          <p class="nx-hero-slogan nx-fade-up nx-fade-up-delay-2">
+            NyXia en automatique travail pour toi !
+          </p>
+
+          <!-- CTA Buttons -->
+          <div class="nx-hero-ctas nx-fade-up nx-fade-up-delay-3">
+            <a href="login.html" class="nx-btn-primary" style="font-size:1rem">✦ Engager NyXia aujourd'hui</a>
+            <a href="#comment-ca-marche" class="nx-btn-secondary" style="font-size:1rem">Comment ça marche →</a>
+          </div>
+        </div>
+
+        <!-- Right: Image -->
+        <div class="nx-hero-img-wrap">
+          <div class="nx-glow-blob"></div>
+          <div class="nx-img-glow nx-img-float">
+            <img src="images/Automation1.png" alt="NyXia IA - Automatisation Intelligence Artificielle" class="nx-img-hero" style="object-fit:cover" width="480" height="720">
+          </div>
+
+          <!-- Floating Card 1 -->
+          <div class="nx-hero-card nx-hero-card-1">
+            <div class="nx-hero-card-icon purple">🚀</div>
+            <div>
+              <div style="font-family:'Outfit',sans-serif;font-weight:700;font-size:0.875rem;color:#FFFFFF">24/7</div>
+              <div style="font-family:'Outfit',sans-serif;font-size:0.75rem;color:#8891B8">Auto-publié</div>
+            </div>
+          </div>
+
+          <!-- Floating Card 2 -->
+          <div class="nx-hero-card nx-hero-card-2">
+            <div class="nx-hero-card-icon green">✓</div>
+            <div>
+              <div style="font-family:'Outfit',sans-serif;font-weight:700;font-size:0.875rem;color:#FFFFFF">+340%</div>
+              <div style="font-family:'Outfit',sans-serif;font-size:0.75rem;color:#8891B8">Engagement</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         2. DOULEUR SECTION
+         ═══════════════════════════════════════════════════════ -->
+    <section class="nx-section-lg" style="background:linear-gradient(180deg, rgba(123,92,255,0.03) 0%, rgba(79,163,255,0.06) 50%, rgba(123,92,255,0.03) 100%)">
+      <div class="nx-section-wrap-md nx-text-center">
+        <div class="nx-eyebrow nx-fade-up" style="margin:0 auto 24px">
+          <span class="nx-eyebrow-dot"></span>
+          Tu connais cette fatigue ?
+        </div>
+        <h2 class="nx-fade-up nx-fade-up-delay-1" style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:600;color:#FFFFFF;line-height:1.2;margin-bottom:2rem">
+          Tu te lèves le matin avec une seule idée en tête :
+          <em style="background:linear-gradient(135deg,#7B5CFF,#4FA3FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:italic">il faut publier.</em>
+          Encore. Toujours.
+        </h2>
+        <div class="nx-douleur-text nx-fade-up nx-fade-up-delay-2">
+          <p>Sur Facebook, Instagram, TikTok, YouTube… Tu passes 3 à 4 heures par jour à essayer de créer du contenu, à trouver des idées, à rédiger des textes qui ne font même pas 10 likes.</p>
+          <p>Tu ne sais plus quoi écrire. L'inspiration est partie en vacances — et elle ne revient pas. Ton téléphone te stresse. Tes réseaux sociaux te donnent l'impression de courir après ton propre succès.</p>
+          <p class="nx-douleur-highlight">Pendant ce temps, tes concurrents publient tous les jours. Ils grandissent. Et toi, tu es épuisé(e).</p>
+          <p class="nx-douleur-gold">Et si tout ça… quelqu'un d'autre le faisait pour toi ?</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         3. NYXIA COLLABORATRICE
+         ═══════════════════════════════════════════════════════ -->
+    <section class="nx-section-lg">
+      <div class="nx-section-wrap nx-grid-2" style="align-items:center">
+        <!-- Left: Image -->
+        <div class="nx-fade-up" style="position:relative;display:flex;align-items:center;justify-content:center">
+          <div class="nx-glow-blob"></div>
+          <div class="nx-img-glow nx-img-float">
+            <img src="images/nyxia/NyXia-27gauche.png" alt="NyXia - La Psychologie du Clic" class="nx-img-hero" style="object-fit:cover" width="440" height="540">
+          </div>
+          <!-- Floating Quote Card -->
+          <div class="nx-hero-card nx-hero-card-2" style="max-width:240px;white-space:normal">
+            <div class="nx-hero-card-icon gold">💡</div>
+            <div>
+              <div style="font-family:'Outfit',sans-serif;font-size:0.75rem;line-height:1.625;color:#D6D9F0">"Chaque clic est une décision psychologique."</div>
+              <div style="font-size:10px;margin-top:4px;font-weight:600;color:#F4C842">— Diane Boyer</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Text -->
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <div class="nx-eyebrow nx-fade-up">
+            <span class="nx-eyebrow-dot"></span>
+            Ta collaboratrice IA
+          </div>
+          <h2 class="nx-fade-up nx-fade-up-delay-1" style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:600;color:#FFFFFF;line-height:1.15">
+            NyXia, ta collaboratrice IA —
+            <span style="background:linear-gradient(135deg,#F4C842,#FFE082);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">La seule qui ne te laisse jamais tomber</span>
+          </h2>
+          <p class="nx-fade-up nx-fade-up-delay-2" style="font-family:'Outfit',sans-serif;color:#8891B8;font-size:1.05rem;line-height:1.625">
+            Pas de pauses, pas de journées off, pas de créativité à plat.
+            NyXia travaille pour toi 24h/24, 7j/7.
+          </p>
+          <ul class="nx-collab-list nx-fade-up nx-fade-up-delay-3">
+            <li><span class="nx-bullet">✦</span><span>Comprend ton audience et parle sa langue</span></li>
+            <li><span class="nx-bullet">✦</span><span>Crée des publications engageantes et professionnelles</span></li>
+            <li><span class="nx-bullet">✦</span><span>Publie au bon moment, sur les bonnes plateformes</span></li>
+            <li><span class="nx-bullet">✦</span><span>Te libère pour te concentrer sur ce que tu aimes faire</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         4. FEATURES SECTION
+         ═══════════════════════════════════════════════════════ -->
+    <section class="nx-section-lg" id="fonctionnalites" style="background:linear-gradient(180deg, rgba(123,92,255,0.04) 0%, rgba(79,163,255,0.06) 50%, rgba(123,92,255,0.04) 100%)">
+      <div class="nx-section-wrap">
+        <div class="nx-text-center nx-mb-12 nx-mb-16-lg">
+          <div class="nx-eyebrow nx-fade-up" style="margin:0 auto 24px">
+            <span class="nx-eyebrow-dot"></span>
+            Ce que NyXia fait concrètement
+          </div>
+          <h2 class="nx-fade-up nx-fade-up-delay-1" style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:600;color:#FFFFFF;line-height:1.15">
+            Du titre accrocheur au texte convertissant,
+            <em style="background:linear-gradient(135deg,#7B5CFF 0%,#4FA3FF 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:italic">NyXia gère tout</em>
+          </h2>
+        </div>
+
+        <div class="nx-grid-3">
+          <!-- Feature 1 -->
+          <div class="nx-glass nx-feature-card nx-fade-up nx-fade-up-delay-1">
+            <span class="nx-feature-emoji">✏️</span>
+            <h3>Titres qui stoppent le scroll</h3>
+            <p>NyXia crée des titres qui captent l'attention en moins d'une seconde. Fini les publications ignorées.</p>
+          </div>
+          <!-- Feature 2 -->
+          <div class="nx-glass nx-feature-card nx-fade-up nx-fade-up-delay-2">
+            <span class="nx-feature-emoji">💬</span>
+            <h3>Textes qui engagent et convertissent</h3>
+            <p>Des textes persuasifs, authentiques et parfaitement adaptés à ton audience. Ton style, ta voix.</p>
+          </div>
+          <!-- Feature 3 -->
+          <div class="nx-glass nx-feature-card nx-fade-up nx-fade-up-delay-3">
+            <span class="nx-feature-emoji">📱</span>
+            <h3>Publication multi-plateforme</h3>
+            <p>Facebook, Instagram, TikTok, YouTube — NyXia publie partout en même temps. Un seul point de contrôle.</p>
+          </div>
+          <!-- Feature 4 -->
+          <div class="nx-glass nx-feature-card nx-fade-up nx-fade-up-delay-1">
+            <span class="nx-feature-emoji">📅</span>
+            <h3>Calendrier intelligent</h3>
+            <p>NyXia sait quand publier pour maximiser la portée. Plus besoin de chercher le bon créneau horaire.</p>
+          </div>
+          <!-- Feature 5 -->
+          <div class="nx-glass nx-feature-card nx-fade-up nx-fade-up-delay-2">
+            <span class="nx-feature-emoji">🎨</span>
+            <h3>Ton style, ta voix</h3>
+            <p>NyXia apprend ton ton, ton vocabulaire, ta personnalité. Tes publications te ressemblent. Vraiment.</p>
+          </div>
+          <!-- Feature 6 -->
+          <div class="nx-glass nx-feature-card nx-fade-up nx-fade-up-delay-3">
+            <span class="nx-feature-emoji">🤖</span>
+            <h3>Automatisation 24/7</h3>
+            <p>Repurposing automatique, détection de tendances, A/B testing des titres, analyse de l'engagement et ajustement auto.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         5. COMMENT CA MARCHE
+         ═══════════════════════════════════════════════════════ -->
+    <section class="nx-section-lg" id="comment-ca-marche">
+      <div class="nx-section-wrap">
+        <div class="nx-text-center nx-mb-12 nx-mb-16-lg">
+          <div class="nx-eyebrow nx-fade-up" style="margin:0 auto 24px">
+            <span class="nx-eyebrow-dot"></span>
+            Comment ça marche
+          </div>
+          <h2 class="nx-fade-up nx-fade-up-delay-1" style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:600;color:#FFFFFF;line-height:1.15">
+            3 étapes.
+            <span style="background:linear-gradient(135deg,#00E676,#69F0AE,#00E676);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">0 effort.</span>
+            Tu ne fais quasiment rien — NyXia fait tout.
+          </h2>
+        </div>
+
+        <div class="nx-grid-3-steps">
+          <!-- Step 01 -->
+          <div class="nx-fade-up nx-fade-up-delay-1" style="display:flex;flex-direction:column;gap:20px">
+            <span class="nx-step-num">01</span>
+            <div style="position:relative">
+              <div class="nx-glow-blob" style="width:70%;height:70%"></div>
+              <div class="nx-img-glow">
+                <img src="images/TravailDureNyxia.png" alt="Tu dis à NyXia ce que tu veux" class="nx-img-hero" style="object-fit:cover;width:100%" width="380" height="570">
+              </div>
+            </div>
+            <h3 class="nx-step-title">Tu dis à NyXia ce que tu veux</h3>
+            <p class="nx-step-desc">Tu lui parles, tu lui envoies une voix, un simple mot — NyXia comprend. C'est aussi simple que de parler à un collègue de confiance.</p>
+            <div class="nx-step-hint">
+              <p>💡 Pas besoin d'écrire quoi que ce soit. Pas besoin de préparer des images. NyXia fait tout à ta place.</p>
+            </div>
+          </div>
+
+          <!-- Step 02 -->
+          <div class="nx-fade-up nx-fade-up-delay-2" style="display:flex;flex-direction:column;gap:20px">
+            <span class="nx-step-num">02</span>
+            <div style="position:relative">
+              <div class="nx-glow-blob" style="width:70%;height:70%"></div>
+              <div class="nx-img-glow">
+                <img src="images/automate2.png" alt="NyXia fait TOUT le travail" class="nx-img-hero" style="object-fit:cover;width:100%" width="380" height="570">
+              </div>
+            </div>
+            <h3 class="nx-step-title">NyXia fait TOUT le travail</h3>
+            <p class="nx-step-desc">Elle crée le contenu, trouve les titres accrocheurs, rédige les textes, choisit les meilleurs moments et publie automatiquement.</p>
+            <div class="nx-step-hint">
+              <p>💡 Tu n'as pas besoin d'être là. Tu n'as pas besoin de valider quoi que ce soit. NyXia gère tout de A à Z.</p>
+            </div>
+          </div>
+
+          <!-- Step 03 -->
+          <div class="nx-fade-up nx-fade-up-delay-3" style="display:flex;flex-direction:column;gap:20px">
+            <span class="nx-step-num">03</span>
+            <div style="position:relative">
+              <div class="nx-glow-blob" style="width:70%;height:70%"></div>
+              <div class="nx-img-glow">
+                <img src="images/nyxia/NyXia-25.png" alt="Tu récoltes les résultats" class="nx-img-hero" style="object-fit:cover;width:100%" width="380" height="570">
+              </div>
+            </div>
+            <h3 class="nx-step-title">Tu récoltes les résultats</h3>
+            <p class="nx-step-desc">Tes publications sont en ligne, ton audience s'engage, les prospects arrivent. Tu regardes les notifications qui défilent — c'est tout.</p>
+            <div class="nx-step-hint">
+              <p>💡 Ta seule job : regarder les notifications qui défilent. Les clients, les likes, les messages — tout vient à toi.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         6. TÉMOIGNAGES
+         ═══════════════════════════════════════════════════════ -->
+    <section class="nx-section-lg" style="background:linear-gradient(180deg, rgba(79,163,255,0.03) 0%, rgba(123,92,255,0.06) 50%, rgba(79,163,255,0.03) 100%)">
+      <div class="nx-section-wrap">
+        <div class="nx-text-center nx-mb-12 nx-mb-16-lg">
+          <div class="nx-eyebrow nx-fade-up" style="margin:0 auto 24px">
+            <span class="nx-eyebrow-dot"></span>
+            Témoignages
+          </div>
+          <h2 class="nx-fade-up nx-fade-up-delay-1" style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:600;color:#FFFFFF;line-height:1.15">
+            Ce qu'ils disent de
+            <span style="background:linear-gradient(135deg,#7B5CFF,#4FA3FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">NyXia</span>
+          </h2>
+          <p class="nx-fade-up nx-fade-up-delay-2" style="color:#8891B8;font-family:'Outfit',sans-serif;margin-top:12px">
+            Ils ont repris le contrôle de leur vie grâce à NyXia.
+          </p>
+        </div>
+
+        <div class="nx-grid-3">
+          <!-- Testimonial 1 -->
+          <div class="nx-glass nx-testimonial-card nx-fade-up nx-fade-up-delay-1">
+            <div class="nx-star-rating">
+              <span class="nx-star nx-star-filled">★</span>
+              <span class="nx-star nx-star-filled">★</span>
+              <span class="nx-star nx-star-filled">★</span>
+              <span class="nx-star nx-star-filled">★</span>
+              <span class="nx-star nx-star-filled">★</span>
+            </div>
+            <p class="nx-testimonial-text">"Depuis que j'utilise NyXia, j'ai repris 15h par semaine. Mes publications sont plus engageantes que jamais. C'est comme avoir une attachée de presse permanente."</p>
+            <div class="nx-testimonial-footer">
+              <div class="nx-testimonial-avatar">M</div>
+              <div>
+                <div class="nx-testimonial-name">Marie L.</div>
+                <div class="nx-testimonial-role">Entrepreneuse</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 2 -->
+          <div class="nx-glass nx-testimonial-card nx-fade-up nx-fade-up-delay-2">
+            <div class="nx-star-rating">
+              <span class="nx-star nx-star-filled">★</span>
+              <span class="nx-star nx-star-filled">★</span>
+              <span class="nx-star nx-star-filled">★</span>
+              <span class="nx-star nx-star-filled">★</span>
+              <span class="nx-star nx-star-filled">★</span>
+            </div>
+            <p class="nx-testimonial-text">"Je détestais les réseaux sociaux. Maintenant, NyXia publie pour moi et mes clients arrivent tout seuls. Mon business a doublé en 3 mois."</p>
+            <div class="nx-testimonial-footer">
+              <div class="nx-testimonial-avatar">D</div>
+              <div>
+                <div class="nx-testimonial-name">David R.</div>
+                <div class="nx-testimonial-role">Coach en ligne</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 3 -->
+          <div class="nx-glass nx-testimonial-card nx-fade-up nx-fade-up-delay-3">
+            <div class="nx-star-rating">
+              <span class="nx-star nx-star-filled">★</span>
+              <span class="nx-star nx-star-filled">★</span>
+              <span class="nx-star nx-star-filled">★</span>
+              <span class="nx-star nx-star-filled">★</span>
+              <span class="nx-star nx-star-filled">★</span>
+            </div>
+            <p class="nx-testimonial-text">"Je ne savais même pas comment rédiger un post. NyXia a tout compris dès le premier jour. Mes clientes me disent que mes posts sont incroyables !"</p>
+            <div class="nx-testimonial-footer">
+              <div class="nx-testimonial-avatar">S</div>
+              <div>
+                <div class="nx-testimonial-name">Sophie M.</div>
+                <div class="nx-testimonial-role">Esthéticienne</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         7. NYXIA-26 IMAGE SECTION
+         ═══════════════════════════════════════════════════════ -->
+    <section class="nx-section-lg">
+      <div class="nx-section-wrap" style="max-width:64rem;display:flex;flex-direction:column;align-items:center;gap:2.5rem">
+        <div class="nx-nyxia26-img-wrap">
+          <div class="nx-glow-blob"></div>
+          <div class="nx-img-glow nx-img-float">
+            <img src="images/NyXia-26.png" alt="NyXia Automation - Ta collaboratrice à vie" class="nx-img-hero" style="object-fit:cover" width="480" height="720">
+          </div>
+        </div>
+        <div class="nx-nyxia26-text">
+          <h2 class="nx-fade-up" style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:600;color:#FFFFFF;line-height:1.15">
+            Ta collaboratrice
+            <em style="background:linear-gradient(135deg,#F4C842,#FFE082);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:italic">à vie</em>
+          </h2>
+          <p class="nx-fade-up nx-fade-up-delay-1" style="color:#8891B8;font-family:'Outfit',sans-serif;font-size:1.1rem;margin-top:12px">
+            Pour le prix d'un café par jour, NyXia travaille pour toi 24h/24.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         8. PRICING — 47$/mois
+         ═══════════════════════════════════════════════════════ -->
+    <section class="nx-section-lg" id="tarifs" style="background:linear-gradient(180deg, rgba(123,92,255,0.04) 0%, rgba(79,163,255,0.08) 50%, rgba(123,92,255,0.04) 100%)">
+      <div class="nx-section-wrap-md">
+        <div class="nx-text-center" style="margin-bottom:3rem">
+          <div class="nx-eyebrow nx-fade-up" style="margin:0 auto 24px">
+            <span class="nx-eyebrow-dot"></span>
+            Tarifs
+          </div>
+          <h2 class="nx-fade-up nx-fade-up-delay-1" style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:600;color:#FFFFFF;line-height:1.15">
+            Ta collaboratrice à vie
+          </h2>
+          <p class="nx-fade-up nx-fade-up-delay-2" style="color:#8891B8;font-family:'Outfit',sans-serif;margin-top:12px">
+            Seulement
+          </p>
+        </div>
+
+        <!-- Single Pricing Card -->
+        <div class="nx-fade-up nx-fade-up-delay-3 nx-pricing-card nx-featured" style="border-radius:28px;padding:40px 32px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:24px">
+          <!-- Badge -->
+          <div class="nx-pricing-badge">Accès complet</div>
+
+          <!-- Price -->
+          <div style="display:flex;align-items:baseline;gap:4px">
+            <span class="nx-price-big">47</span>
+            <span class="nx-price-period">$/mois</span>
+          </div>
+
+          <!-- Divider -->
+          <div class="nx-pricing-divider"></div>
+
+          <!-- Features -->
+          <ul class="nx-pricing-features-list">
+            <li><span class="nx-check">✓</span>Publications automatiques illimitées</li>
+            <li><span class="nx-check">✓</span>Toutes les plateformes (Facebook, Instagram, TikTok, YouTube)</li>
+            <li><span class="nx-check">✓</span>Création de contenu IA (textes, images, vidéos)</li>
+            <li><span class="nx-check">✓</span>Calendrier intelligent de publication</li>
+            <li><span class="nx-check">✓</span>Analyse d'engagement en temps réel</li>
+            <li><span class="nx-check">✓</span>Repurposing automatique du contenu</li>
+            <li><span class="nx-check">✓</span>Support 24/7</li>
+            <li><span class="nx-check">✓</span>A/B testing des titres</li>
+            <li><span class="nx-check">✓</span>Détection de tendances</li>
+            <li><span class="nx-check">✓</span>Ton style, ta voix — personnalisation IA</li>
+          </ul>
+
+          <!-- CTA -->
+          <a href="login.html" class="nx-pricing-cta">✦ Engager NyXia aujourd'hui</a>
+          <p class="nx-pricing-sub">Aucun engagement. Annule quand tu veux.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         9. FAQ
+         ═══════════════════════════════════════════════════════ -->
+    <section class="nx-section-lg">
+      <div class="nx-section-wrap-md">
+        <div class="nx-text-center" style="margin-bottom:3rem">
+          <div class="nx-eyebrow nx-fade-up" style="margin:0 auto 24px">
+            <span class="nx-eyebrow-dot"></span>
+            Questions fréquentes
+          </div>
+          <h2 class="nx-fade-up nx-fade-up-delay-1" style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:600;color:#FFFFFF;line-height:1.15">
+            Tu hésites encore ?
+          </h2>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <!-- FAQ 1 -->
+          <div class="nx-fade-up nx-fade-up-delay-1">
+            <div class="nx-faq">
+              <button class="nx-faq-trigger" data-state="closed" aria-expanded="false">
+                <span>Je n'y connais rien en technologie, c'est pour moi ?</span>
+                <svg class="nx-faq-trigger-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <div class="nx-faq-content" data-state="closed" style="display:none">
+                <div class="nx-faq-body">Oui, c'est fait exactement pour toi. NyXia a été conçue pour les entrepreneurs qui ne veulent pas se prendre la tête avec la technologie. Si tu sais parler, tu sais utiliser NyXia. Point final.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div class="nx-fade-up nx-fade-up-delay-2">
+            <div class="nx-faq">
+              <button class="nx-faq-trigger" data-state="closed" aria-expanded="false">
+                <span>Est-ce que je dois écrire le contenu moi-même ?</span>
+                <svg class="nx-faq-trigger-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <div class="nx-faq-content" data-state="closed" style="display:none">
+                <div class="nx-faq-body">Non. Tu dis simplement à NyXia ce que tu veux communiquer — un mot, une phrase, une idée — et elle s'occupe de tout. Elle rédige, elle optimise, elle publie. Tu n'as rien à écrire.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div class="nx-fade-up nx-fade-up-delay-3">
+            <div class="nx-faq">
+              <button class="nx-faq-trigger" data-state="closed" aria-expanded="false">
+                <span>Combien de publications est-ce que j'ai par mois ?</span>
+                <svg class="nx-faq-trigger-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <div class="nx-faq-content" data-state="closed" style="display:none">
+                <div class="nx-faq-body">Si tu publies en moyenne 2 à 8 fois par jour, NyXia le fera facilement pour toi ! Il n'y a pas de limite fixe — NyXia publie aussi souvent que ton entreprise en a besoin. C'est illimité.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 4 -->
+          <div class="nx-fade-up nx-fade-up-delay-1">
+            <div class="nx-faq">
+              <button class="nx-faq-trigger" data-state="closed" aria-expanded="false">
+                <span>Quelles plateformes sont incluses ?</span>
+                <svg class="nx-faq-trigger-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <div class="nx-faq-content" data-state="closed" style="display:none">
+                <div class="nx-faq-body">Facebook (profil, pages, groupes), Instagram, TikTok et YouTube. NyXia publie sur toutes ces plateformes simultanément. Tu n'as pas besoin de te connecter sur chacune.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 5 -->
+          <div class="nx-fade-up nx-fade-up-delay-2">
+            <div class="nx-faq">
+              <button class="nx-faq-trigger" data-state="closed" aria-expanded="false">
+                <span>Est-ce que je peux annuler à tout moment ?</span>
+                <svg class="nx-faq-trigger-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <div class="nx-faq-content" data-state="closed" style="display:none">
+                <div class="nx-faq-body">Oui, aucun engagement. Tu peux annuler ton abonnement quand tu veux, en un clic. Pas de frais cachés, pas de période minimum. C'est toi qui décides.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 6 -->
+          <div class="nx-fade-up nx-fade-up-delay-3">
+            <div class="nx-faq">
+              <button class="nx-faq-trigger" data-state="closed" aria-expanded="false">
+                <span>Est-ce que c'est en français ?</span>
+                <svg class="nx-faq-trigger-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <div class="nx-faq-content" data-state="closed" style="display:none">
+                <div class="nx-faq-body">Bien sûr ! NyXia parle français et anglais. Elle crée du contenu dans la langue de ton choix et s'adapte au ton de ta marque. Que tu sois au Québec, en France ou en Belgique, elle te comprend.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 7 -->
+          <div class="nx-fade-up nx-fade-up-delay-1">
+            <div class="nx-faq">
+              <button class="nx-faq-trigger" data-state="closed" aria-expanded="false">
+                <span>Combien de temps ça prend pour que NyXia commence à publier ?</span>
+                <svg class="nx-faq-trigger-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <div class="nx-faq-content" data-state="closed" style="display:none">
+                <div class="nx-faq-body">Dès que tu lui donnes ta première idée, c'est parti ! En quelques minutes, NyXia crée ta première publication et la met en ligne. Pas de temps d'attente, pas de configuration complexe.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         10. CTA SECTION (Final)
+         ═══════════════════════════════════════════════════════ -->
+    <section class="nx-section-lg" style="background:linear-gradient(180deg, rgba(123,92,255,0.06) 0%, rgba(79,163,255,0.1) 50%, rgba(123,92,255,0.06) 100%)">
+      <div class="nx-section-wrap-md nx-cta-final">
+        <div class="nx-eyebrow nx-fade-up" style="margin:0 auto">
+          <span class="nx-eyebrow-dot"></span>
+          Prêt à commencer ?
+        </div>
+        <h2 class="nx-fade-up nx-fade-up-delay-1" style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:600;color:#FFFFFF;line-height:1.15">
+          Arrête de perdre du temps sur les réseaux sociaux.
+          <span style="background:linear-gradient(135deg,#F4C842,#FFE082);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Laisse NyXia faire.</span>
+        </h2>
+        <p class="nx-fade-up nx-fade-up-delay-2" style="color:#8891B8;font-family:'Outfit',sans-serif;font-size:1.1rem;max-width:36rem">
+          Rejoins les entrepreneurs qui ont déjà repris le contrôle de leur vie. Pour seulement 47$/mois, NyXia travaille pour toi 24h/24, 7j/7.
+        </p>
+        <div class="nx-fade-up nx-fade-up-delay-3" style="display:flex;flex-wrap:wrap;gap:16px;justify-content:center">
+          <a href="login.html" class="nx-btn-primary" style="font-size:1.125rem;padding:16px 32px;border-radius:50px;box-shadow:0 0 30px rgba(123,92,255,0.4), 0 0 60px rgba(123,92,255,0.15)">✦ Engager NyXia aujourd'hui</a>
+        </div>
+        <p class="nx-fade-up nx-fade-up-delay-3" style="color:#4a5278;font-family:'Outfit',sans-serif;font-size:0.875rem">
+          Aucun engagement. Annule quand tu veux.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════════════════════ -->
+  <footer class="nx-footer" style="margin-top:auto">
+    <div class="nx-footer-inner">
+      <!-- Left: Logo + Tagline -->
+      <div class="nx-footer-brand">
+        <span class="nx-footer-brand-name">NyXia IA</span>
+        <p class="nx-footer-brand-tagline">Automatisation — Propulsé par La Psychologie du Clic</p>
+      </div>
+
+      <!-- Center: Links -->
+      <nav class="nx-footer-links">
+        <a href="#fonctionnalites">Fonctionnalités</a>
+        <a href="#comment-ca-marche">Comment ça marche</a>
+        <a href="#tarifs">Tarifs</a>
+        <a href="login.html">Connexion</a>
+      </nav>
+
+      <!-- Right: Copyright -->
+      <div class="nx-footer-copy">
+        <p>&copy; 2025 NyXia Automation. Tous droits réservés.</p>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="nx-footer-bottom">
+      <div class="nx-footer-bottom-inner">
+        <p>Propulsé par <span>La Psychologie du Clic</span> de Diane Boyer</p>
+      </div>
+    </div>
+  </footer>
+
+  </div><!-- end nx-page-wrapper -->
+
+  <!-- ═══════════════════════════════════════════════════════════
+       NYXIA CHAT WIDGET
+       ═══════════════════════════════════════════════════════════ -->
+  <!-- Chat Button -->
+  <button class="nyxia-chat-btn" id="nyxia-chat-btn" aria-label="Ouvrir le chat NyXia">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+  </button>
+
+  <!-- Chat Panel -->
+  <div class="nyxia-chat-panel" id="nyxia-chat-panel" style="display:none">
+    <!-- Header -->
+    <div class="nyxia-chat-header">
+      <div class="nyxia-chat-header-title">
+        <div style="width:36px;height:36px;border-radius:50%;overflow:hidden;border:2px solid rgba(123,92,255,0.4);flex-shrink:0">
+          <img src="images/Logo.png" alt="NyXia" style="width:100%;height:100%;object-fit:cover">
+        </div>
+        <div style="display:flex;flex-direction:column;line-height:1">
+          <span style="font-family:'Cormorant Garamond',serif;background:linear-gradient(135deg,#7B5CFF,#4FA3FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:600">NyXia IA</span>
+          <span style="display:flex;align-items:center;gap:6px;margin-top:4px">
+            <span style="width:6px;height:6px;border-radius:50%;background:#00E676;box-shadow:0 0 6px rgba(0,230,118,0.6)"></span>
+            <span style="font-size:11px;color:#00E676;font-family:'Outfit',sans-serif">En ligne</span>
+          </span>
+        </div>
+      </div>
+      <button class="nyxia-chat-header-close" id="nyxia-chat-close" aria-label="Fermer le chat">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <!-- Messages -->
+    <div class="nyxia-chat-messages" id="nyxia-chat-messages">
+      <div class="nyxia-chat-msg nyxia-chat-msg-bot">Bonjour ! Je suis NyXia IA, votre assistante d'automatisation intelligente. Comment puis-je vous aider aujourd'hui ?</div>
+    </div>
+
+    <!-- Input Area -->
+    <div class="nyxia-chat-input-area">
+      <input type="text" class="nyxia-chat-input" id="nyxia-chat-input" placeholder="Écrivez votre message...">
+      <button class="nyxia-chat-send" id="nyxia-chat-send" aria-label="Envoyer">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SCRIPTS
+       ═══════════════════════════════════════════════════════════ -->
+  <script src="js/app.js"></script>
+  <script>
+    // Navbar scroll effect
+    (function() {
+      var navbar = document.getElementById('nx-navbar');
+      if (!navbar) return;
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 20) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      }, { passive: true });
+    })();
+  </script>
+</body>
+</html>
