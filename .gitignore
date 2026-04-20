@@ -52,3 +52,16 @@ prompt
 server.log
 # Skills directory
 /skills/
+
+# Upload/download folders (source assets, not needed in repo)
+/upload/
+/download/
+
+# Database
+/db/
+
+# Agent context
+/agent-ctx/
+
+# Examples
+/examples/
