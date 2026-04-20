@@ -88,78 +88,78 @@ const TESTIMONIALS = [
     initial: 'M',
     name: 'Marie L.',
     role: 'Entrepreneuse',
-    text: "Depuis que j'utilise NyXia, j'ai repris 15h par semaine. Mes publications sont plus engageantes que jamais. C'est comme avoir une attach\u00e9e de presse permanente.",
+    text: "Depuis que j'utilise NyXia, j'ai repris 15h par semaine. Mes publications sont plus engageantes que jamais. C'est comme avoir une attachée de presse permanente.",
     stars: 5,
   },
   {
     initial: 'D',
     name: 'David R.',
     role: 'Coach en ligne',
-    text: "Je d\u00e9testais les r\u00e9seaux sociaux. Maintenant, NyXia publie pour moi et mes clients arrivent tout seuls. Mon business a doubl\u00e9 en 3 mois.",
+    text: "Je détestais les réseaux sociaux. Maintenant, NyXia publie pour moi et mes clients arrivent tout seuls. Mon business a doublé en 3 mois.",
     stars: 5,
   },
   {
     initial: 'S',
     name: 'Sophie M.',
-    role: 'Esth\u00e9ticienne',
-    text: "Je ne savais m\u00eame pas comment r\u00e9diger un post. NyXia a tout compris d\u00e8s le premier jour. Mes clientes me disent que mes posts sont incroyables !",
+    role: 'Esthéticienne',
+    text: "Je ne savais même pas comment rédiger un post. NyXia a tout compris dès le premier jour. Mes clientes me disent que mes posts sont incroyables !",
     stars: 5,
   },
 ] as const;
 
 const FEATURES = [
   {
-    emoji: '\u270f\ufe0f',
+    emoji: '✏️',
     title: 'Titres qui stoppent le scroll',
-    desc: 'NyXia cr\u00e9e des titres qui captent l\u2019attention en moins d\u2019une seconde. Fini les publications ignor\u00e9es.',
+    desc: 'NyXia crée des titres qui captent l’attention en moins d’une seconde. Fini les publications ignorées.',
   },
   {
-    emoji: '\ud83d\udcac',
+    emoji: '💬',
     title: 'Textes qui engagent et convertissent',
-    desc: 'Des textes persuasifs, authentiques et parfaitement adapt\u00e9s \u00e0 ton audience. Ton style, ta voix.',
+    desc: 'Des textes persuasifs, authentiques et parfaitement adaptés à ton audience. Ton style, ta voix.',
   },
   {
-    emoji: '\ud83d\udcf1',
+    emoji: '📱',
     title: 'Publication multi-plateforme',
-    desc: 'Facebook, Instagram, TikTok, YouTube \u2014 NyXia publie partout en m\u00eame temps. Un seul point de contr\u00f4le.',
+    desc: 'Facebook, Instagram, TikTok, YouTube — NyXia publie partout en même temps. Un seul point de contrôle.',
   },
   {
-    emoji: '\ud83d\udcc5',
+    emoji: '📅',
     title: 'Calendrier intelligent',
-    desc: 'NyXia sait quand publier pour maximiser la port\u00e9e. Plus besoin de chercher le bon cr\u00e9neau horaire.',
+    desc: 'NyXia sait quand publier pour maximiser la portée. Plus besoin de chercher le bon créneau horaire.',
   },
   {
-    emoji: '\ud83c\udfa8',
+    emoji: '🎨',
     title: 'Ton style, ta voix',
-    desc: "NyXia apprend ton ton, ton vocabulaire, ta personnalit\u00e9. Tes publications te ressemblent. Vraiment.",
+    desc: "NyXia apprend ton ton, ton vocabulaire, ta personnalité. Tes publications te ressemblent. Vraiment.",
   },
   {
-    emoji: '\ud83e\udd16',
+    emoji: '🤖',
     title: 'Automatisation 24/7',
-    desc: 'Repurposing automatique, d\u00e9tection de tendances, A/B testing des titres, analyse de l\u2019engagement et ajustement auto.',
+    desc: 'Repurposing automatique, détection de tendances, A/B testing des titres, analyse de l’engagement et ajustement auto.',
   },
 ] as const;
 
 const STEPS = [
   {
     num: '01',
-    title: 'Tu dis \u00e0 NyXia ce que tu veux',
-    desc: 'Tu lui parles, tu lui envoies une voix, un simple mot \u2014 NyXia comprend. C\u2019est aussi simple que de parler \u00e0 un coll\u00e8gue de confiance.',
-    hint: 'Pas besoin d\u2019\u00e9crire quoi que ce soit. Pas besoin de pr\u00e9parer des images. NyXia fait tout \u00e0 ta place.',
+    title: 'Tu dis à NyXia ce que tu veux',
+    desc: 'Tu lui parles, tu lui envoies une voix, un simple mot — NyXia comprend. C’est aussi simple que de parler à un collègue de confiance.',
+    hint: 'Pas besoin d’écrire quoi que ce soit. Pas besoin de préparer des images. NyXia fait tout à ta place.',
     image: '/images/TravailDureNyxia.png',
   },
   {
     num: '02',
     title: 'NyXia fait TOUT le travail',
-    desc: 'Elle cr\u00e9e le contenu, trouve les titres accrocheurs, r\u00e9dige les textes, choisit les meilleurs moments et publie automatiquement.',
-    hint: "Tu n\u2019as pas besoin d\u2019\u00eatre l\u00e0. Tu n\u2019as pas besoin de valider quoi que ce soit. NyXia g\u00e8re tout de A \u00e0 Z.",
+    desc: 'Elle crée le contenu, trouve les titres accrocheurs, rédige les textes, choisit les meilleurs moments et publie automatiquement.',
+    hint: "Tu n’as pas besoin d’être là. Tu n’as pas besoin de valider quoi que ce soit. NyXia gère tout de A à Z.",
     image: '/images/automate2.png',
   },
   {
     num: '03',
-    title: 'Tu r\u00e9coltes les r\u00e9sultats',
-    desc: 'Tes publications sont en ligne, ton audience s\u2019engage, les prospects arrivent. Tu regardes les notifications qui d\u00e9filent \u2014 c\u2019est tout.',
-    hint: "Ta seule job : regarder les notifications qui d\u00e9filent. Les clients, les likes, les messages \u2014 tout vient \u00e0 toi.",
+    title: 'Tu récoltes les résultats',
+    desc: 'Tes publications sont en ligne, ton audience s’engage, les prospects arrivent. Tu regardes les notifications qui défilent — c’est tout.',
+    hint: "Ta seule job : regarder les notifications qui défilent. Les clients, les likes, les messages — tout vient à toi.",
     image: '/images/nyxia/NyXia-25.png',
   },
 ] as const;
@@ -167,31 +167,31 @@ const STEPS = [
 const FAQ_ITEMS = [
   {
     question: "Je n'y connais rien en technologie, c'est pour moi ?",
-    answer: "Oui, c'est fait exactement pour toi. NyXia a \u00e9t\u00e9 con\u00e7ue pour les entrepreneurs qui ne veulent pas se prendre la t\u00eate avec la technologie. Si tu sais parler, tu sais utiliser NyXia. Point final.",
+    answer: "Oui, c'est fait exactement pour toi. NyXia a été conçue pour les entrepreneurs qui ne veulent pas se prendre la tête avec la technologie. Si tu sais parler, tu sais utiliser NyXia. Point final.",
   },
   {
-    question: 'Est-ce que je dois \u00e9crire le contenu moi-m\u00eame ?',
-    answer: "Non. Tu dis simplement \u00e0 NyXia ce que tu veux communiquer \u2014 un mot, une phrase, une id\u00e9e \u2014 et elle s'occupe de tout. Elle r\u00e9dige, elle optimise, elle publie. Tu n'as rien \u00e0 \u00e9crire.",
+    question: 'Est-ce que je dois écrire le contenu moi-même ?',
+    answer: "Non. Tu dis simplement à NyXia ce que tu veux communiquer — un mot, une phrase, une idée — et elle s'occupe de tout. Elle rédige, elle optimise, elle publie. Tu n'as rien à écrire.",
   },
   {
-    question: 'Combien de publications est-ce que j\u2019ai par mois ?',
-    answer: "Si tu publies en moyenne 2 \u00e0 8 fois par jour, NyXia le fera facilement pour toi ! Il n\u2019y a pas de limite fixe \u2014 NyXia publie aussi souvent que ton entreprise en a besoin. C\u2019est illimit\u00e9.",
+    question: 'Combien de publications est-ce que j’ai par mois ?',
+    answer: "Si tu publies en moyenne 2 à 8 fois par jour, NyXia le fera facilement pour toi ! Il n’y a pas de limite fixe — NyXia publie aussi souvent que ton entreprise en a besoin. C’est illimité.",
   },
   {
     question: 'Quelles plateformes sont incluses ?',
-    answer: "Facebook (profil, pages, groupes), Instagram, TikTok et YouTube. NyXia publie sur toutes ces plateformes simultan\u00e9ment. Tu n\u2019as pas besoin de te connecter sur chacune.",
+    answer: "Facebook (profil, pages, groupes), Instagram, TikTok et YouTube. NyXia publie sur toutes ces plateformes simultanément. Tu n’as pas besoin de te connecter sur chacune.",
   },
   {
-    question: 'Est-ce que je peux annuler \u00e0 tout moment ?',
-    answer: "Oui, aucun engagement. Tu peux annuler ton abonnement quand tu veux, en un clic. Pas de frais cach\u00e9s, pas de p\u00e9riode minimum. C\u2019est toi qui d\u00e9cides.",
+    question: 'Est-ce que je peux annuler à tout moment ?',
+    answer: "Oui, aucun engagement. Tu peux annuler ton abonnement quand tu veux, en un clic. Pas de frais cachés, pas de période minimum. C’est toi qui décides.",
   },
   {
-    question: 'Est-ce que c\u2019est en fran\u00e7ais ?',
-    answer: "Bien s\u00fbr ! NyXia parle fran\u00e7ais et anglais. Elle cr\u00e9e du contenu dans la langue de ton choix et s\u2019adapte au ton de ta marque. Que tu sois au Qu\u00e9bec, en France ou en Belgique, elle te comprend.",
+    question: 'Est-ce que c’est en français ?',
+    answer: "Bien sûr ! NyXia parle français et anglais. Elle crée du contenu dans la langue de ton choix et s’adapte au ton de ta marque. Que tu sois au Québec, en France ou en Belgique, elle te comprend.",
   },
   {
-    question: 'Combien de temps \u00e7a prend pour que NyXia commence \u00e0 publier ?',
-    answer: "D\u00e8s que tu lui donnes ta premi\u00e8re id\u00e9e, c\u2019est parti ! En quelques minutes, NyXia cr\u00e9e ta premi\u00e8re publication et la met en ligne. Pas de temps d\u2019attente, pas de configuration complexe.",
+    question: 'Combien de temps ça prend pour que NyXia commence à publier ?',
+    answer: "Dès que tu lui donnes ta première idée, c’est parti ! En quelques minutes, NyXia crée ta première publication et la met en ligne. Pas de temps d’attente, pas de configuration complexe.",
   },
 ] as const;
 
@@ -244,7 +244,7 @@ export default function Home() {
                     fontFamily: "'Outfit', sans-serif",
                   }}
                 >
-                  Automatisation IA \u2014 Disponible maintenant
+                  Automatisation IA — Disponible maintenant
                 </span>
               </div>
 
@@ -258,7 +258,7 @@ export default function Home() {
                   color: '#FFFFFF',
                 }}
               >
-                Tu as une entreprise \u00e0 faire grandir, pas le temps de publier partout.{' '}
+                Tu as une entreprise à faire grandir, pas le temps de publier partout.{' '}
                 <em
                   style={{
                     background:
@@ -281,9 +281,9 @@ export default function Home() {
                   color: '#8891B8',
                 }}
               >
-                NyXia n&apos;est pas un outil \u2014 c&apos;est ta collaboratrice IA. Elle comprend ton audience,
-                cr\u00e9e du contenu engageant et publie pour toi sur tous tes r\u00e9seaux sociaux.
-                Automatiquement. Intelligemment. Sans que tu aies \u00e0 lever le doigt.
+                NyXia n&apos;est pas un outil — c&apos;est ta collaboratrice IA. Elle comprend ton audience,
+                crée du contenu engageant et publie pour toi sur tous tes réseaux sociaux.
+                Automatiquement. Intelligemment. Sans que tu aies à lever le doigt.
               </p>
 
               {/* Slogan */}
@@ -302,13 +302,13 @@ export default function Home() {
               {/* CTA Buttons */}
               <div className="nx-fade-up nx-fade-up-delay-3 flex flex-wrap gap-4 mt-2">
                 <Link href="/login" className="nx-btn-primary text-base">
-                  \u2726 Engager NyXia aujourd&apos;hui
+                  ✦ Engager NyXia aujourd&apos;hui
                 </Link>
                 <a
                   href="#comment-ca-marche"
                   className="nx-btn-secondary text-base"
                 >
-                  Comment \u00e7a marche \u2192
+                  Comment ça marche →
                 </a>
               </div>
             </div>
@@ -350,7 +350,7 @@ export default function Home() {
                       color: '#8891B8',
                     }}
                   >
-                    Auto-publi\u00e9
+                    Auto-publié
                   </div>
                 </div>
               </div>
@@ -408,7 +408,7 @@ export default function Home() {
                 lineHeight: 1.2,
               }}
             >
-              Tu te l\u00e8ves le matin avec une seule id\u00e9e en t\u00eate :{' '}
+              Tu te lèves le matin avec une seule idée en tête :{' '}
               <em
                 style={{
                   background: 'linear-gradient(135deg, #7B5CFF, #4FA3FF)',
@@ -426,17 +426,17 @@ export default function Home() {
               style={{ color: '#8891B8', fontFamily: "'Outfit', sans-serif" }}
             >
               <p>
-                Sur Facebook, Instagram, TikTok, YouTube\u2026 Tu passes 3 \u00e0 4 heures par jour \u00e0
-                essayer de cr\u00e9er du contenu, \u00e0 trouver des id\u00e9es, \u00e0 r\u00e9diger des textes qui ne font
-                m\u00eame pas 10 likes.
+                Sur Facebook, Instagram, TikTok, YouTube… Tu passes 3 à 4 heures par jour à
+                essayer de créer du contenu, à trouver des idées, à rédiger des textes qui ne font
+                même pas 10 likes.
               </p>
               <p>
-                Tu ne sais plus quoi \u00e9crire. L&apos;inspiration est partie en vacances \u2014 et elle ne revient
-                pas. Ton t\u00e9l\u00e9phone te stresse. Tes r\u00e9seaux sociaux te donnent l&apos;impression de
-                courir apr\u00e8s ton propre succ\u00e8s.
+                Tu ne sais plus quoi écrire. L&apos;inspiration est partie en vacances — et elle ne revient
+                pas. Ton téléphone te stresse. Tes réseaux sociaux te donnent l&apos;impression de
+                courir après ton propre succès.
               </p>
               <p style={{ color: '#D6D9F0', fontWeight: 600 }}>
-                Pendant ce temps, tes concurrents publient tous les jours. Ils grandissent. Et toi, tu es \u00e9puis\u00e9(e).
+                Pendant ce temps, tes concurrents publient tous les jours. Ils grandissent. Et toi, tu es épuisé(e).
               </p>
               <p
                 className="text-2xl font-bold mt-8"
@@ -448,7 +448,7 @@ export default function Home() {
                   fontSize: 'clamp(1.4rem, 3vw, 2rem)',
                 }}
               >
-                Et si tout \u00e7a\u2026 quelqu&apos;un d&apos;autre le faisait pour toi ?
+                Et si tout ça… quelqu&apos;un d&apos;autre le faisait pour toi ?
               </p>
             </div>
           </div>
@@ -489,13 +489,13 @@ export default function Home() {
                       color: '#D6D9F0',
                     }}
                   >
-                    &ldquo;Chaque clic est une d\u00e9cision psychologique.&rdquo;
+                    &ldquo;Chaque clic est une décision psychologique.&rdquo;
                   </div>
                   <div
                     className="text-[10px] mt-1 font-semibold"
                     style={{ color: '#F4C842' }}
                   >
-                    \u2014 Diane Boyer
+                    — Diane Boyer
                   </div>
                 </div>
               </div>
@@ -518,7 +518,7 @@ export default function Home() {
                   lineHeight: 1.15,
                 }}
               >
-                NyXia, ta collaboratrice IA \u2014{' '}
+                NyXia, ta collaboratrice IA —{' '}
                 <span
                   style={{
                     background: 'linear-gradient(135deg, #F4C842, #FFE082)',
@@ -538,23 +538,23 @@ export default function Home() {
                   fontSize: '1.05rem',
                 }}
               >
-                Pas de pauses, pas de journ\u00e9es off, pas de cr\u00e9ativit\u00e9 \u00e0 plat.
+                Pas de pauses, pas de journées off, pas de créativité à plat.
                 NyXia travaille pour toi 24h/24, 7j/7.
               </p>
 
               <ul className="nx-fade-up nx-fade-up-delay-3 space-y-3">
                 {[
                   'Comprend ton audience et parle sa langue',
-                  'Cr\u00e9e des publications engageantes et professionnelles',
+                  'Crée des publications engageantes et professionnelles',
                   'Publie au bon moment, sur les bonnes plateformes',
-                  'Te lib\u00e8re pour te concentrer sur ce que tu aimes faire',
+                  'Te libère pour te concentrer sur ce que tu aimes faire',
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3">
                     <span
                       className="mt-1 text-sm"
                       style={{ color: '#7B5CFF' }}
                     >
-                      \u2726
+                      ✦
                     </span>
                     <span
                       className="leading-relaxed"
@@ -588,7 +588,7 @@ export default function Home() {
             <div className="text-center mb-12 lg:mb-16">
               <div className="nx-eyebrow nx-fade-up mx-auto mb-6">
                 <span className="nx-eyebrow-dot" />
-                Ce que NyXia fait concr\u00e8tement
+                Ce que NyXia fait concrètement
               </div>
               <h2
                 className="nx-fade-up nx-fade-up-delay-1"
@@ -610,7 +610,7 @@ export default function Home() {
                     fontStyle: 'italic',
                   }}
                 >
-                  NyXia g\u00e8re tout
+                  NyXia gère tout
                 </em>
               </h2>
             </div>
@@ -654,7 +654,7 @@ export default function Home() {
             <div className="text-center mb-12 lg:mb-16">
               <div className="nx-eyebrow nx-fade-up mx-auto mb-6">
                 <span className="nx-eyebrow-dot" />
-                Comment \u00e7a marche
+                Comment ça marche
               </div>
               <h2
                 className="nx-fade-up nx-fade-up-delay-1"
@@ -666,7 +666,7 @@ export default function Home() {
                   lineHeight: 1.15,
                 }}
               >
-                3 \u00e9tapes.{' '}
+                3 étapes.{' '}
                 <span
                   style={{
                     background:
@@ -677,7 +677,7 @@ export default function Home() {
                 >
                   0 effort.
                 </span>{' '}
-                Tu ne fais quasiment rien \u2014 NyXia fait tout.
+                Tu ne fais quasiment rien — NyXia fait tout.
               </h2>
             </div>
 
@@ -777,7 +777,7 @@ export default function Home() {
             <div className="text-center mb-12 lg:mb-16">
               <div className="nx-eyebrow nx-fade-up mx-auto mb-6">
                 <span className="nx-eyebrow-dot" />
-                T\u00e9moignages
+                Témoignages
               </div>
               <h2
                 className="nx-fade-up nx-fade-up-delay-1"
@@ -804,7 +804,7 @@ export default function Home() {
                 className="nx-fade-up nx-fade-up-delay-2 mt-3"
                 style={{ color: '#8891B8', fontFamily: "'Outfit', sans-serif" }}
               >
-                Ils ont repris le contr\u00f4le de leur vie gr\u00e2ce \u00e0 NyXia.
+                Ils ont repris le contrôle de leur vie grâce à NyXia.
               </p>
             </div>
 
@@ -878,7 +878,7 @@ export default function Home() {
               <div className="nx-img-glow nx-img-float">
                 <Image
                   src="/images/NyXia-26.png"
-                  alt="NyXia Automation - Ta collaboratrice \u00e0 vie"
+                  alt="NyXia Automation - Ta collaboratrice à vie"
                   width={480}
                   height={720}
                   className="nx-img-hero object-cover"
@@ -905,7 +905,7 @@ export default function Home() {
                     fontStyle: 'italic',
                   }}
                 >
-                  \u00e0 vie
+                  à vie
                 </em>
               </h2>
               <p
@@ -916,7 +916,7 @@ export default function Home() {
                   fontSize: '1.1rem',
                 }}
               >
-                Pour le prix d&apos;un caf\u00e9 par jour, NyXia travaille pour toi 24h/24.
+                Pour le prix d&apos;un café par jour, NyXia travaille pour toi 24h/24.
               </p>
             </div>
           </div>
@@ -949,7 +949,7 @@ export default function Home() {
                   lineHeight: 1.15,
                 }}
               >
-                Ta collaboratrice \u00e0 vie
+                Ta collaboratrice à vie
               </h2>
               <p
                 className="nx-fade-up nx-fade-up-delay-2 mt-3"
@@ -972,7 +972,7 @@ export default function Home() {
                   boxShadow: '0 0 20px rgba(123,92,255,0.4)',
                 }}
               >
-                Acc\u00e8s complet
+                Accès complet
               </div>
 
               {/* Price */}
@@ -1006,11 +1006,11 @@ export default function Home() {
               {/* Features */}
               <ul className="w-full space-y-3 text-left">
                 {[
-                  'Publications automatiques illimit\u00e9es',
+                  'Publications automatiques illimitées',
                   'Toutes les plateformes incluses',
-                  'Cr\u00e9ation de contenu par IA',
+                  'Création de contenu par IA',
                   'Calendrier intelligent',
-                  'Style personnalis\u00e9 \u00e0 ta voix',
+                  'Style personnalisé à ta voix',
                   'Support prioritaire',
                   'Sans engagement',
                 ].map((feature) => (
@@ -1019,7 +1019,7 @@ export default function Home() {
                       className="text-sm font-bold"
                       style={{ color: '#00E676' }}
                     >
-                      \u2713
+                      ✓
                     </span>
                     <span
                       style={{
@@ -1045,7 +1045,7 @@ export default function Home() {
                   boxShadow: '0 0 30px rgba(123,92,255,0.4), 0 0 60px rgba(123,92,255,0.15)',
                 }}
               >
-                \u2726 Engager NyXia aujourd&apos;hui
+                ✦ Engager NyXia aujourd&apos;hui
               </a>
               <p
                 className="text-sm"
@@ -1065,7 +1065,7 @@ export default function Home() {
             <div className="text-center mb-12">
               <div className="nx-eyebrow nx-fade-up mx-auto mb-6">
                 <span className="nx-eyebrow-dot" />
-                Questions fr\u00e9quentes
+                Questions fréquentes
               </div>
               <h2
                 className="nx-fade-up nx-fade-up-delay-1"
@@ -1077,7 +1077,7 @@ export default function Home() {
                   lineHeight: 1.15,
                 }}
               >
-                Tu h\u00e9sites encore ?
+                Tu hésites encore ?
               </h2>
             </div>
 
