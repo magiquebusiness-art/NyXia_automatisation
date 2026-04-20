@@ -1,0 +1,235 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: #0A1628;
+  --foreground: #D6D9F0;
+  --card: #1A2554;
+  --card-foreground: #D6D9F0;
+  --popover: #0F1C3F;
+  --popover-foreground: #D6D9F0;
+  --primary: #7B5CFF;
+  --primary-foreground: #FFFFFF;
+  --secondary: #0F1C3F;
+  --secondary-foreground: #D6D9F0;
+  --muted: #1A2554;
+  --muted-foreground: #8891B8;
+  --accent: #4FA3FF;
+  --accent-foreground: #FFFFFF;
+  --destructive: #FF4B6E;
+  --border: rgba(123,92,255,0.15);
+  --input: rgba(123,92,255,0.2);
+  --ring: #7B5CFF;
+  --chart-1: #7B5CFF;
+  --chart-2: #5A6CFF;
+  --chart-3: #4FA3FF;
+  --chart-4: #00E676;
+  --chart-5: #F4C842;
+  --sidebar: #080f22;
+  --sidebar-foreground: #D6D9F0;
+  --sidebar-primary: #7B5CFF;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: rgba(123,92,255,0.15);
+  --sidebar-accent-foreground: #D6D9F0;
+  --sidebar-border: rgba(123,92,255,0.1);
+  --sidebar-ring: #7B5CFF;
+
+  /* NyXia Custom Variables */
+  --nx-bg1: #0A1628;
+  --nx-bg2: #0F1C3F;
+  --nx-bg3: #1A2554;
+  --nx-sidebar: #080f22;
+  --nx-p: #7B5CFF;
+  --nx-p2: #5A6CFF;
+  --nx-p3: #4FA3FF;
+  --nx-glow: rgba(123,92,255,0.4);
+  --nx-t: #FFFFFF;
+  --nx-t2: #D6D9F0;
+  --nx-t3: #8891B8;
+  --nx-t4: #4a5278;
+  --nx-green: #00E676;
+  --nx-gold: #F4C842;
+  --nx-red: #FF4B6E;
+  --nx-r: 14px;
+}
+
+.dark {
+  --background: #0A1628;
+  --foreground: #D6D9F0;
+  --card: #1A2554;
+  --card-foreground: #D6D9F0;
+  --popover: #0F1C3F;
+  --popover-foreground: #D6D9F0;
+  --primary: #7B5CFF;
+  --primary-foreground: #FFFFFF;
+  --secondary: #0F1C3F;
+  --secondary-foreground: #D6D9F0;
+  --muted: #1A2554;
+  --muted-foreground: #8891B8;
+  --accent: #4FA3FF;
+  --accent-foreground: #FFFFFF;
+  --destructive: #FF4B6E;
+  --border: rgba(123,92,255,0.15);
+  --input: rgba(123,92,255,0.2);
+  --ring: #7B5CFF;
+  --sidebar: #080f22;
+  --sidebar-foreground: #D6D9F0;
+  --sidebar-primary: #7B5CFF;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: rgba(123,92,255,0.15);
+  --sidebar-accent-foreground: #D6D9F0;
+  --sidebar-border: rgba(123,92,255,0.1);
+  --sidebar-ring: #7B5CFF;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* NyXia Custom Fonts — loaded via layout.tsx <head> */
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(123,92,255,0.2);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(123,92,255,0.4);
+}
+
+/* NyXia Animations */
+@keyframes nx-breathe {
+  0%, 100% { box-shadow: 0 0 20px rgba(123,92,255,0.4); }
+  50% { box-shadow: 0 0 35px rgba(123,92,255,0.7), 0 0 60px rgba(123,92,255,0.2); }
+}
+
+@keyframes nx-pulse-green {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+@keyframes nx-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes nx-msg-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes nx-dot-bounce {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-5px); }
+}
+
+@keyframes nx-speak-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes nx-card-in {
+  from { opacity: 0; transform: translateY(24px) scale(0.97); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes nx-fade-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ── NyXia Responsive ────────────────────────────────────── */
+
+/* Mobile sidebar toggle */
+@media (max-width: 768px) {
+  .nx-mobile-menu-btn {
+    display: flex !important;
+  }
+  .nx-sidebar {
+    position: fixed !important;
+    top: 56px !important;
+    left: 0;
+    bottom: 0;
+    z-index: 100 !important;
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.23,1,0.32,1) !important;
+  }
+  .nx-sidebar.nx-sidebar-open {
+    transform: translateX(0);
+  }
+  .nx-header-center {
+    display: none !important;
+  }
+  .nx-badge {
+    display: none !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .nx-sidebar {
+    position: fixed !important;
+    top: 56px !important;
+    left: 0;
+    bottom: 0;
+    z-index: 100 !important;
+    transform: translateX(-100%);
+    width: 260px !important;
+    min-width: 260px !important;
+  }
+  .nx-sidebar.nx-sidebar-open {
+    transform: translateX(0);
+  }
+}
