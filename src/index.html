@@ -1,0 +1,2300 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NyXia IA — Automatisation</title>
+  <meta name="description" content="NyXia IA - Système d'automatisation intelligent. Marketing & Conversion. Ta collaboratrice IA qui publie pour toi 24h/24.">
+  <link rel="icon" href="/images/NyXia-FavIcon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Orbitron:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ═══════════════════════════════════════════════════════════
+       NyXia Automatisation — Design System (Pure CSS)
+       ═══════════════════════════════════════════════════════════ */
+
+    :root {
+      --nx-bg0: #06101f;
+      --nx-bg1: #0A1628;
+      --nx-bg2: #0F1C3F;
+      --nx-bg3: #1A2554;
+      --nx-bg4: #243068;
+      --nx-p: #7B5CFF;
+      --nx-p2: #5A6CFF;
+      --nx-p3: #4FA3FF;
+      --nx-glow: rgba(123,92,255,0.4);
+      --nx-t: #FFFFFF;
+      --nx-t2: #D6D9F0;
+      --nx-t3: #8891B8;
+      --nx-t4: #4a5278;
+      --nx-green: #00E676;
+      --nx-gold: #F4C842;
+      --nx-red: #FF4B6E;
+      --nx-r: 14px;
+      --nx-r-lg: 20px;
+      --nx-r-xl: 28px;
+      --nx-glass-bg: rgba(15,28,63,0.55);
+      --nx-glass-border: rgba(123,92,255,0.12);
+      --nx-glass-blur: 18px;
+    }
+
+    /* ── Reset ─────────────────────────────────────────────────── */
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: 'Outfit', 'Inter', sans-serif;
+      background-color: var(--nx-bg0);
+      color: var(--nx-t2);
+      overflow-x: hidden;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--nx-t);
+      line-height: 1.15;
+    }
+
+    a {
+      color: var(--nx-p3);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    a:hover { color: var(--nx-p); }
+
+    ::selection {
+      background: rgba(123,92,255,0.35);
+      color: var(--nx-t);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    ul { list-style: none; }
+
+    /* ── Scrollbar ─────────────────────────────────────────────── */
+
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(123,92,255,0.2); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(123,92,255,0.45); }
+    * { scrollbar-width: thin; scrollbar-color: rgba(123,92,255,0.2) transparent; }
+
+    /* ── Animations ────────────────────────────────────────────── */
+
+    @keyframes nx-float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+    }
+
+    @keyframes nx-float-gentle {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes nx-breathe {
+      0%, 100% { box-shadow: 0 0 20px rgba(123,92,255,0.4); }
+      50% { box-shadow: 0 0 40px rgba(123,92,255,0.7), 0 0 80px rgba(123,92,255,0.15); }
+    }
+
+    @keyframes nx-glow-breathe {
+      0%, 100% { opacity: 0.7; transform: translate(-50%, -50%) scale(1); }
+      50% { opacity: 1; transform: translate(-50%, -50%) scale(1.12); }
+    }
+
+    @keyframes nx-pulse-green {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    @keyframes nx-fade-up {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes nx-shimmer {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+
+    @keyframes nx-hero-card-1 {
+      0%, 100% { transform: translateY(0) rotate(-2deg); }
+      50% { transform: translateY(-16px) rotate(-1deg); }
+    }
+
+    @keyframes nx-hero-card-2 {
+      0%, 100% { transform: translateY(0) rotate(1.5deg); }
+      50% { transform: translateY(-12px) rotate(2.5deg); }
+    }
+
+    @keyframes nx-accordion-down {
+      from { max-height: 0; opacity: 0; }
+      to { max-height: 300px; opacity: 1; }
+    }
+
+    @keyframes nx-accordion-up {
+      from { max-height: 300px; opacity: 1; }
+      to { max-height: 0; opacity: 0; }
+    }
+
+    @keyframes nx-msg-in {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    @keyframes nx-typing-dots {
+      0%, 80%, 100% { transform: scale(0); opacity: 0; }
+      40% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes nx-chat-open {
+      from { opacity: 0; transform: scale(0.9) translateY(12px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    /* ── nx-fade-up (Scroll Reveal) ────────────────────────────── */
+
+    .nx-fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s cubic-bezier(0.23,1,0.32,1), transform 0.7s cubic-bezier(0.23,1,0.32,1);
+    }
+    .nx-fade-up.nx-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .nx-fade-up-delay-1 { transition-delay: 0.1s; }
+    .nx-fade-up-delay-2 { transition-delay: 0.2s; }
+    .nx-fade-up-delay-3 { transition-delay: 0.3s; }
+    .nx-fade-up-delay-4 { transition-delay: 0.4s; }
+    .nx-fade-up-delay-5 { transition-delay: 0.5s; }
+
+    /* ── nx-glass ──────────────────────────────────────────────── */
+
+    .nx-glass {
+      background: var(--nx-glass-bg);
+      backdrop-filter: blur(var(--nx-glass-blur));
+      -webkit-backdrop-filter: blur(var(--nx-glass-blur));
+      border: 1px solid var(--nx-glass-border);
+      border-radius: var(--nx-r-lg);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.04);
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+    }
+    .nx-glass:hover {
+      border-color: rgba(123,92,255,0.25);
+      box-shadow: 0 8px 40px rgba(123,92,255,0.12), 0 4px 30px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.06);
+      transform: translateY(-2px);
+    }
+
+    /* ── nx-section ────────────────────────────────────────────── */
+
+    .nx-section-lg {
+      padding: 120px 24px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    /* ── nx-eyebrow ────────────────────────────────────────────── */
+
+    .nx-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 50px;
+      background: rgba(123,92,255,0.08);
+      border: 1px solid rgba(123,92,255,0.15);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--nx-p3);
+    }
+    .nx-eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--nx-p);
+      box-shadow: 0 0 8px var(--nx-glow);
+    }
+
+    /* ── nx-btn-primary ────────────────────────────────────────── */
+
+    .nx-btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 28px;
+      background: linear-gradient(135deg, var(--nx-p), var(--nx-p2));
+      color: var(--nx-t);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: none;
+      border-radius: var(--nx-r);
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+      box-shadow: 0 4px 20px rgba(123,92,255,0.3);
+      text-decoration: none;
+    }
+    .nx-btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 30px rgba(123,92,255,0.45);
+      filter: brightness(1.1);
+      color: var(--nx-t);
+    }
+    .nx-btn-primary:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 12px rgba(123,92,255,0.25);
+    }
+
+    /* ── nx-btn-secondary ──────────────────────────────────────── */
+
+    .nx-btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 28px;
+      background: transparent;
+      color: var(--nx-p3);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: 1px solid rgba(79,163,255,0.35);
+      border-radius: var(--nx-r);
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s, border-color 0.2s;
+      text-decoration: none;
+    }
+    .nx-btn-secondary:hover {
+      transform: translateY(-2px);
+      border-color: var(--nx-p3);
+      background: rgba(79,163,255,0.08);
+      box-shadow: 0 4px 20px rgba(79,163,255,0.15);
+      color: var(--nx-p3);
+    }
+
+    /* ── nx-img-glow (drop-shadow follows shape) ──────────────── */
+
+    .nx-img-glow {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .nx-img-glow img {
+      filter: drop-shadow(0 20px 40px rgba(123,92,255,0.3)) drop-shadow(0 8px 16px rgba(0,0,0,0.4));
+      transition: filter 0.4s ease, transform 0.4s ease;
+      max-width: 100%;
+      height: auto;
+    }
+    .nx-img-glow:hover img {
+      filter: drop-shadow(0 30px 60px rgba(123,92,255,0.45)) drop-shadow(0 12px 24px rgba(0,0,0,0.5));
+      transform: translateY(-6px);
+    }
+
+    /* ── nx-glow-blob ──────────────────────────────────────────── */
+
+    .nx-glow-blob {
+      position: absolute;
+      width: 80%;
+      height: 80%;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(123,92,255,0.2) 0%, rgba(79,163,255,0.08) 40%, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: -1;
+      animation: nx-glow-breathe 4s ease-in-out infinite;
+    }
+
+    /* ── nx-img-float ──────────────────────────────────────────── */
+
+    .nx-img-float {
+      animation: nx-float-gentle 5s ease-in-out infinite;
+    }
+
+    /* ── nx-img-hero ───────────────────────────────────────────── */
+
+    .nx-img-hero {
+      border-radius: var(--nx-r-xl);
+      transition: transform 0.4s ease;
+    }
+    .nx-img-hero:hover {
+      transform: translateY(-4px);
+    }
+
+    /* ── nx-pricing-card ───────────────────────────────────────── */
+
+    .nx-pricing-card {
+      background: var(--nx-glass-bg);
+      backdrop-filter: blur(var(--nx-glass-blur));
+      -webkit-backdrop-filter: blur(var(--nx-glass-blur));
+      border: 1px solid var(--nx-glass-border);
+      border-radius: var(--nx-r-xl);
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 20px;
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .nx-pricing-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--nx-p), var(--nx-p3));
+    }
+    .nx-pricing-card.nx-featured {
+      border-color: rgba(123,92,255,0.3);
+      box-shadow: 0 0 40px rgba(123,92,255,0.1);
+      transform: scale(1.04);
+    }
+    .nx-pricing-card.nx-featured::before {
+      height: 4px;
+      background: linear-gradient(90deg, var(--nx-p), var(--nx-p3), var(--nx-p));
+      animation: nx-shimmer 3s ease-in-out infinite;
+      background-size: 200% 100%;
+    }
+    .nx-pricing-card.nx-featured:hover {
+      transform: scale(1.04) translateY(-4px);
+    }
+
+    /* ── nx-faq ────────────────────────────────────────────────── */
+
+    .nx-faq {
+      border: 1px solid rgba(123,92,255,0.1);
+      border-radius: var(--nx-r);
+      background: rgba(15,28,63,0.35);
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+    .nx-faq:hover { border-color: rgba(123,92,255,0.2); }
+    .nx-faq-trigger {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 24px;
+      background: none;
+      border: none;
+      color: var(--nx-t2);
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-align: left;
+      transition: color 0.2s;
+    }
+    .nx-faq-trigger:hover { color: var(--nx-t); }
+    .nx-faq-trigger.open { color: var(--nx-p3); }
+    .nx-faq-trigger-icon {
+      transition: transform 0.3s;
+      flex-shrink: 0;
+      margin-left: 16px;
+      color: var(--nx-t3);
+      width: 18px; height: 18px;
+    }
+    .nx-faq-trigger.open .nx-faq-trigger-icon {
+      transform: rotate(180deg);
+      color: var(--nx-p3);
+    }
+    .nx-faq-body {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.3s ease-out, opacity 0.3s ease-out, padding 0.3s ease-out;
+      padding: 0 24px;
+    }
+    .nx-faq-body.open {
+      max-height: 300px;
+      opacity: 1;
+      padding: 0 24px 18px;
+    }
+    .nx-faq-body p {
+      color: var(--nx-t3);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    /* ── Hero Floating Cards ───────────────────────────────────── */
+
+    .nx-hero-card {
+      position: absolute;
+      background: var(--nx-glass-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--nx-glass-border);
+      border-radius: var(--nx-r-lg);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      color: var(--nx-t2);
+      font-size: 0.88rem;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+    .nx-hero-card-1 {
+      top: 15%; right: 5%;
+      animation: nx-hero-card-1 5s ease-in-out infinite;
+    }
+    .nx-hero-card-2 {
+      bottom: 30%; right: 12%;
+      animation: nx-hero-card-2 6s ease-in-out infinite;
+      animation-delay: 0.8s;
+    }
+    .nx-hero-card-icon {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .nx-hero-card-icon.purple { background: rgba(123,92,255,0.15); }
+    .nx-hero-card-icon.green { background: rgba(0,230,118,0.15); }
+    .nx-hero-card-icon.gold { background: rgba(244,200,66,0.15); }
+
+    /* ── Star Rating ───────────────────────────────────────────── */
+
+    .nx-star-rating {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+    .nx-star { color: var(--nx-t4); font-size: 1.1rem; }
+    .nx-star-filled { color: var(--nx-gold); }
+
+    /* ── Chat Widget ───────────────────────────────────────────── */
+
+    .nyxia-chat-btn {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--nx-p), var(--nx-p2));
+      color: var(--nx-t);
+      border: none;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 24px rgba(123,92,255,0.4);
+      z-index: 9998;
+      transition: transform 0.25s, box-shadow 0.25s;
+      animation: nx-breathe 3s ease-in-out infinite;
+    }
+    .nyxia-chat-btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 32px rgba(123,92,255,0.55);
+    }
+    .nyxia-chat-btn svg { width: 26px; height: 26px; }
+
+    .nyxia-chat-panel {
+      position: fixed;
+      bottom: 100px;
+      right: 28px;
+      width: 380px;
+      max-width: calc(100vw - 32px);
+      height: 520px;
+      max-height: calc(100vh - 140px);
+      background: var(--nx-bg2);
+      border: 1px solid rgba(123,92,255,0.15);
+      border-radius: var(--nx-r-xl);
+      display: none;
+      flex-direction: column;
+      z-index: 9999;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(123,92,255,0.1);
+      overflow: hidden;
+    }
+    .nyxia-chat-panel.open {
+      display: flex;
+      animation: nx-chat-open 0.3s ease-out;
+    }
+
+    .nyxia-chat-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      background: rgba(10,22,40,0.9);
+      border-bottom: 1px solid rgba(123,92,255,0.1);
+    }
+    .nyxia-chat-header-title {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 600; font-size: 0.95rem; color: var(--nx-t);
+    }
+    .nyxia-chat-header-close {
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      background: rgba(123,92,255,0.1);
+      border: none;
+      color: var(--nx-t3);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nyxia-chat-header-close:hover {
+      background: rgba(123,92,255,0.2);
+      color: var(--nx-t);
+    }
+
+    .nyxia-chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .nyxia-chat-msg {
+      max-width: 85%;
+      padding: 12px 16px;
+      border-radius: 16px;
+      font-size: 0.9rem;
+      line-height: 1.55;
+      animation: nx-msg-in 0.3s ease-out;
+    }
+    .nyxia-chat-msg-user {
+      align-self: flex-end;
+      background: linear-gradient(135deg, var(--nx-p), var(--nx-p2));
+      color: var(--nx-t);
+      border-bottom-right-radius: 4px;
+    }
+    .nyxia-chat-msg-bot {
+      align-self: flex-start;
+      background: rgba(26,37,84,0.7);
+      color: var(--nx-t2);
+      border: 1px solid rgba(123,92,255,0.1);
+      border-bottom-left-radius: 4px;
+    }
+
+    .nyxia-chat-typing {
+      align-self: flex-start;
+      display: flex; align-items: center; gap: 4px;
+      padding: 12px 18px;
+      background: rgba(26,37,84,0.7);
+      border: 1px solid rgba(123,92,255,0.1);
+      border-radius: 16px;
+      border-bottom-left-radius: 4px;
+    }
+    .nyxia-chat-typing-dot {
+      width: 7px; height: 7px;
+      background: var(--nx-t3);
+      border-radius: 50%;
+      animation: nx-typing-dots 1.4s infinite;
+    }
+    .nyxia-chat-typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .nyxia-chat-typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+    .nyxia-chat-input-area {
+      display: flex; align-items: center; gap: 8px;
+      padding: 12px 16px;
+      border-top: 1px solid rgba(123,92,255,0.1);
+      background: rgba(10,22,40,0.9);
+    }
+    .nyxia-chat-input {
+      flex: 1;
+      padding: 10px 14px;
+      background: rgba(15,28,63,0.6);
+      border: 1px solid rgba(123,92,255,0.15);
+      border-radius: 10px;
+      color: var(--nx-t2);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.88rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .nyxia-chat-input:focus { border-color: var(--nx-p); }
+    .nyxia-chat-input::placeholder { color: var(--nx-t4); }
+    .nyxia-chat-send {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--nx-p), var(--nx-p2));
+      border: none;
+      color: var(--nx-t);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.15s, box-shadow 0.15s;
+      flex-shrink: 0;
+    }
+    .nyxia-chat-send:hover {
+      transform: scale(1.05);
+      box-shadow: 0 2px 12px rgba(123,92,255,0.35);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       LAYOUT — Navbar
+       ═══════════════════════════════════════════════════════════ */
+
+    .nx-navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 50;
+      transition: all 0.3s;
+      background: transparent;
+    }
+    .nx-navbar.scrolled {
+      background: rgba(10,22,40,0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(123,92,255,0.12);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+    }
+    .nx-navbar-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+    @media (min-width: 768px) { .nx-navbar-inner { height: 80px; padding: 0 32px; } }
+
+    .nx-logo-link {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none; flex-shrink: 0;
+    }
+    .nx-logo-img {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+      ring: 2px solid rgba(123,92,255,0.3);
+      border: 2px solid rgba(123,92,255,0.3);
+      object-fit: cover;
+      transition: border-color 0.3s;
+    }
+    .nx-logo-link:hover .nx-logo-img {
+      border-color: rgba(123,92,255,0.6);
+    }
+    .nx-logo-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, #7B5CFF 0%, #4FA3FF 50%, #F4C842 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .nx-logo-sub {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--nx-t3);
+      margin-top: 2px;
+    }
+
+    .nx-nav-links {
+      display: none;
+      align-items: center;
+      gap: 8px;
+    }
+    @media (min-width: 768px) { .nx-nav-links { display: flex; } }
+    .nx-nav-links a {
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #a0a0b0;
+      transition: all 0.2s;
+    }
+    .nx-nav-links a:hover {
+      background: rgba(123,92,255,0.1);
+      color: #fff;
+    }
+
+    .nx-nav-cta {
+      display: none;
+      align-items: center; gap: 8px;
+      padding: 10px 20px;
+      border-radius: 12px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #fff;
+      background: linear-gradient(135deg, #7B5CFF 0%, #5A6CFF 50%, #4FA3FF 100%);
+      box-shadow: 0 0 20px rgba(123,92,255,0.4), 0 0 40px rgba(123,92,255,0.15);
+      text-decoration: none;
+      transition: transform 0.3s;
+    }
+    @media (min-width: 768px) { .nx-nav-cta { display: inline-flex; } }
+    .nx-nav-cta:hover { transform: scale(1.05); color: #fff; }
+
+    .nx-hamburger {
+      display: flex; align-items: center; justify-content: center;
+      width: 40px; height: 40px;
+      border-radius: 8px;
+      color: #a0a0b0;
+      background: none; border: none;
+      cursor: pointer;
+      transition: color 0.2s, background 0.2s;
+    }
+    .nx-hamburger:hover { color: #fff; background: rgba(123,92,255,0.1); }
+    @media (min-width: 768px) { .nx-hamburger { display: none; } }
+
+    .nx-mobile-menu {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+      background: rgba(10,22,40,0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(123,92,255,0.1);
+    }
+    .nx-mobile-menu.open {
+      max-height: 320px;
+      opacity: 1;
+    }
+    .nx-mobile-menu a {
+      display: block;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #a0a0b0;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+    .nx-mobile-menu a:hover {
+      background: rgba(123,92,255,0.1);
+      color: #fff;
+    }
+    .nx-mobile-menu-inner {
+      padding: 16px;
+    }
+    .nx-mobile-cta {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      width: 100%;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #fff;
+      background: linear-gradient(135deg, #7B5CFF 0%, #5A6CFF 50%, #4FA3FF 100%);
+      box-shadow: 0 0 20px rgba(123,92,255,0.4);
+      text-decoration: none;
+      margin-top: 8px;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       LAYOUT — Footer
+       ═══════════════════════════════════════════════════════════ */
+
+    .nx-footer {
+      background: #06101f;
+      border-top: 1px solid rgba(123,92,255,0.1);
+      position: relative;
+      width: 100%;
+    }
+    .nx-footer-main {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 48px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+    }
+    @media (min-width: 768px) {
+      .nx-footer-main {
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+      }
+    }
+    .nx-footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, #7B5CFF 0%, #4FA3FF 50%, #F4C842 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .nx-footer-tagline {
+      font-size: 0.75rem;
+      color: var(--nx-t3);
+      margin-top: 8px;
+    }
+    .nx-footer-nav {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 16px 24px;
+    }
+    .nx-footer-nav a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #a0a0b0;
+      transition: color 0.2s;
+      text-decoration: none;
+    }
+    .nx-footer-nav a:hover { color: #fff; }
+    .nx-footer-copy {
+      font-size: 0.75rem;
+      color: var(--nx-t4);
+      text-align: center;
+    }
+    @media (min-width: 768px) { .nx-footer-copy { text-align: right; } }
+    .nx-footer-bottom {
+      border-top: 1px solid rgba(123,92,255,0.08);
+      background: rgba(6,16,31,0.6);
+      padding: 16px 24px;
+    }
+    .nx-footer-bottom-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--nx-t4);
+    }
+    .nx-footer-bottom-inner span {
+      font-weight: 500;
+      background: linear-gradient(135deg, #7B5CFF, #4FA3FF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       SECTIONS — Hero
+       ═══════════════════════════════════════════════════════════ */
+
+    .nx-hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 24px 48px;
+      position: relative;
+      background:
+        radial-gradient(ellipse 80% 60% at 30% 40%, rgba(123,92,255,0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 70% 70%, rgba(79,163,255,0.04) 0%, transparent 50%);
+    }
+    .nx-hero-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    @media (min-width: 1024px) {
+      .nx-hero-inner { grid-template-columns: 1fr 1fr; gap: 64px; }
+    }
+    .nx-hero-text { display: flex; flex-direction: column; gap: 20px; }
+    .nx-hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 16px;
+      border-radius: 50px;
+      background: rgba(0,230,118,0.08);
+      border: 1px solid rgba(0,230,118,0.2);
+      width: fit-content;
+    }
+    .nx-hero-badge-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--nx-green);
+      box-shadow: 0 0 8px rgba(0,230,118,0.6);
+      animation: nx-pulse-green 2s ease-in-out infinite;
+    }
+    .nx-hero-badge-text {
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--nx-green);
+    }
+    .nx-hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 600;
+      line-height: 1.1;
+    }
+    .nx-hero h1 em {
+      background: linear-gradient(135deg, #7B5CFF 0%, #4FA3FF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-style: italic;
+    }
+    .nx-hero-sub {
+      font-size: 1.125rem;
+      line-height: 1.7;
+      color: var(--nx-t3);
+      max-width: 560px;
+    }
+    @media (min-width: 1024px) { .nx-hero-sub { font-size: 1.25rem; } }
+    .nx-hero-slogan {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      background: linear-gradient(135deg, #F4C842, #FFE082);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .nx-hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 8px;
+    }
+    .nx-hero-image {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    @media (min-width: 1024px) { .nx-hero-image { justify-content: flex-end; } }
+
+    /* ═══════════════════════════════════════════════════════════
+       SECTIONS — Douleur
+       ═══════════════════════════════════════════════════════════ */
+
+    .nx-douleur {
+      background: linear-gradient(180deg, rgba(123,92,255,0.03) 0%, rgba(79,163,255,0.06) 50%, rgba(123,92,255,0.03) 100%);
+    }
+    .nx-douleur-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .nx-douleur h2 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 600;
+      margin-bottom: 32px;
+    }
+    .nx-douleur h2 em {
+      background: linear-gradient(135deg, #7B5CFF, #4FA3FF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-style: italic;
+    }
+    .nx-douleur p {
+      font-size: 1.125rem;
+      line-height: 1.7;
+      color: var(--nx-t3);
+    }
+    .nx-douleur-highlight {
+      color: var(--nx-t2) !important;
+      font-weight: 600;
+    }
+    .nx-douleur-gold {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 700;
+      margin-top: 32px;
+      background: linear-gradient(135deg, #F4C842, #FFE082);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       SECTIONS — Collaboratrice
+       ═══════════════════════════════════════════════════════════ */
+
+    .nx-collab-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    @media (min-width: 1024px) {
+      .nx-collab-inner { grid-template-columns: 1fr 1fr; gap: 80px; }
+    }
+    .nx-collab-image {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .nx-collab-text {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .nx-collab-text h2 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 600;
+    }
+    .nx-collab-text h2 span {
+      background: linear-gradient(135deg, #F4C842, #FFE082);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .nx-collab-text p {
+      color: var(--nx-t3);
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+    .nx-collab-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .nx-collab-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .nx-collab-list li .bullet {
+      color: var(--nx-p);
+      margin-top: 4px;
+      font-size: 0.875rem;
+      flex-shrink: 0;
+    }
+    .nx-collab-list li span {
+      color: var(--nx-t2);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+    .nx-collab-quote {
+      position: absolute;
+      max-width: 240px;
+      white-space: normal;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       SECTIONS — Features
+       ═══════════════════════════════════════════════════════════ */
+
+    .nx-features {
+      background: linear-gradient(180deg, rgba(123,92,255,0.04) 0%, rgba(79,163,255,0.06) 50%, rgba(123,92,255,0.04) 100%);
+    }
+    .nx-features-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .nx-features-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    @media (min-width: 1024px) { .nx-features-header { margin-bottom: 64px; } }
+    .nx-features-header h2 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 600;
+    }
+    .nx-features-header h2 em {
+      background: linear-gradient(135deg, #7B5CFF 0%, #4FA3FF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-style: italic;
+    }
+    .nx-features-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    @media (min-width: 640px) { .nx-features-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1024px) { .nx-features-grid { grid-template-columns: 1fr 1fr 1fr; } }
+    .nx-feature-card {
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .nx-feature-card .emoji { font-size: 1.5rem; }
+    .nx-feature-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 1.125rem;
+      color: var(--nx-t);
+    }
+    .nx-feature-card p {
+      color: var(--nx-t3);
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       SECTIONS — Steps
+       ═══════════════════════════════════════════════════════════ */
+
+    .nx-steps-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    @media (min-width: 1024px) { .nx-steps-header { margin-bottom: 64px; } }
+    .nx-steps-header h2 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 600;
+    }
+    .nx-steps-header h2 span {
+      background: linear-gradient(135deg, #00E676, #69F0AE, #00E676);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .nx-steps-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    @media (min-width: 1024px) { .nx-steps-grid { grid-template-columns: 1fr 1fr 1fr; } }
+    .nx-step { display: flex; flex-direction: column; gap: 20px; }
+    .nx-step-num {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #7B5CFF, #4FA3FF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      opacity: 0.7;
+    }
+    .nx-step-image { position: relative; }
+    .nx-step-image .nx-glow-blob { width: 70%; height: 70%; }
+    .nx-step h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+    .nx-step p {
+      color: var(--nx-t3);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+    .nx-step-hint {
+      border-radius: 12px;
+      padding: 12px 16px;
+      background: rgba(123,92,255,0.06);
+      border: 1px solid rgba(123,92,255,0.12);
+    }
+    .nx-step-hint p {
+      color: var(--nx-p3);
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       SECTIONS — Testimonials
+       ═══════════════════════════════════════════════════════════ */
+
+    .nx-testimonials {
+      background: linear-gradient(180deg, rgba(79,163,255,0.03) 0%, rgba(123,92,255,0.06) 50%, rgba(79,163,255,0.03) 100%);
+    }
+    .nx-testimonials-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    @media (min-width: 1024px) { .nx-testimonials-header { margin-bottom: 64px; } }
+    .nx-testimonials-header h2 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 600;
+    }
+    .nx-testimonials-header h2 span {
+      background: linear-gradient(135deg, #7B5CFF, #4FA3FF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .nx-testimonials-sub {
+      color: var(--nx-t3);
+      margin-top: 12px;
+    }
+    .nx-testimonials-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    @media (min-width: 768px) { .nx-testimonials-grid { grid-template-columns: 1fr 1fr 1fr; } }
+    .nx-testimonial-card {
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .nx-testimonial-card blockquote {
+      color: var(--nx-t2);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      flex: 1;
+      font-style: normal;
+    }
+    .nx-testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(123,92,255,0.1);
+    }
+    .nx-testimonial-avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.875rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #7B5CFF, #5A6CFF);
+      color: #fff;
+    }
+    .nx-testimonial-name { font-weight: 600; color: var(--nx-t); font-size: 0.95rem; }
+    .nx-testimonial-role { font-size: 0.875rem; color: var(--nx-t3); margin-top: 2px; }
+
+    /* ═══════════════════════════════════════════════════════════
+       SECTIONS — NyXia-26 + Pricing + FAQ
+       ═══════════════════════════════════════════════════════════ */
+
+    .nx-collab-vie-inner {
+      max-width: 1024px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+    }
+    .nx-collab-vie-image {
+      position: relative;
+      width: 100%;
+      max-width: 480px;
+    }
+    .nx-collab-vie-text {
+      text-align: center;
+    }
+    .nx-collab-vie-text h2 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 600;
+    }
+    .nx-collab-vie-text h2 em {
+      background: linear-gradient(135deg, #F4C842, #FFE082);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-style: italic;
+    }
+    .nx-collab-vie-text p {
+      color: var(--nx-t3);
+      font-size: 1.1rem;
+      margin-top: 12px;
+    }
+
+    /* Pricing */
+    .nx-pricing {
+      background: linear-gradient(180deg, rgba(123,92,255,0.04) 0%, rgba(79,163,255,0.08) 50%, rgba(123,92,255,0.04) 100%);
+    }
+    .nx-pricing-inner {
+      max-width: 672px;
+      margin: 0 auto;
+    }
+    .nx-pricing-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .nx-pricing-header h2 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 600;
+    }
+    .nx-pricing-features {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .nx-pricing-features li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--nx-t2);
+      font-size: 0.95rem;
+    }
+    .nx-pricing-features li .check {
+      color: var(--nx-green);
+      font-weight: 700;
+      font-size: 0.875rem;
+      flex-shrink: 0;
+    }
+    .nx-pricing-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 16px 32px;
+      background: linear-gradient(135deg, var(--nx-p), var(--nx-p2));
+      color: var(--nx-t);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 1.125rem;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+      box-shadow: 0 0 30px rgba(123,92,255,0.4), 0 0 60px rgba(123,92,255,0.15);
+      text-decoration: none;
+      width: 100%;
+      margin-top: 8px;
+    }
+    .nx-pricing-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 40px rgba(123,92,255,0.5), 0 0 80px rgba(123,92,255,0.2);
+      filter: brightness(1.1);
+      color: var(--nx-t);
+    }
+    .nx-pricing-disclaimer {
+      font-size: 0.875rem;
+      color: var(--nx-t4);
+    }
+    .nx-pricing-price {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+    }
+    .nx-pricing-amount {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 8vw, 4.5rem);
+      font-weight: 700;
+      background: linear-gradient(135deg, #FFFFFF, #D6D9F0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1;
+    }
+    .nx-pricing-period {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--nx-t3);
+    }
+    .nx-pricing-badge {
+      padding: 6px 20px;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #7B5CFF, #5A6CFF);
+      color: #fff;
+      box-shadow: 0 0 20px rgba(123,92,255,0.4);
+    }
+    .nx-pricing-divider {
+      width: 100%;
+      height: 1px;
+      background: rgba(123,92,255,0.15);
+    }
+
+    /* FAQ */
+    .nx-faq-section-inner {
+      max-width: 768px;
+      margin: 0 auto;
+    }
+    .nx-faq-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .nx-faq-header h2 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 600;
+    }
+    .nx-faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       StarryBackground Canvas
+       ═══════════════════════════════════════════════════════════ -->
+  <canvas id="starry-canvas" style="position:fixed;inset:0;pointer-events:none;z-index:1;" aria-hidden="true"></canvas>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       Navbar
+       ═══════════════════════════════════════════════════════════ -->
+  <nav class="nx-navbar" id="navbar">
+    <div class="nx-navbar-inner">
+      <!-- Logo -->
+      <a href="/" class="nx-logo-link">
+        <img src="/images/Logo.png" alt="NyXia IA" class="nx-logo-img">
+        <div>
+          <div class="nx-logo-text">NyXia IA</div>
+          <div class="nx-logo-sub">Automatisation</div>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <div class="nx-nav-links">
+        <a href="#fonctionnalites">Fonctionnalités</a>
+        <a href="#comment-ca-marche">Comment ça marche</a>
+        <a href="#tarifs">Tarifs</a>
+      </div>
+
+      <!-- CTA + Hamburger -->
+      <div style="display:flex;align-items:center;gap:12px;">
+        <a href="https://www.publication-web.com/travaildecheztoi/automatisation" class="nx-nav-cta" target="_blank" rel="noopener noreferrer">
+          Commencer <span style="font-size:1rem;">→</span>
+        </a>
+        <button class="nx-hamburger" id="hamburger-btn" aria-label="Ouvrir le menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16"/><path d="M4 18h16"/><path d="M4 6h16"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="nx-mobile-menu" id="mobile-menu">
+      <div class="nx-mobile-menu-inner">
+        <a href="#fonctionnalites" onclick="closeMobileMenu()">Fonctionnalités</a>
+        <a href="#comment-ca-marche" onclick="closeMobileMenu()">Comment ça marche</a>
+        <a href="#tarifs" onclick="closeMobileMenu()">Tarifs</a>
+        <a href="https://www.publication-web.com/travaildecheztoi/automatisation" class="nx-mobile-cta" target="_blank" rel="noopener noreferrer">
+          Commencer <span style="font-size:1rem;">→</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       Main Content
+       ═══════════════════════════════════════════════════════════ -->
+  <main style="position:relative;z-index:10;">
+
+    <!-- ── 1. HERO ────────────────────────────────────────────── -->
+    <section class="nx-hero">
+      <div class="nx-hero-inner">
+        <div class="nx-hero-text">
+          <div class="nx-hero-badge nx-fade-up">
+            <span class="nx-hero-badge-dot"></span>
+            <span class="nx-hero-badge-text">Automatisation IA — Disponible maintenant</span>
+          </div>
+
+          <h1 class="nx-fade-up nx-fade-up-delay-1">
+            Tu as une entreprise à faire grandir, pas le temps de publier partout.
+            <em>NyXia</em> s'en occupe.
+          </h1>
+
+          <p class="nx-hero-sub nx-fade-up nx-fade-up-delay-2">
+            NyXia n'est pas un outil — c'est ta collaboratrice IA. Elle comprend ton audience,
+            crée du contenu engageant et publie pour toi sur tous tes réseaux sociaux.
+            Automatiquement. Intelligemment. Sans que tu aies à lever le doigt.
+          </p>
+
+          <p class="nx-hero-slogan nx-fade-up nx-fade-up-delay-2">
+            NyXia en automatique travail pour toi !
+          </p>
+
+          <div class="nx-hero-cta nx-fade-up nx-fade-up-delay-3">
+            <a href="https://www.publication-web.com/travaildecheztoi/automatisation" class="nx-btn-primary" target="_blank" rel="noopener noreferrer">
+              ✦ Engager NyXia aujourd'hui
+            </a>
+            <a href="#comment-ca-marche" class="nx-btn-secondary">
+              Comment ça marche →
+            </a>
+          </div>
+        </div>
+
+        <div class="nx-hero-image">
+          <div class="nx-glow-blob"></div>
+          <div class="nx-img-glow nx-img-float">
+            <img src="/images/Automation1.png" alt="NyXia IA - Automatisation Intelligence Artificielle" class="nx-img-hero" width="480" height="720">
+          </div>
+          <div class="nx-hero-card nx-hero-card-1">
+            <div class="nx-hero-card-icon purple">🚀</div>
+            <div>
+              <div style="font-weight:700;font-size:0.875rem;color:#fff;">24/7</div>
+              <div style="font-size:0.75rem;color:var(--nx-t3);">Auto-publié</div>
+            </div>
+          </div>
+          <div class="nx-hero-card nx-hero-card-2">
+            <div class="nx-hero-card-icon green">✓</div>
+            <div>
+              <div style="font-weight:700;font-size:0.875rem;color:#fff;">+340%</div>
+              <div style="font-size:0.75rem;color:var(--nx-t3);">Engagement</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 2. DOULEUR ─────────────────────────────────────────── -->
+    <section class="nx-section-lg nx-douleur">
+      <div class="nx-douleur-inner">
+        <div class="nx-eyebrow nx-fade-up" style="margin:0 auto 24px;">
+          <span class="nx-eyebrow-dot"></span>
+          Tu connais cette fatigue ?
+        </div>
+        <h2 class="nx-fade-up nx-fade-up-delay-1">
+          Tu te lèves le matin avec une seule idée en tête :
+          <em>il faut publier.</em> Encore. Toujours.
+        </h2>
+        <div class="nx-fade-up nx-fade-up-delay-2" style="display:flex;flex-direction:column;gap:16px;">
+          <p>
+            Sur Facebook, Instagram, TikTok, YouTube… Tu passes 3 à 4 heures par jour à
+            essayer de créer du contenu, à trouver des idées, à rédiger des textes qui ne font
+            même pas 10 likes.
+          </p>
+          <p>
+            Tu ne sais plus quoi écrire. L'inspiration est partie en vacances — et elle ne revient
+            pas. Ton téléphone te stresse. Tes réseaux sociaux te donnent l'impression de
+            courir après ton propre succès.
+          </p>
+          <p class="nx-douleur-highlight">
+            Pendant ce temps, tes concurrents publient tous les jours. Ils grandissent. Et toi, tu es épuisé(e).
+          </p>
+          <p class="nx-douleur-gold">
+            Et si tout ça… quelqu'un d'autre le faisait pour toi ?
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 3. NYXIA COLLABORATRICE ────────────────────────────── -->
+    <section class="nx-section-lg">
+      <div class="nx-collab-inner">
+        <div class="nx-collab-image nx-fade-up">
+          <div class="nx-glow-blob"></div>
+          <div class="nx-img-glow nx-img-float">
+            <img src="/images/nyxia/NyXia-27gauche.png" alt="NyXia - La Psychologie du Clic" class="nx-img-hero" width="440" height="540">
+          </div>
+          <div class="nx-hero-card nx-hero-card-2 nx-collab-quote">
+            <div class="nx-hero-card-icon gold">💡</div>
+            <div>
+              <div style="font-size:0.75rem;line-height:1.5;color:var(--nx-t2);">
+                &ldquo;Chaque clic est une décision psychologique.&rdquo;
+              </div>
+              <div style="font-size:10px;margin-top:4px;font-weight:600;color:var(--nx-gold);">
+                — Diane Boyer
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="nx-collab-text">
+          <div class="nx-eyebrow nx-fade-up">
+            <span class="nx-eyebrow-dot"></span>
+            Ta collaboratrice IA
+          </div>
+          <h2 class="nx-fade-up nx-fade-up-delay-1">
+            NyXia, ta collaboratrice IA —
+            <span>La seule qui ne te laisse jamais tomber</span>
+          </h2>
+          <p class="nx-fade-up nx-fade-up-delay-2">
+            Pas de pauses, pas de journées off, pas de créativité à plat.
+            NyXia travaille pour toi 24h/24, 7j/7.
+          </p>
+          <ul class="nx-collab-list nx-fade-up nx-fade-up-delay-3">
+            <li><span class="bullet">✦</span><span>Comprend ton audience et parle sa langue</span></li>
+            <li><span class="bullet">✦</span><span>Crée des publications engageantes et professionnelles</span></li>
+            <li><span class="bullet">✦</span><span>Publie au bon moment, sur les bonnes plateformes</span></li>
+            <li><span class="bullet">✦</span><span>Te libère pour te concentrer sur ce que tu aimes faire</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 4. FEATURES ────────────────────────────────────────── -->
+    <section class="nx-section-lg nx-features" id="fonctionnalites">
+      <div class="nx-features-inner">
+        <div class="nx-features-header">
+          <div class="nx-eyebrow nx-fade-up" style="margin:0 auto 24px;">
+            <span class="nx-eyebrow-dot"></span>
+            Ce que NyXia fait concrètement
+          </div>
+          <h2 class="nx-fade-up nx-fade-up-delay-1">
+            Du titre accrocheur au texte convertissant,
+            <em>NyXia gère tout</em>
+          </h2>
+        </div>
+
+        <div class="nx-features-grid">
+          <div class="nx-glass nx-feature-card nx-fade-up nx-fade-up-delay-1">
+            <span class="emoji">✏️</span>
+            <h3>Titres qui stoppent le scroll</h3>
+            <p>NyXia crée des titres qui captent l'attention en moins d'une seconde. Fini les publications ignorées.</p>
+          </div>
+          <div class="nx-glass nx-feature-card nx-fade-up nx-fade-up-delay-2">
+            <span class="emoji">💬</span>
+            <h3>Textes qui engagent et convertissent</h3>
+            <p>Des textes persuasifs, authentiques et parfaitement adaptés à ton audience. Ton style, ta voix.</p>
+          </div>
+          <div class="nx-glass nx-feature-card nx-fade-up nx-fade-up-delay-3">
+            <span class="emoji">📱</span>
+            <h3>Publication multi-plateforme</h3>
+            <p>Facebook, Instagram, TikTok, YouTube — NyXia publie partout en même temps. Un seul point de contrôle.</p>
+          </div>
+          <div class="nx-glass nx-feature-card nx-fade-up nx-fade-up-delay-1">
+            <span class="emoji">📅</span>
+            <h3>Calendrier intelligent</h3>
+            <p>NyXia sait quand publier pour maximiser la portée. Plus besoin de chercher le bon créneau horaire.</p>
+          </div>
+          <div class="nx-glass nx-feature-card nx-fade-up nx-fade-up-delay-2">
+            <span class="emoji">🎨</span>
+            <h3>Ton style, ta voix</h3>
+            <p>NyXia apprend ton ton, ton vocabulaire, ta personnalité. Tes publications te ressemblent. Vraiment.</p>
+          </div>
+          <div class="nx-glass nx-feature-card nx-fade-up nx-fade-up-delay-3">
+            <span class="emoji">🤖</span>
+            <h3>Automatisation 24/7</h3>
+            <p>Repurposing automatique, détection de tendances, A/B testing des titres, analyse de l'engagement et ajustement auto.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 5. COMMENT CA MARCHE ───────────────────────────────── -->
+    <section class="nx-section-lg" id="comment-ca-marche">
+      <div style="max-width:1280px;margin:0 auto;">
+        <div class="nx-steps-header">
+          <div class="nx-eyebrow nx-fade-up" style="margin:0 auto 24px;">
+            <span class="nx-eyebrow-dot"></span>
+            Comment ça marche
+          </div>
+          <h2 class="nx-fade-up nx-fade-up-delay-1">
+            3 étapes. <span>0 effort.</span> Tu ne fais quasiment rien — NyXia fait tout.
+          </h2>
+        </div>
+
+        <div class="nx-steps-grid">
+          <!-- Step 01 -->
+          <div class="nx-step nx-fade-up nx-fade-up-delay-1">
+            <span class="nx-step-num">01</span>
+            <div class="nx-step-image">
+              <div class="nx-glow-blob" style="width:70%;height:70%;"></div>
+              <div class="nx-img-glow">
+                <img src="/images/TravailDureNyxia.png" alt="Tu dis à NyXia ce que tu veux" class="nx-img-hero" style="width:100%;" width="380" height="570">
+              </div>
+            </div>
+            <h3>Tu dis à NyXia ce que tu veux</h3>
+            <p>Tu lui parles, tu lui envoies une voix, un simple mot — NyXia comprend. C'est aussi simple que de parler à un collègue de confiance.</p>
+            <div class="nx-step-hint">
+              <p>💡 Pas besoin d'écrire quoi que ce soit. Pas besoin de préparer des images. NyXia fait tout à ta place.</p>
+            </div>
+          </div>
+          <!-- Step 02 -->
+          <div class="nx-step nx-fade-up nx-fade-up-delay-2">
+            <span class="nx-step-num">02</span>
+            <div class="nx-step-image">
+              <div class="nx-glow-blob" style="width:70%;height:70%;"></div>
+              <div class="nx-img-glow">
+                <img src="/images/automate2.png" alt="NyXia fait TOUT le travail" class="nx-img-hero" style="width:100%;" width="380" height="570">
+              </div>
+            </div>
+            <h3>NyXia fait TOUT le travail</h3>
+            <p>Elle crée le contenu, trouve les titres accrocheurs, rédige les textes, choisit les meilleurs moments et publie automatiquement.</p>
+            <div class="nx-step-hint">
+              <p>💡 Tu n'as pas besoin d'être là. Tu n'as pas besoin de valider quoi que ce soit. NyXia gère tout de A à Z.</p>
+            </div>
+          </div>
+          <!-- Step 03 -->
+          <div class="nx-step nx-fade-up nx-fade-up-delay-3">
+            <span class="nx-step-num">03</span>
+            <div class="nx-step-image">
+              <div class="nx-glow-blob" style="width:70%;height:70%;"></div>
+              <div class="nx-img-glow">
+                <img src="/images/nyxia/NyXia-25.png" alt="Tu récoltes les résultats" class="nx-img-hero" style="width:100%;" width="380" height="570">
+              </div>
+            </div>
+            <h3>Tu récoltes les résultats</h3>
+            <p>Tes publications sont en ligne, ton audience s'engage, les prospects arrivent. Tu regardes les notifications qui défilent — c'est tout.</p>
+            <div class="nx-step-hint">
+              <p>💡 Ta seule job : regarder les notifications qui défilent. Les clients, les likes, les messages — tout vient à toi.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 6. TÉMOIGNAGES ─────────────────────────────────────── -->
+    <section class="nx-section-lg nx-testimonials">
+      <div style="max-width:1280px;margin:0 auto;">
+        <div class="nx-testimonials-header">
+          <div class="nx-eyebrow nx-fade-up" style="margin:0 auto 24px;">
+            <span class="nx-eyebrow-dot"></span>
+            Témoignages
+          </div>
+          <h2 class="nx-fade-up nx-fade-up-delay-1">
+            Ce qu'ils disent de <span>NyXia</span>
+          </h2>
+          <p class="nx-testimonials-sub nx-fade-up nx-fade-up-delay-2">
+            Ils ont repris le contrôle de leur vie grâce à NyXia.
+          </p>
+        </div>
+
+        <div class="nx-testimonials-grid">
+          <div class="nx-glass nx-testimonial-card nx-fade-up nx-fade-up-delay-1">
+            <div class="nx-star-rating">
+              <span class="nx-star nx-star-filled">★</span>
+              <span class="nx-star nx-star-filled">★</span>
+              <span class="nx-star nx-star-filled">★</span>
+              <span class="nx-star nx-star-filled">★</span>
+              <span class="nx-star nx-star-filled">★</span>
+            </div>
+            <blockquote>&ldquo;Depuis que j'utilise NyXia, j'ai repris 15h par semaine. Mes publications sont plus engageantes que jamais. C'est comme avoir une attachée de presse permanente.&rdquo;</blockquote>
+            <div class="nx-testimonial-author">
+              <div class="nx-testimonial-avatar">M</div>
+              <div>
+                <div class="nx-testimonial-name">Marie L.</div>
+                <div class="nx-testimonial-role">Entrepreneuse</div>
+              </div>
+            </div>
+          </div>
+          <div class="nx-glass nx-testimonial-card nx-fade-up nx-fade-up-delay-2">
+            <div class="nx-star-rating">
+              <span class="nx-star nx-star-filled">★</span>
+              <span class="nx-star nx-star-filled">★</span>
+              <span class="nx-star nx-star-filled">★</span>
+              <span class="nx-star nx-star-filled">★</span>
+              <span class="nx-star nx-star-filled">★</span>
+            </div>
+            <blockquote>&ldquo;Je détestais les réseaux sociaux. Maintenant, NyXia publie pour moi et mes clients arrivent tout seuls. Mon business a doublé en 3 mois.&rdquo;</blockquote>
+            <div class="nx-testimonial-author">
+              <div class="nx-testimonial-avatar">D</div>
+              <div>
+                <div class="nx-testimonial-name">David R.</div>
+                <div class="nx-testimonial-role">Coach en ligne</div>
+              </div>
+            </div>
+          </div>
+          <div class="nx-glass nx-testimonial-card nx-fade-up nx-fade-up-delay-3">
+            <div class="nx-star-rating">
+              <span class="nx-star nx-star-filled">★</span>
+              <span class="nx-star nx-star-filled">★</span>
+              <span class="nx-star nx-star-filled">★</span>
+              <span class="nx-star nx-star-filled">★</span>
+              <span class="nx-star nx-star-filled">★</span>
+            </div>
+            <blockquote>&ldquo;Je ne savais même pas comment rédiger un post. NyXia a tout compris dès le premier jour. Mes clientes me disent que mes posts sont incroyables !&rdquo;</blockquote>
+            <div class="nx-testimonial-author">
+              <div class="nx-testimonial-avatar">S</div>
+              <div>
+                <div class="nx-testimonial-name">Sophie M.</div>
+                <div class="nx-testimonial-role">Esthéticienne</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 7. NYXIA-26 IMAGE ──────────────────────────────────── -->
+    <section class="nx-section-lg">
+      <div class="nx-collab-vie-inner">
+        <div class="nx-collab-vie-image">
+          <div class="nx-glow-blob"></div>
+          <div class="nx-img-glow nx-img-float">
+            <img src="/images/NyXia-26.png" alt="NyXia Automation - Ta collaboratrice à vie" class="nx-img-hero" width="480" height="720">
+          </div>
+        </div>
+        <div class="nx-collab-vie-text">
+          <h2 class="nx-fade-up">
+            Ta collaboratrice <em>à vie</em>
+          </h2>
+          <p class="nx-fade-up nx-fade-up-delay-1">
+            Pour le prix d'un café par jour, NyXia travaille pour toi 24h/24.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 8. PRICING ─────────────────────────────────────────── -->
+    <section class="nx-section-lg nx-pricing" id="tarifs">
+      <div class="nx-pricing-inner">
+        <div class="nx-pricing-header">
+          <div class="nx-eyebrow nx-fade-up" style="margin:0 auto 24px;">
+            <span class="nx-eyebrow-dot"></span>
+            Tarifs
+          </div>
+          <h2 class="nx-fade-up nx-fade-up-delay-1">Ta collaboratrice à vie</h2>
+          <p class="nx-fade-up nx-fade-up-delay-2" style="color:var(--nx-t3);margin-top:12px;">Seulement</p>
+        </div>
+
+        <div class="nx-pricing-card nx-featured nx-fade-up nx-fade-up-delay-3" style="border-radius:24px;padding:32px;">
+          <div class="nx-pricing-badge">Accès complet</div>
+          <div class="nx-pricing-price">
+            <span class="nx-pricing-amount">47</span>
+            <span class="nx-pricing-period">$/mois</span>
+          </div>
+          <div class="nx-pricing-divider"></div>
+          <ul class="nx-pricing-features" style="text-align:left;">
+            <li><span class="check">✓</span> Publications automatiques illimitées</li>
+            <li><span class="check">✓</span> Toutes les plateformes incluses</li>
+            <li><span class="check">✓</span> Création de contenu par IA</li>
+            <li><span class="check">✓</span> Calendrier intelligent</li>
+            <li><span class="check">✓</span> Style personnalisé à ta voix</li>
+            <li><span class="check">✓</span> Support prioritaire</li>
+            <li><span class="check">✓</span> Sans engagement</li>
+          </ul>
+          <a href="https://www.publication-web.com/travaildecheztoi/automatisation" class="nx-pricing-cta" target="_blank" rel="noopener noreferrer">
+            ✦ Engager NyXia aujourd'hui
+          </a>
+          <p class="nx-pricing-disclaimer">Aucun engagement. Annule quand tu veux.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 9. FAQ ─────────────────────────────────────────────── -->
+    <section class="nx-section-lg">
+      <div class="nx-faq-section-inner">
+        <div class="nx-faq-header">
+          <div class="nx-eyebrow nx-fade-up" style="margin:0 auto 24px;">
+            <span class="nx-eyebrow-dot"></span>
+            Questions fréquentes
+          </div>
+          <h2 class="nx-fade-up nx-fade-up-delay-1">Tu hésites encore ?</h2>
+        </div>
+
+        <div class="nx-faq-list">
+          <div class="nx-fade-up nx-fade-up-delay-1">
+            <div class="nx-faq">
+              <button class="nx-faq-trigger" onclick="toggleFaq(this)">
+                <span>Je n'y connais rien en technologie, c'est pour moi ?</span>
+                <svg class="nx-faq-trigger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+              </button>
+              <div class="nx-faq-body"><p>Oui, c'est fait exactement pour toi. NyXia a été conçue pour les entrepreneurs qui ne veulent pas se prendre la tête avec la technologie. Si tu sais parler, tu sais utiliser NyXia. Point final.</p></div>
+            </div>
+          </div>
+          <div class="nx-fade-up nx-fade-up-delay-2">
+            <div class="nx-faq">
+              <button class="nx-faq-trigger" onclick="toggleFaq(this)">
+                <span>Est-ce que je dois écrire le contenu moi-même ?</span>
+                <svg class="nx-faq-trigger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+              </button>
+              <div class="nx-faq-body"><p>Non. Tu dis simplement à NyXia ce que tu veux communiquer — un mot, une phrase, une idée — et elle s'occupe de tout. Elle rédige, elle optimise, elle publie. Tu n'as rien à écrire.</p></div>
+            </div>
+          </div>
+          <div class="nx-fade-up nx-fade-up-delay-3">
+            <div class="nx-faq">
+              <button class="nx-faq-trigger" onclick="toggleFaq(this)">
+                <span>Combien de publications est-ce que j'ai par mois ?</span>
+                <svg class="nx-faq-trigger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+              </button>
+              <div class="nx-faq-body"><p>Si tu publies en moyenne 2 à 8 fois par jour, NyXia le fera facilement pour toi ! Il n'y a pas de limite fixe — NyXia publie aussi souvent que ton entreprise en a besoin. C'est illimité.</p></div>
+            </div>
+          </div>
+          <div class="nx-fade-up nx-fade-up-delay-1">
+            <div class="nx-faq">
+              <button class="nx-faq-trigger" onclick="toggleFaq(this)">
+                <span>Quelles plateformes sont incluses ?</span>
+                <svg class="nx-faq-trigger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+              </button>
+              <div class="nx-faq-body"><p>Facebook (profil, pages, groupes), Instagram, TikTok et YouTube. NyXia publie sur toutes ces plateformes simultanément. Tu n'as pas besoin de te connecter sur chacune.</p></div>
+            </div>
+          </div>
+          <div class="nx-fade-up nx-fade-up-delay-2">
+            <div class="nx-faq">
+              <button class="nx-faq-trigger" onclick="toggleFaq(this)">
+                <span>Est-ce que je peux annuler à tout moment ?</span>
+                <svg class="nx-faq-trigger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+              </button>
+              <div class="nx-faq-body"><p>Oui, aucun engagement. Tu peux annuler ton abonnement quand tu veux, en un clic. Pas de frais cachés, pas de période minimum. C'est toi qui décides.</p></div>
+            </div>
+          </div>
+          <div class="nx-fade-up nx-fade-up-delay-3">
+            <div class="nx-faq">
+              <button class="nx-faq-trigger" onclick="toggleFaq(this)">
+                <span>Est-ce que c'est en français ?</span>
+                <svg class="nx-faq-trigger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+              </button>
+              <div class="nx-faq-body"><p>Bien sûr ! NyXia parle français et anglais. Elle crée du contenu dans la langue de ton choix et s'adapte au ton de ta marque. Que tu sois au Québec, en France ou en Belgique, elle te comprend.</p></div>
+            </div>
+          </div>
+          <div class="nx-fade-up nx-fade-up-delay-1">
+            <div class="nx-faq">
+              <button class="nx-faq-trigger" onclick="toggleFaq(this)">
+                <span>Combien de temps ça prend pour que NyXia commence à publier ?</span>
+                <svg class="nx-faq-trigger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+              </button>
+              <div class="nx-faq-body"><p>Dès que tu lui donnes ta première idée, c'est parti ! En quelques minutes, NyXia crée ta première publication et la met en ligne. Pas de temps d'attente, pas de configuration complexe.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       Footer
+       ═══════════════════════════════════════════════════════════ -->
+  <footer class="nx-footer">
+    <div class="nx-footer-main">
+      <div>
+        <div class="nx-footer-logo">NyXia IA</div>
+        <div class="nx-footer-tagline">Automatisation — Propulsé par La Psychologie du Clic</div>
+      </div>
+      <nav class="nx-footer-nav">
+        <a href="#fonctionnalites">Fonctionnalités</a>
+        <a href="#comment-ca-marche">Comment ça marche</a>
+        <a href="#tarifs">Tarifs</a>
+        <a href="https://www.publication-web.com/travaildecheztoi/automatisation" target="_blank" rel="noopener noreferrer">Commencer</a>
+      </nav>
+      <div class="nx-footer-copy">
+        <p>&copy; 2026 NyXia IA — Publication Web&trade;</p>
+        <p style="margin-top:4px;">Tous droits réservés</p>
+      </div>
+    </div>
+    <div class="nx-footer-bottom">
+      <div class="nx-footer-bottom-inner">
+        Propulsé par <span>La Psychologie du Clic</span> de Diane Boyer
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       Chat Widget
+       ═══════════════════════════════════════════════════════════ -->
+  <button class="nyxia-chat-btn" id="chat-toggle" aria-label="Ouvrir le chat NyXia">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+    </svg>
+  </button>
+
+  <div class="nyxia-chat-panel" id="chat-panel">
+    <div class="nyxia-chat-header">
+      <div class="nyxia-chat-header-title">
+        <span style="font-size:1.2rem;">✦</span> NyXia IA
+      </div>
+      <button class="nyxia-chat-header-close" id="chat-close" aria-label="Fermer le chat">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
+    <div class="nyxia-chat-messages" id="chat-messages">
+      <div class="nyxia-chat-msg nyxia-chat-msg-bot">
+        Salut ! 👋 Je suis NyXia, ta collaboratrice IA. Comment puis-je t'aider aujourd'hui ?
+      </div>
+    </div>
+    <div class="nyxia-chat-input-area">
+      <input type="text" class="nyxia-chat-input" id="chat-input" placeholder="Écris ton message..." autocomplete="off">
+      <button class="nyxia-chat-send" id="chat-send" aria-label="Envoyer">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       JavaScript — StarryBackground + ScrollReveal + FAQ + Chat + Navbar
+       ═══════════════════════════════════════════════════════════ -->
+  <script>
+    /* ── StarryBackground (Pure JS Canvas) ─────────────────────── */
+    (function() {
+      var canvas = document.getElementById('starry-canvas');
+      if (!canvas) return;
+      var ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      var stars = [];
+      var shootingStars = [];
+      var nebulae = [];
+      var animId = 0;
+      var intervalId = null;
+      var dims = { w: 0, h: 0 };
+
+      var STAR_COUNT = 280;
+      var SHOOTING_INTERVAL = 4500;
+      var NEBULA_COUNT = 3;
+
+      function createStars(w, h) {
+        stars = [];
+        for (var i = 0; i < STAR_COUNT; i++) {
+          var hueRoll = Math.random();
+          var hue = 0;
+          if (hueRoll > 0.85) hue = 240 + Math.random() * 30;
+          else if (hueRoll > 0.75) hue = 260 + Math.random() * 20;
+          stars.push({
+            x: Math.random() * w,
+            y: Math.random() * h,
+            radius: Math.random() * 1.4 + 0.2,
+            baseOpacity: Math.random() * 0.7 + 0.15,
+            twinkleSpeed: Math.random() * 0.015 + 0.003,
+            phase: Math.random() * Math.PI * 2,
+            hue: hue
+          });
+        }
+      }
+
+      function createNebulae(w, h) {
+        nebulae = [];
+        for (var i = 0; i < NEBULA_COUNT; i++) {
+          nebulae.push({
+            x: Math.random() * w,
+            y: Math.random() * h,
+            radiusX: Math.random() * 250 + 150,
+            radiusY: Math.random() * 200 + 100,
+            hue: 250 + Math.random() * 40,
+            opacity: 0.02 + Math.random() * 0.025,
+            phase: Math.random() * Math.PI * 2
+          });
+        }
+      }
+
+      function createShootingStar() {
+        var x = Math.random() * dims.w * 0.8;
+        var y = Math.random() * dims.h * 0.4;
+        shootingStars.push({
+          cx: x, cy: y,
+          length: Math.random() * 100 + 50,
+          speed: Math.random() * 7 + 5,
+          angle: Math.PI / 4 + (Math.random() - 0.5) * 0.4,
+          opacity: 1, life: 1
+        });
+      }
+
+      function drawNebulae(time) {
+        for (var i = 0; i < nebulae.length; i++) {
+          var n = nebulae[i];
+          var breathe = Math.sin(time * 0.0003 + n.phase) * 0.3 + 0.7;
+          var nx = n.x + Math.sin(time * 0.0002 + n.phase) * 30;
+          var ny = n.y + Math.cos(time * 0.00015 + n.phase) * 20;
+          ctx.save();
+          ctx.beginPath();
+          ctx.ellipse(nx, ny, n.radiusX, n.radiusY, 0, 0, Math.PI * 2);
+          var grad = ctx.createRadialGradient(nx, ny, 0, nx, ny, n.radiusX);
+          grad.addColorStop(0, 'hsla(' + n.hue + ', 60%, 40%, ' + (n.opacity * breathe).toFixed(4) + ')');
+          grad.addColorStop(0.5, 'hsla(' + n.hue + ', 50%, 30%, ' + (n.opacity * breathe * 0.5).toFixed(4) + ')');
+          grad.addColorStop(1, 'rgba(0,0,0,0)');
+          ctx.fillStyle = grad;
+          ctx.fill();
+          ctx.restore();
+        }
+      }
+
+      function drawStars(time) {
+        for (var i = 0; i < stars.length; i++) {
+          var s = stars[i];
+          var flicker = Math.sin(time * s.twinkleSpeed + s.phase) * 0.35 + 0.65;
+          var opacity = s.baseOpacity * flicker;
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+          if (s.hue > 0) {
+            ctx.fillStyle = 'hsla(' + s.hue + ', 50%, 85%, ' + opacity.toFixed(3) + ')';
+          } else {
+            ctx.fillStyle = 'rgba(255,255,255,' + opacity.toFixed(3) + ')';
+          }
+          ctx.fill();
+          if (s.radius > 1 && opacity > 0.5) {
+            ctx.beginPath();
+            ctx.arc(s.x, s.y, s.radius * 2.5, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(255,255,255,' + (opacity * 0.08).toFixed(4) + ')';
+            ctx.fill();
+          }
+        }
+      }
+
+      function drawShootingStars() {
+        for (var i = shootingStars.length - 1; i >= 0; i--) {
+          var s = shootingStars[i];
+          var tailX = s.cx - Math.cos(s.angle) * s.length;
+          var tailY = s.cy - Math.sin(s.angle) * s.length;
+          var grad = ctx.createLinearGradient(tailX, tailY, s.cx, s.cy);
+          grad.addColorStop(0, 'rgba(255,255,255,0)');
+          grad.addColorStop(0.6, 'rgba(200,210,255,' + (s.opacity * s.life * 0.5).toFixed(3) + ')');
+          grad.addColorStop(1, 'rgba(255,255,255,' + (s.opacity * s.life).toFixed(3) + ')');
+          ctx.beginPath();
+          ctx.moveTo(tailX, tailY);
+          ctx.lineTo(s.cx, s.cy);
+          ctx.strokeStyle = grad;
+          ctx.lineWidth = 1.8;
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.arc(s.cx, s.cy, 1.5, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(255,255,255,' + (s.opacity * s.life).toFixed(3) + ')';
+          ctx.fill();
+          ctx.beginPath();
+          ctx.arc(s.cx, s.cy, 4, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(123,92,255,' + (s.opacity * s.life * 0.15).toFixed(4) + ')';
+          ctx.fill();
+          s.cx += Math.cos(s.angle) * s.speed;
+          s.cy += Math.sin(s.angle) * s.speed;
+          s.life -= 0.012;
+          if (s.life <= 0) shootingStars.splice(i, 1);
+        }
+      }
+
+      function resize() {
+        var dpr = Math.min(window.devicePixelRatio || 1, 2);
+        var w = window.innerWidth;
+        var h = window.innerHeight;
+        canvas.width = w * dpr;
+        canvas.height = h * dpr;
+        canvas.style.width = w + 'px';
+        canvas.style.height = h + 'px';
+        ctx.scale(dpr, dpr);
+        dims.w = w;
+        dims.h = h;
+        createStars(w, h);
+        createNebulae(w, h);
+      }
+
+      function animate(time) {
+        ctx.clearRect(0, 0, dims.w, dims.h);
+        drawNebulae(time);
+        drawStars(time);
+        drawShootingStars();
+        animId = requestAnimationFrame(animate);
+      }
+
+      resize();
+      animId = requestAnimationFrame(animate);
+      intervalId = setInterval(function() {
+        if (dims.w > 0 && dims.h > 0) createShootingStar();
+      }, SHOOTING_INTERVAL);
+
+      window.addEventListener('resize', resize);
+    })();
+
+    /* ── Scroll Reveal ─────────────────────────────────────────── */
+    (function() {
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('nx-visible');
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+      document.querySelectorAll('.nx-fade-up').forEach(function(el) {
+        observer.observe(el);
+      });
+    })();
+
+    /* ── Navbar Scroll ────────────────────────────────────────── */
+    (function() {
+      var navbar = document.getElementById('navbar');
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 20) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      }, { passive: true });
+    })();
+
+    /* ── Mobile Menu ──────────────────────────────────────────── */
+    var mobileMenuOpen = false;
+    var hamburgerBtn = document.getElementById('hamburger-btn');
+    var mobileMenu = document.getElementById('mobile-menu');
+
+    hamburgerBtn.addEventListener('click', function() {
+      mobileMenuOpen = !mobileMenuOpen;
+      if (mobileMenuOpen) {
+        mobileMenu.classList.add('open');
+        hamburgerBtn.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>';
+        hamburgerBtn.setAttribute('aria-label', 'Fermer le menu');
+      } else {
+        closeMobileMenu();
+      }
+    });
+
+    function closeMobileMenu() {
+      mobileMenuOpen = false;
+      mobileMenu.classList.remove('open');
+      hamburgerBtn.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16"/><path d="M4 18h16"/><path d="M4 6h16"/></svg>';
+      hamburgerBtn.setAttribute('aria-label', 'Ouvrir le menu');
+    }
+
+    window.addEventListener('resize', function() {
+      if (window.innerWidth >= 768) closeMobileMenu();
+    });
+
+    /* ── FAQ Accordion ────────────────────────────────────────── */
+    function toggleFaq(btn) {
+      var body = btn.nextElementSibling;
+      var isOpen = btn.classList.contains('open');
+
+      // Close all
+      document.querySelectorAll('.nx-faq-trigger').forEach(function(trigger) {
+        trigger.classList.remove('open');
+        trigger.setAttribute('aria-expanded', 'false');
+        trigger.nextElementSibling.classList.remove('open');
+      });
+
+      // Open clicked if it was closed
+      if (!isOpen) {
+        btn.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+        body.classList.add('open');
+      }
+    }
+
+    /* ── Chat Widget ──────────────────────────────────────────── */
+    var chatToggle = document.getElementById('chat-toggle');
+    var chatPanel = document.getElementById('chat-panel');
+    var chatClose = document.getElementById('chat-close');
+    var chatInput = document.getElementById('chat-input');
+    var chatSend = document.getElementById('chat-send');
+    var chatMessages = document.getElementById('chat-messages');
+
+    var nyxiaResponses = [
+      "Je comprends ! NyXia peut t'aider avec ça. Veux-tu en savoir plus sur nos fonctionnalités ?",
+      "Excellente question ! NyXia s'occupe de tout automatiquement — contenu, publication, calendrier. Tu n'as qu'à lui dire quoi publier.",
+      "Avec NyXia, tu récupères des heures chaque semaine. C'est comme avoir une assistante marketing 24h/24 !",
+      "Tu peux essayer NyXia sans engagement. C'est seulement 47$/mois et tu peux annuler quand tu veux.",
+      "NyXia publie sur Facebook, Instagram, TikTok et YouTube simultanément. Un seul endroit pour tout gérer !"
+    ];
+
+    chatToggle.addEventListener('click', function() {
+      chatPanel.classList.add('open');
+      chatToggle.style.display = 'none';
+    });
+
+    chatClose.addEventListener('click', function() {
+      chatPanel.classList.remove('open');
+      chatToggle.style.display = 'flex';
+    });
+
+    function sendChatMessage() {
+      var text = chatInput.value.trim();
+      if (!text) return;
+
+      // User message
+      var userMsg = document.createElement('div');
+      userMsg.className = 'nyxia-chat-msg nyxia-chat-msg-user';
+      userMsg.textContent = text;
+      chatMessages.appendChild(userMsg);
+      chatInput.value = '';
+
+      // Scroll to bottom
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+
+      // Typing indicator
+      var typing = document.createElement('div');
+      typing.className = 'nyxia-chat-typing';
+      typing.innerHTML = '<div class="nyxia-chat-typing-dot"></div><div class="nyxia-chat-typing-dot"></div><div class="nyxia-chat-typing-dot"></div>';
+      chatMessages.appendChild(typing);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+
+      // Bot response after delay
+      setTimeout(function() {
+        chatMessages.removeChild(typing);
+        var botMsg = document.createElement('div');
+        botMsg.className = 'nyxia-chat-msg nyxia-chat-msg-bot';
+        botMsg.textContent = nyxiaResponses[Math.floor(Math.random() * nyxiaResponses.length)];
+        chatMessages.appendChild(botMsg);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }, 1200 + Math.random() * 800);
+    }
+
+    chatSend.addEventListener('click', sendChatMessage);
+    chatInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') sendChatMessage();
+    });
+  </script>
+
+</body>
+</html>
