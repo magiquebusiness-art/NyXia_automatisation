@@ -185,7 +185,7 @@ Task: Deploy HTML version of NyXia Automation to Cloudflare Pages
 Work Log:
 - Verified existing cloudflare/ directory with complete HTML/CSS/JS structure (wrangler.toml, workers.js, src/*.html, src/css/nyxia.css, src/js/app.js, src/images/)
 - All 8 HTML pages already existed: index.html, login.html, dashboard.html, nouvelle-publication.html, mes-publications.html, mes-comptes.html, parametres.html, super-admin.html
-- Used Cloudflare API with user's token ([REDACTED]) to verify account
+- Used Cloudflare API with user's token to verify account
 - Account ID: 1b1ae6c18d122d337caab72a45ca1465 (Magiquebusiness@gmail.com's Account)
 - Found existing Cloudflare Pages project: nyxia-automatisation with custom domain nyxia-automation.travail-pour-toi.com
 - Project was configured with framework "next" which was causing old site to display

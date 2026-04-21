@@ -1415,14 +1415,14 @@ a:hover {
 }
 
 .nx-hero-card-1 {
-  top: 15%;
-  right: 5%;
+  top: 5%;
+  left: -8%;
   animation: nx-hero-card-1 5s ease-in-out infinite;
 }
 
 .nx-hero-card-2 {
-  bottom: 30%;
-  right: 12%;
+  bottom: 12%;
+  left: -12%;
   animation: nx-hero-card-2 6s ease-in-out infinite;
   animation-delay: 0.8s;
 }
@@ -1463,6 +1463,36 @@ a:hover {
 .nx-hero-card-icon.gold {
   background: rgba(244,200,66,0.15);
   color: var(--nx-gold);
+}
+
+/* ── Hero Cards Responsive ──────────────────────────────────── */
+
+.nx-hero-card-quote {
+  bottom: 15%;
+  right: -5%;
+  animation: nx-hero-card-2 6s ease-in-out infinite;
+  animation-delay: 0.8s;
+}
+
+@media (max-width: 767px) {
+  .nx-hero-card {
+    padding: 10px 14px;
+    font-size: 0.78rem;
+    gap: 8px;
+  }
+  .nx-hero-card-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 0.9rem;
+  }
+  .nx-hero-card-1 {
+    top: 2%;
+    left: 0;
+  }
+  .nx-hero-card-2 {
+    bottom: 8%;
+    left: 0;
+  }
 }
 
 /* ── Section Eyebrow ───────────────────────────────────────── */
