@@ -437,9 +437,9 @@
 </head>
 <body class="dark">
   <!-- ═══════════════════════════════════════════════════════════
-       Cosmic Background
+       Cosmic Background — Canvas étoilé animé
        ═══════════════════════════════════════════════════════════ -->
-  <div class="nx-cosmic-bg"></div>
+  <canvas id="starry-canvas" style="position:fixed;inset:0;z-index:1;pointer-events:none" aria-hidden="true"></canvas>
 
   <div class="nx-page-wrapper">
 
@@ -1131,6 +1131,7 @@
   <!-- ═══════════════════════════════════════════════════════════
        SCRIPTS
        ═══════════════════════════════════════════════════════════ -->
+  <script src="js/starry-bg.js"></script>
   <script src="js/app.js"></script>
   <script>
     // Navbar scroll effect
